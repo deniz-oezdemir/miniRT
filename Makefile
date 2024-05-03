@@ -6,7 +6,7 @@
 #    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/03 13:56:50 by denizozd         ###   ########.fr        #
+#    Updated: 2024/05/03 14:41:39 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = ##add name
 LIBFTNAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LIBFTPATH = ./libft
+LIBFTPATH = ./lib/libft
 
 SRCS = ##add source files
 
