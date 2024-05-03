@@ -6,38 +6,44 @@
 #    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/03 14:41:39 by denizozd         ###   ########.fr        #
+#    Updated: 2024/05/03 15:39:02 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ##add name
+NAME = minirt
 LIBFTNAME = libft.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = ##-Wall -Wextra -Werror
 LIBFTPATH = ./lib/libft
 
-SRCS = ##add source files
+SRCS = src/main.c src/init.c src/cleaning.c##$(wildcard *.c)
 
 OBJS = $(SRCS:.c=.o)
-MLX_LIB = mlx/
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
+MLX_LIB = lib/mlx/
+MLX_FLAGS = -Llib/mlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 
 all: $(NAME)
 
+src/%.o: src/%.c
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -c $< -o $@
+
 makelibft:
 	make -C $(LIBFTPATH)
-	cp $(LIBFTPATH)/$(LIBFTNAME) .
+	cp $(LIBFTPATH) $(LIBFTNAME)
 	mv $(LIBFTNAME) $(NAME)
 
-$(NAME): makelibft $(OBJS)
-	if [ ! -d "mlx" ]; then \
-	git clone https://github.com/42Paris/minilibx-linux.git mlx; \
+$(NAME): $(OBJS)
+	@if [ ! -f $(LIBFTPATH)/libft.a ]; then \
+ 		echo "Building libft..."; \
+		make -C $(LIBFTPATH); \
+	else \
+		echo "libft.a already exists."; \
+	fi
+	if [ ! -d "./lib/mlx" ]; then \
+	git clone https://github.com/42Paris/minilibx-linux.git lib/mlx; \
 	fi
 	make -C $(MLX_LIB)
-	$(CC) $(OBJS) -L./libft -lft $(MLX_FLAGS) -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -c $^ -o $@
+	$(CC) $(OBJS) -Llib/libft -lft $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
@@ -45,7 +51,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	rm -rf $(MLX_LIB)
+	rm -f $(MLX_LIB)/*.a
 	cd $(LIBFTPATH) && make fclean
 
 re: fclean all
