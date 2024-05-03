@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_light.c                                    :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 17:10:53 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/03 17:11:33 by denizozd         ###   ########.fr       */
+/*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
+/*   Updated: 2024/05/03 17:10:46 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parse_ambient_light(t_minirt *data)
+void	parse_objects(t_minirt *data)
 {
-
+	parse_ambient_light(data);
 }

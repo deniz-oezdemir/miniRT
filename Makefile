@@ -6,7 +6,7 @@
 #    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/03 15:43:57 by denizozd         ###   ########.fr        #
+#    Updated: 2024/05/03 17:12:45 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = ##-Wall -Wextra -Werror
 LIBFTPATH = ./lib/libft
 
-SRCS = src/main.c src/init.c src/cleaning.c##$(wildcard *.c)
+SRCS = src/main.c src/init.c src/cleaning.c srcs/parsing/parser.c srcs/parsing/ambient_light.c ##$(wildcard *.c)
 
 OBJS = $(SRCS:.c=.o)
 MLX_LIB = lib/mlx/
