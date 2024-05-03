@@ -6,14 +6,16 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/03 15:35:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:26:34 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "objects.h"
 # include <stdlib.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
 # include "mlx.h"
@@ -27,6 +29,9 @@
 # define IMG_WIDTH	800
 # define IMG_HEIGHT	600
 
+# define BACKGROUND_COLOR	0x202020
+# define TEXT_COLOR			0xffffff
+
 # define MLX_ERROR	1
 
 typedef struct s_img
@@ -38,15 +43,18 @@ typedef struct s_img
 	int		line_len;
 }	t_img;
 
-typedef struct data_s
+typedef struct s_minirt
 {
+	int			fd;
 	void		*mlx_ptr;
 	void		*mlx_win;
-	t_img		img;
-}	t_mlx_data;
+	t_img		*mlx_img;
+	// t_scene	*scene;
+}	t_minirt;
 
 /* Minilib functions */
-t_mlx_data	*init_mlx(void);
-void	init_window(t_mlx_data *data);
+t_minirt	*init_mlx(void);
+void	init_window(t_minirt *data);
+void	destroy_window(t_minirt *data);
 
 #endif

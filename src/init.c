@@ -6,17 +6,18 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/03 15:05:21 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:35:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-t_mlx_data	*init_mlx(void)
+/* rename init minirt and img */
+t_minirt	*init_mlx(void)
 {
-	t_mlx_data	*data;
+	t_minirt	*data;
 
-	data = (t_mlx_data *)malloc(sizeof(t_mlx_data));
+	data = (t_minirt *)malloc(sizeof(t_minirt));
 	if (data == NULL)
 		exit (MLX_ERROR);
 	data->mlx_ptr = mlx_init();
@@ -26,29 +27,32 @@ t_mlx_data	*init_mlx(void)
 		exit (MLX_ERROR);
 	}
 	data->mlx_win = NULL;
-	data->img.img_ptr = NULL;
-	data->img.img_pixels_ptr = NULL;
+	data->mlx_img = (t_img *)malloc(sizeof(t_img)); //check and free
+	if (data->mlx_img == NULL)
+		exit (MLX_ERROR);
+	data->mlx_img->img_pixels_ptr = NULL;
 	return (data);
 }
 
-void	init_window(t_mlx_data *data)
+void	init_window(t_minirt *data)
 {
 	data->mlx_win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, WIN_NAME);
 	if (data->mlx_win == NULL)
 		destroy_window(data);
-	data->img.img_ptr = mlx_new_image(data->mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
-	if (data->img.img_ptr == NULL)
+	data->mlx_img->img_ptr = mlx_new_image(data->mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
+	if (data->mlx_img->img_ptr == NULL)
 		destroy_window(data);
-	data->img.img_pixels_ptr = mlx_get_data_addr(data->img.img_ptr,
-			&data->img.bits_per_pixel, &data->img.line_len, &data->img.endian);
-	if (data->img.img_pixels_ptr == NULL)
+	data->mlx_img->img_pixels_ptr = mlx_get_data_addr(data->mlx_img->img_ptr,
+			&data->mlx_img->bits_per_pixel, &data->mlx_img->line_len, \
+			&data->mlx_img->endian);
+	if (data->mlx_img->img_pixels_ptr == NULL)
 		destroy_window(data);
 	/* mlx_key_hook(data->mlx_win, handle_keyboard_input, data);
 	mlx_hook(data->mlx_win, 17, 0, handle_close_button, data);
 	mlx_mouse_hook(data->mlx_win, handle_mouse_input, data); */
 }
 
-/* void	init_camera(t_mlx_data *data)
+/* void	init_camera(t_minirt *data)
 {
 	data->view.rot_x = -45;
 	data->view.rot_y = -20;
@@ -61,5 +65,5 @@ void	init_window(t_mlx_data *data)
 	transform_nodes(data->map, data->view, data->origin);
 	draw_grid(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
-		data->img.img_ptr, 200, 0);
+		data->mlx_img->img_ptr, 200, 0);
 } */
