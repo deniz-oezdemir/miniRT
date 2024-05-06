@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/03 17:09:51 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:59:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ int	main(int argc, char **argv)
 
 	data->fd = open(argv[1], O_RDONLY, 0);
 	if (data->fd < 0)
-		printf("Error: opening file"); //add: close fd, free data
-	parse_objects(data);
+		printf("Error: opening file\n"); //add: close fd, free data
 
-	init_window(data);
-	mlx_loop(data->mlx_ptr);
+	file_to_list(data);
+	close(data->fd); //change if file needed elsewhere
+	ft_lstiter(data->objects, printf); //check
+
+	//init_window(data);
+	//mlx_loop(data->mlx_ptr);
 	return (0);
 }

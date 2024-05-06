@@ -6,11 +6,11 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:10:53 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/03 17:11:33 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:40:02 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+# include "../../include/minirt.h"
 
 void	parse_ambient_light(t_minirt *data)
 {
