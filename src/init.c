@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/06 11:48:09 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:14:36 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_minirt	*init_mlx(void)
 		exit (MLX_ERROR);
 	data->mlx_img->img_pixels_ptr = NULL;
 	data->fd = 0;
+	data->scene = NULL;
 	data->objects = NULL;
 	return (data);
 }

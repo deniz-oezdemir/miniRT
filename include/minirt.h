@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/06 13:02:09 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:13:41 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_img
 typedef struct s_minirt
 {
 	int			fd;
+	t_list		*scene;
 	t_list		*objects;
 	void		*mlx_ptr;
 	void		*mlx_win;
@@ -59,7 +60,11 @@ void	init_window(t_minirt *data);
 void	destroy_window(t_minirt *data);
 
 /* Parsing */
-void	file_to_list(t_minirt *data);
+void	file_to_scene_list(t_minirt *data);
 void	separate_by_comma(t_minirt *data, char *space_separated);
+void	parse_ambient_light(t_minirt *data, t_list *al);
+
+/* utils */
+double	atof(const char *str);
 
 #endif
