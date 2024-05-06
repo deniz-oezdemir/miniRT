@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/06 12:58:10 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:02:09 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	destroy_window(t_minirt *data);
 
 /* Parsing */
 void	file_to_list(t_minirt *data);
-void	seperate_by_comma(t_minirt *data, char *space_seperated);
+void	separate_by_comma(t_minirt *data, char *space_separated);
 
 #endif
