@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 15:01:37 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:04:31 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	main(int argc, char **argv)
 	t_amblight *al = (t_amblight *)((t_list *)(data->objects)->content); //check
 	printf("\namblight:\nname: %s - intensity: %f - r: %d - g: %d - b: %d\n", al->name, al->intensity, al->r, al->g, al->b); //check
 
-	//init_window(data);
+	init_window(data);
 	print_instruction(data);
 	render_scene(data);
-	//mlx_loop(data->mlx_ptr);
+	mlx_loop(data->mlx_ptr);
 	return (0);
 }
