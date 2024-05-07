@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   atof.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:27:25 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 15:25:52 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:12:34 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../include/minirt.h"
 
 // adding to libft allowed?
 double	atof(const char *str)
