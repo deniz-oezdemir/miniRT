@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/06 15:13:41 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:19:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # include "objects.h"
+# include <stdbool.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>

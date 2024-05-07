@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 12:15:52 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:08:57 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 
 	file_to_scene_list(data);
 	close(data->fd); //change if file needed elsewhere
+	printf("scene list's contents:\n"); //check
 	ft_lstiter(data->scene, printf); //check
 
 	scene_list_to_structs_list(data);
