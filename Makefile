@@ -3,57 +3,118 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
+#    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/06 15:14:26 by denizozd         ###   ########.fr        #
+#    Updated: 2024/05/07 21:16:19 by tiacovel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# Main executable
 NAME = minirt
-LIBFTNAME = libft.a
+# Test executable
+TEST_EXECUTABLE = test_minirt
+
+# Compilation options
 CC = cc
 CFLAGS = ##-Wall -Wextra -Werror
-LIBFTPATH = ./lib/libft
 
-SRCS = src/main.c src/init.c src/cleaning.c src/parsing/parser.c src/parsing/ambient_light.c src/utils/atof.c ##$(wildcard *.c)
+# Libft library
+LIBFT_PATH = lib/libft
+LIBFT_FLAGS = -Llib/libft -lft
 
-OBJS = $(SRCS:.c=.o)
-MLX_LIB = lib/mlx/
+# MLX library
+MLX_PATH = lib/mlx
 MLX_FLAGS = -Llib/mlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
+
+# Source files directory
+SRCDIR = src
+# Test files directory
+TESTDIR = tests
+# Object files directory
+OBJDIR = obj
+
+INCLUDE = -I/usr/include -Imlx_linux
+
+# Source files (excluding main.c and test files)
+SRC = $(wildcard $(SRCDIR)/**/*.c)
+SRC := $(filter-out $(SRCDIR)/main.c, $(SRC))
+SRC := $(filter-out $(wildcard $(TESTDIR)/*.c), $(SRC))
+
+# Excluded source files
+EXCLUDED_SRC = $(wildcard $(SRCDIR)/*.c)
+# Excluded test files
+EXCLUDED_TEST = $(wildcard $(TESTDIR)/*.c)
+
+# Object files
+OBJ = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
+
+# Object files for excluded source files
+EXCLUDED_SRC_OBJ = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(EXCLUDED_SRC))
+# Object files for excluded source files
+EXCLUDED_TEST_OBJ = $(patsubst $(TESTDIR)/%.c, $(OBJDIR)/%.o, $(EXCLUDED_TEST))
+
+# Color and styles
+COLOR_RESET = \033[0m
+BOLD_GREEN = \033[1;32m
+GREEN = \033[0;32m
+RED = \033[0;31m
+HIDE = @
+
+# Check if mlx has been downloaded
+ifeq ($(wildcard $(MLX_PATH)/*),)
+	git submodule update --init --recursive
+endif
+
+# Check if libft is compiled
+ifndef $(wildcard $(LIBFT_PATH)/libft.a)
+	make -C $(LIBFT_PATH)
+endif
+	@echo "$(GREEN)libft COMPILED.$(COLOR_RESET)"
+
+# Check if mlx is compiled
+ifndef $(wildcard $(MLX_PATH)/libmlx.a)
+	make -C $(MLX_PATH)
+endif
+	@echo "$(GREEN)mlx COMPILED.$(COLOR_RESET)"
 
 all: $(NAME)
 
-src/%.o: src/%.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -c $< -o $@
+test: $(TEST_EXECUTABLE)
 
-makelibft:
-	make -C $(LIBFTPATH)
-	cp $(LIBFTPATH) $(LIBFTNAME)
-	mv $(LIBFTNAME) $(NAME)
+$(NAME): $(OBJDIR) $(OBJ) $(EXCLUDED_SRC_OBJ)
+    # Check if mlx has been downloaded
+    ifeq ($(wildcard $(MLX_PATH)/*),)
+		git submodule update --init --recursive
+    endif
+    ifdef $(wildcard $(MLX_PATH)/libmlx.a)
+		$(info Mlx library already compiled)
+    endif
+	@$(CC) $(OBJ) $(EXCLUDED_SRC_OBJ) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $(NAME)
 
-$(NAME): $(OBJS)
-	@if [ ! -f $(LIBFTPATH)/libft.a ]; then \
- 		echo "Building libft..."; \
-		make -C $(LIBFTPATH); \
-	else \
-		echo "libft.a already exists."; \
-	fi
-	if [ ! -d "./lib/mlx" ]; then \
-	git submodule add https://github.com/42Paris/minilibx-linux.git lib/mlx; \
-	fi
-	make -C $(MLX_LIB)
-	$(CC) $(OBJS) -Llib/libft -lft $(MLX_FLAGS) -o $(NAME)
+$(TEST_EXECUTABLE): $(OBJDIR) $(OBJ) $(EXCLUDED_TEST_OBJ)
+	$(CC) $(OBJ) $(EXCLUDED_TEST_OBJ) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $(TEST_EXECUTABLE)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+
+$(OBJDIR)/%.o: $(TESTDIR)/%.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
 
 clean:
-	rm -f $(OBJS)
-	cd $(LIBFTPATH) && make clean
+	rm -rf $(OBJDIR) $(EXECUTABLE) $(TEST_EXECUTABLE)
+	cd $(LIBFT_PATH) && make clean
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(MLX_LIB)/*.a
-	cd $(LIBFTPATH) && make fclean
+	rm -f $(MLX_PATH)/*.a
+	cd $(LIBFT_PATH) && make fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re libft test
