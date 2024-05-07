@@ -6,7 +6,7 @@
 #    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/07 21:16:19 by tiacovel         ###   ########.fr        #
+#    Updated: 2024/05/07 22:59:57 by tiacovel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,10 @@ GREEN = \033[0;32m
 RED = \033[0;31m
 HIDE = @
 
+all: $(NAME)
+
+test: $(TEST_EXECUTABLE)
+
 # Check if mlx has been downloaded
 ifeq ($(wildcard $(MLX_PATH)/*),)
 	git submodule update --init --recursive
@@ -70,17 +74,14 @@ endif
 ifndef $(wildcard $(LIBFT_PATH)/libft.a)
 	make -C $(LIBFT_PATH)
 endif
-	@echo "$(GREEN)libft COMPILED.$(COLOR_RESET)"
+#echo "$(GREEN)libft COMPILED.$(COLOR_RESET)"
+#$(shell echo "$(GREEN)libft COMPILED.$(COLOR_RESET)")
 
 # Check if mlx is compiled
 ifndef $(wildcard $(MLX_PATH)/libmlx.a)
 	make -C $(MLX_PATH)
 endif
-	@echo "$(GREEN)mlx COMPILED.$(COLOR_RESET)"
-
-all: $(NAME)
-
-test: $(TEST_EXECUTABLE)
+#@echo "$(GREEN)mlx COMPILED.$(COLOR_RESET)"
 
 $(NAME): $(OBJDIR) $(OBJ) $(EXCLUDED_SRC_OBJ)
     # Check if mlx has been downloaded
