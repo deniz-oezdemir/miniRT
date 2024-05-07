@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 11:59:53 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:39:03 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,10 @@ void	destroy_window(t_minirt *data);
 int		handle_keyboard_input(int keysym, t_minirt *data);
 int		handle_mouse_input(int keysym, t_minirt *data);
 int		handle_close_button(t_minirt *data);
+
+/* Window functions */
+void	color_pixel(t_minirt *data, int x, int y, int color);
+void	color_background(t_minirt *data, int color);
+void	print_instruction(t_minirt *data);
 
 #endif
