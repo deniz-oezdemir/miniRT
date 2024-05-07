@@ -6,7 +6,7 @@
 #    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/07 11:29:53 by tiacovel         ###   ########.fr        #
+#    Updated: 2024/05/07 12:04:01 by tiacovel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = ##-Wall -Wextra -Werror
 LIBFTPATH = ./lib/libft
 UNAME := $(shell uname)
 
-SRCS = src/main.c src/init.c src/cleaning.c##$(wildcard *.c)
+SRCS = $(wildcard src/*.c)#src/main.c src/init.c src/cleaning.c##$(wildcard *.c)
 
 OBJS = $(SRCS:.c=.o)
 MLX_LIB = lib/mlx/
