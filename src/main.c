@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/06 15:35:44 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:15:52 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,11 @@ int	main(int argc, char **argv)
 
 	file_to_scene_list(data);
 	close(data->fd); //change if file needed elsewhere
-
 	ft_lstiter(data->scene, printf); //check
 
-	//check
-	printf("c1\n");
-	int r = ((t_amblight *)(data->objects->content))->r;
-	printf("c2\n");
-	printf("amblight - name: %d\n", r);
+	scene_list_to_structs_list(data);
+	t_amblight *al = (t_amblight *)((t_list *)(data->objects)->content); //check
+	printf("\namblight:\nname: %s - intensity: %f - r: %d - g: %d - b: %d\n", al->name, al->intensity, al->r, al->g, al->b); //check
 
 	//init_window(data);
 	//mlx_loop(data->mlx_ptr);

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:34:52 by denizozd          #+#    #+#             */
-/*   Updated: 2024/02/11 18:36:16 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:35:15 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*extract_excess(char *line);
 char	*gnl_strjoin(char *s1, char const *s2);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 6 /*22 perfect for basictest.fdf*/
+#  define BUFFER_SIZE 5
 # endif
 
 #endif

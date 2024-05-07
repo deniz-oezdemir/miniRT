@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/06 15:11:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:08:19 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,9 @@ void	scene_list_to_structs_list(t_minirt *data)
 {
 	while(data->scene)
 	{
-		if (ft_strncmp(data->scene->content, "A", 1))
+		if (!ft_strncmp(data->scene->content, "A", 1))
 			parse_ambient_light(data, data->scene);
-		else
-			data->scene = data->scene->next;
+		data->scene = data->scene->next;
 	}
 }
 
