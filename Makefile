@@ -6,7 +6,7 @@
 #    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/07 22:59:57 by tiacovel         ###   ########.fr        #
+#    Updated: 2024/05/07 23:06:30 by tiacovel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ TESTDIR = tests
 # Object files directory
 OBJDIR = obj
 
-INCLUDE = -I/usr/include -Imlx_linux
+INCLUDE = -I/usr/include -Ilib/mlx
 
 # Source files (excluding main.c and test files)
 SRC = $(wildcard $(SRCDIR)/**/*.c)
