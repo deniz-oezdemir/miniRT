@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:13:40 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 15:48:24 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:34:57 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minirt.h"
+# include "../../include/minirt.h"
 
 /*
 example input:
@@ -30,53 +30,66 @@ to check:
 if stuff missing - check identifier at certain spot after previous identifier
 */
 
-
-bool	is_identifier(char *s)
-{
-	if (ft_strlen(s) == 1)
-		if (!ft_strncmp(s, "A", 1) || !ft_strncmp(s, "C", 1) || !ft_strncmp(s, "L", 1))
-			return (1);
-	else if (ft_strlen(s) == 2)
-		if (!ft_strncmp(s, "pl", 2) || !ft_strncmp(s, "sp", 2) || !ft_strncmp(s, "cy", 2))
-			return (1);
-	return (0);
-}
-
-/* is range: intensity, normalized vector,light brigthness,... */
-bool is_in_range(double min, double max, char *s)
-{
-	double	n;
-
-	n = atof(s);
-	if (min <= n && max >= n)
-		return (1);
-	return (0);
-}
-
-bool	is_rgb(char *s)
-{
-	double	n;
-
-//is digits
-
-	n = atof(s);
-	if (0 <= n && 255 >= n)
-		return (1);
-	return (0);
-}
-
+/* Cheack weather a string represents a digit. */
 bool	is_digits(char *s)
 {
 	int	i;
 
+	if (s == NULL)
+		return (false);
+	if (*s == '\0')
+		return (false);
 	i = 0;
-	while(ft_isdigit(s[i]))
+	while (ft_isdigit(s[i]))
 		i++;
-
-	if dot
-	while isdigits
-
+	if (s[i] == '.')
+		i++;
+	while (ft_isdigit(s[i]))
+		i++;
 	if (i == ft_strlen(s))
-		return (1);
-	return (0);
+		return (true);
+	return (false);
+}
+
+/* Cheack weather a string represents an identifier for a scene object. */
+bool	is_identifier(char *s)
+{
+	if (ft_strlen(s) == 1)
+	{
+		if (!ft_strncmp(s, "A", 1) || !ft_strncmp(s, "C", 1) || !ft_strncmp(s, "L", 1))
+			return (true);
+	}
+	else if (ft_strlen(s) == 2)
+	{
+		if (!ft_strncmp(s, "pl", 2) || !ft_strncmp(s, "sp", 2) || !ft_strncmp(s, "cy", 2))
+			return (true);
+	}
+	return (false);
+}
+
+/* Cheack weather a string is within a specified numeric range */
+/* Used to check: intensity, normalized vector,light brigthness,... */
+bool	is_in_range(double min, double max, char *s)
+{
+	double	n;
+
+	if (!is_digits(s))
+		return(false);
+	n = atof(s);
+	if (min <= n && max >= n)
+		return (true);
+	return (false);
+}
+
+/* Cheack weather a string represents a RGB color. */
+bool	is_rgb(char *s)
+{
+	double	n;
+
+	if (!is_digits(s))
+		return(false);
+	n = atof(s);
+	if (0 <= n && 255 >= n)
+		return (true);
+	return (false);
 }
