@@ -6,7 +6,7 @@
 #    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/07 23:06:30 by tiacovel         ###   ########.fr        #
+#    Updated: 2024/05/08 00:29:46 by tiacovel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@
 NAME = minirt
 # Test executable
 TEST_EXECUTABLE = test_minirt
+# Get the operative system name
+OS := $(shell uname)
 
 # Compilation options
 CC = cc
@@ -35,6 +37,11 @@ TESTDIR = tests
 OBJDIR = obj
 
 INCLUDE = -I/usr/include -Ilib/mlx
+
+ifeq ($(OS), Darwin)
+    INCLUDE = -I/usr/X11/include
+    MLX_FLAGS = -L/usr/X11/lib -lX11 -lmlx -lXext
+endif
 
 # Source files (excluding main.c and test files)
 SRC = $(wildcard $(SRCDIR)/**/*.c)
@@ -61,40 +68,37 @@ GREEN = \033[0;32m
 RED = \033[0;31m
 HIDE = @
 
-all: $(NAME)
+all: dependencies $(NAME)
 
-test: $(TEST_EXECUTABLE)
+test: dependencies $(TEST_EXECUTABLE)
 
-# Check if mlx has been downloaded
-ifeq ($(wildcard $(MLX_PATH)/*),)
-	git submodule update --init --recursive
-endif
-
-# Check if libft is compiled
-ifndef $(wildcard $(LIBFT_PATH)/libft.a)
-	make -C $(LIBFT_PATH)
-endif
-#echo "$(GREEN)libft COMPILED.$(COLOR_RESET)"
-#$(shell echo "$(GREEN)libft COMPILED.$(COLOR_RESET)")
-
-# Check if mlx is compiled
-ifndef $(wildcard $(MLX_PATH)/libmlx.a)
-	make -C $(MLX_PATH)
-endif
-#@echo "$(GREEN)mlx COMPILED.$(COLOR_RESET)"
-
-$(NAME): $(OBJDIR) $(OBJ) $(EXCLUDED_SRC_OBJ)
+dependencies:
+	@echo "$(GREEN)Checking dependencies...$(COLOR_RESET)"
     # Check if mlx has been downloaded
     ifeq ($(wildcard $(MLX_PATH)/*),)
-		git submodule update --init --recursive
+		@git submodule update --init --recursive
+		@echo "$(GREEN)Downloaded mlx submodule.$(COLOR_RESET)"
     endif
-    ifdef $(wildcard $(MLX_PATH)/libmlx.a)
-		$(info Mlx library already compiled)
+
+    # Check if libft is compiled
+    ifeq ($(wildcard $(LIBFT_PATH)/libft.a),)
+		@make -s -C $(LIBFT_PATH)
     endif
+	@echo "$(GREEN)Libft compiled ✅$(COLOR_RESET)"
+
+    # Check if mlx is compiled
+    ifeq ($(wildcard $(MLX_PATH)/libmlx.a),)
+		@make -s -C $(MLX_PATH)
+    endif
+	@echo "$(GREEN)Mlx compiled ✅$(COLOR_RESET)"
+
+$(NAME): $(OBJDIR) $(OBJ) $(EXCLUDED_SRC_OBJ)
 	@$(CC) $(OBJ) $(EXCLUDED_SRC_OBJ) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $(NAME)
+	@echo "$(BOLD_GREEN)Program Compiled 🔥$(COLOR_RESET)"
 
 $(TEST_EXECUTABLE): $(OBJDIR) $(OBJ) $(EXCLUDED_TEST_OBJ)
-	$(CC) $(OBJ) $(EXCLUDED_TEST_OBJ) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $(TEST_EXECUTABLE)
+	@$(CC) $(OBJ) $(EXCLUDED_TEST_OBJ) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $(TEST_EXECUTABLE)
+	@echo "$(BOLD_GREEN)Tester Compiled 🤖$(COLOR_RESET)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(@D)
@@ -102,20 +106,22 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 
 $(OBJDIR)/%.o: $(TESTDIR)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
 
 clean:
-	rm -rf $(OBJDIR) $(EXECUTABLE) $(TEST_EXECUTABLE)
-	cd $(LIBFT_PATH) && make clean
+	@rm -rf $(OBJDIR) $(EXECUTABLE) $(TEST_EXECUTABLE)
+	@cd $(LIBFT_PATH) && make -s clean
+	@echo "$(RED) Objects removed$(COLOR_RESET)"
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(MLX_PATH)/*.a
-	cd $(LIBFT_PATH) && make fclean
+	@rm -f $(NAME)
+	@rm -f $(MLX_PATH)/*.a
+	@cd $(LIBFT_PATH) && make -s fclean
+	@echo "$(RED) Full clean$(COLOR_RESET)"
 
 re: fclean all
 
-.PHONY: all clean fclean re libft test
+.PHONY: all clean fclean re libft test dependencies
