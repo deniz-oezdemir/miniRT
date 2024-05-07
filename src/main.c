@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 12:46:38 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:01:37 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,22 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	} */
 	data = init_mlx();
-	init_window(data);
+
+	data->fd = open(argv[1], O_RDONLY, 0);
+	if (data->fd < 0)
+		printf("Error: opening file\n"); //add: close fd, free data
+
+	file_to_scene_list(data);
+	close(data->fd); //change if file needed elsewhere
+	ft_lstiter(data->scene, printf); //check
+
+	scene_list_to_structs_list(data);
+	t_amblight *al = (t_amblight *)((t_list *)(data->objects)->content); //check
+	printf("\namblight:\nname: %s - intensity: %f - r: %d - g: %d - b: %d\n", al->name, al->intensity, al->r, al->g, al->b); //check
+
+	//init_window(data);
 	print_instruction(data);
 	render_scene(data);
-	mlx_loop(data->mlx_ptr);
+	//mlx_loop(data->mlx_ptr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 11:58:41 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:00:14 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ t_minirt	*init_mlx(void)
 	if (data->mlx_img == NULL)
 		exit (MLX_ERROR);
 	data->mlx_img->img_pixels_ptr = NULL;
+	data->fd = 0;
+	data->scene = NULL;
+	data->objects = NULL;
 	return (data);
 }
 

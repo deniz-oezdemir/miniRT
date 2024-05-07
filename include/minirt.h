@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 12:39:03 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:59:38 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_img
 typedef struct s_minirt
 {
 	int			fd;
+	t_list		*scene;
+	t_list		*objects;
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_img		*mlx_img;
@@ -66,5 +68,13 @@ int		handle_close_button(t_minirt *data);
 void	color_pixel(t_minirt *data, int x, int y, int color);
 void	color_background(t_minirt *data, int color);
 void	print_instruction(t_minirt *data);
+
+/* Parsing */
+void	file_to_scene_list(t_minirt *data);
+void	separate_by_comma(t_minirt *data, char *space_separated);
+void	parse_ambient_light(t_minirt *data, t_list *al);
+
+/* utils */
+double	atof(const char *str);
 
 #endif

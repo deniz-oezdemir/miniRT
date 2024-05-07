@@ -11,6 +11,8 @@
                 "${file}",
                 "${fileDirname}/init.c",
                 "${fileDirname}/cleaning.c",
+                "${fileDirname}/parsing/parser.c",
+                "${fileDirname}/parsing/ambient_light.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-Ilib/mlx_linux",
