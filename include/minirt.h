@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/03 16:26:34 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:59:53 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,10 @@ typedef struct s_minirt
 t_minirt	*init_mlx(void);
 void	init_window(t_minirt *data);
 void	destroy_window(t_minirt *data);
+
+/* MLX keyboard and mouse hooks */
+int		handle_keyboard_input(int keysym, t_minirt *data);
+int		handle_mouse_input(int keysym, t_minirt *data);
+int		handle_close_button(t_minirt *data);
 
 #endif

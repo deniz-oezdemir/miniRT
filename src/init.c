@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/03 16:35:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:58:41 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	init_window(t_minirt *data)
 			&data->mlx_img->endian);
 	if (data->mlx_img->img_pixels_ptr == NULL)
 		destroy_window(data);
-	/* mlx_key_hook(data->mlx_win, handle_keyboard_input, data);
+	mlx_key_hook(data->mlx_win, handle_keyboard_input, data);
 	mlx_hook(data->mlx_win, 17, 0, handle_close_button, data);
-	mlx_mouse_hook(data->mlx_win, handle_mouse_input, data); */
+	mlx_mouse_hook(data->mlx_win, handle_mouse_input, data);
 }
 
 /* void	init_camera(t_minirt *data)
