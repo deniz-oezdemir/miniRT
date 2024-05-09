@@ -30,6 +30,31 @@
 			"preLaunchTask": "compile miniRT"
 		},
 		{
+			"name": "MacOS debugger",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/src/main",
+			"args": ["../scene_subject.rt"],
+			"stopAtEntry": false,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Set Disassembly Flavor to Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			],
+			"preLaunchTask": "compile miniRT MacOS"
+		},
+		{
 			"name": "Tester debugger Ubuntu",
 			"type": "cppdbg",
 			"request": "launch",
