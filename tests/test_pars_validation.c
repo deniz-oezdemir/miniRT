@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:22:55 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/07 18:47:02 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:10:54 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,55 @@ void test_is_identifier(void) {
 	// Iterate through the test cases
 	for (int i = 0; i < sizeof(test_cases) / sizeof(test_cases[0]); i++) {
 		bool actual_result = is_identifier(test_cases[i]);
+		print_test_result(test_cases[i], expected_results[i], actual_result);
+	}
+}
+
+/* Function to run tests for the is_in_range function */
+void test_is_in_range(void) {
+	printf("--- Test is_in_range ---\n");
+	
+	// Test cases
+	char *test_cases[] = {
+		"5.0",          // Valid value within range
+		"10.5",         // Valid value within range
+		"15.7",         // Valid value within range
+		"3.4",          // Valid value within range
+		"20.0",         // Valid value within range
+		"25.5",         // Valid value within range
+		"0",            // Valid value at the lower bound
+		"30",           // Valid value at the upper bound
+		"-5",           // Invalid value below range
+		"35",           // Invalid value above range
+		"abc",          // Invalid value (non-numeric)
+		"",             // Empty string
+		NULL            // Null pointer
+	};
+
+	// Expected results corresponding to the test cases
+	bool expected_results[] = {
+		true,   // Valid value within range
+		true,   // Valid value within range
+		true,   // Valid value within range
+		true,   // Valid value within range
+		true,   // Valid value within range
+		true,   // Valid value within range
+		true,   // Valid value at the lower bound
+		true,   // Valid value at the upper bound
+		false,  // Invalid value below range
+		false,  // Invalid value above range
+		false,  // Invalid value (non-numeric)
+		false,  // Empty string
+		false   // Null pointer
+	};
+
+	// Define the range for the tests
+	double min = 0.0;
+	double max = 30.0;
+
+	// Iterate through the test cases
+	for (int i = 0; i < sizeof(test_cases) / sizeof(test_cases[0]); i++) {
+		bool actual_result = is_in_range(min, max, test_cases[i]);
 		print_test_result(test_cases[i], expected_results[i], actual_result);
 	}
 }
