@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 17:56:52 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:51:06 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,23 @@ void	init_window(t_minirt *data);
 void	destroy_window(t_minirt *data);
 
 /* Parsing */
-void	file_to_scene_list(t_minirt *data);
-void	separate_by_comma(t_minirt *data, char *space_separated);
-void	parse_ambient_light(t_minirt *data, t_list *al);
+void	parse(t_minirt *data, char *file_name);
+void	parse_ambient_light(t_minirt *data, t_list **al);
+void	parse_camera(t_minirt *data, t_list **list);
+void	parse_light(t_minirt *data, t_list **list);
+void	parse_sphere(t_minirt *data, t_list **list);
+void	parse_plane(t_minirt *data, t_list **list);
+void	parse_cylinder(t_minirt *data, t_list **list);
 
 /* Input validation */
 bool	is_digits(char *s);
 bool	is_identifier(char *s);
 bool	is_in_range(double min, double max, char *s);
 bool	is_rgb(char *s);
+
+double	check_intensity(char *arg);
+int		check_rgb(char *arg);
+double	check_coordinate(char *arg);
 
 /* utils */
 double	atof(const char *str);
