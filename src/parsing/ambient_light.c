@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:10:53 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/08 17:01:32 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:24:55 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ void	parse_ambient_light(t_minirt *data, t_list **al)
 	ft_lstadd_back(&(data->objects), ft_lstnew(amblight));
 	(*al) = (*al)->next->next->next->next;
 	printf("Ambient light OK\n");
-	//printf("amblight: name: %s, intensity: %f, r: %d\n", amblight->name, amblight->intensity, amblight->r);
 }
