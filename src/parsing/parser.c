@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/13 13:07:09 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:40:05 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	file_to_scene_list(t_minirt *data)
 				ft_lstadd_back(&(data->scene), ft_lstnew(space_separated[i]));
 		}
 		line = get_next_line(data->fd);
+		remove_newline(&line);
 	}
 	free(line); //as last line is \0 for end of file
 }
