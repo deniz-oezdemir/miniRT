@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:13:40 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/13 13:27:41 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:38:19 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ bool	is_digits(char *s)
 	if (*s == '\0')
 		return (false);
 	i = 0;
+	if (s[i] == '+' || s[i] == '-')
+		i++;
 	while (ft_isdigit(s[i]))
 		i++;
 	if (s[i] == '.')
