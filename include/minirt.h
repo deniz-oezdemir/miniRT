@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/08 17:51:06 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:06:02 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ double	check_coordinate(char *arg);
 
 /* utils */
 double	atof(const char *str);
+void	remove_newline(char **str);
 
 #endif
