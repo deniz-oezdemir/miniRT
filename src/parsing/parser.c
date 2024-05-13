@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/08 17:59:29 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:07:09 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	file_to_scene_list(t_minirt *data)
 	line = get_next_line(data->fd);
 	if (!line || !ft_isprint(line[0]))
 		printf("Error: file\n");
+	remove_newline(&line);
 	while (line && ft_isprint(line[0]))
 	{
 		space_separated = ft_split(line, ' '); //free list scene at exit
