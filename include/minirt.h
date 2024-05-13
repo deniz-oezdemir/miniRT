@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/13 13:06:02 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:43:18 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,12 @@ void	parse_cylinder(t_minirt *data, t_list **list);
 bool	is_digits(char *s);
 bool	is_identifier(char *s);
 bool	is_in_range(double min, double max, char *s);
-bool	is_rgb(char *s);
 
 double	check_intensity(char *arg);
 int		check_rgb(char *arg);
 double	check_coordinate(char *arg);
+int		check_vec3(char *arg);
+int		check_fov(char *arg);
 
 /* utils */
 double	atof(const char *str);
