@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/13 14:43:18 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:50:00 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ int		check_fov(char *arg);
 /* utils */
 double	atof(const char *str);
 void	remove_newline(char **str);
+void	*get_nth_content(t_list *list, int n);
+void	move_to_nth_node(t_list **list, int n);
 
 #endif
