@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 14:32:10 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:56:53 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "mlx.h"
 # include <X11/keysym.h>
 # include "../lib/libft/libft.h"
+# include "errors.h"
 
 # define WIN_NAME	"MiniRT"
 # define WIN_WIDTH	1000
@@ -89,6 +90,9 @@ int		check_rgb(char *arg);
 double	check_coordinate(char *arg);
 int		check_vec3(char *arg);
 int		check_fov(char *arg);
+
+/* Handlers */
+void	pars_error(int err_code);
 
 /* utils */
 double	atof(const char *str);
