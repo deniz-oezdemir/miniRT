@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   garbage_lib.c                                      :+:      :+:    :+:   */
+/*   gc_lib.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 21:10:07 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/04/25 15:52:15 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:57:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+//delete file if not needed
 
-/* custom libft functions with get_grbg instead of malloc or ft_calloc*/
+# include "../../include/minirt.h"
 
-char	*grbg_strdup(t_prompt *prompt, const char *s)
+/* custom libft functions with gc_get instead of malloc or ft_calloc*/
+
+char	*gc_strdup(t_minirt *data, const char *s)
 {
 	size_t	len;
 	size_t	i;
@@ -22,7 +24,7 @@ char	*grbg_strdup(t_prompt *prompt, const char *s)
 
 	i = 0;
 	len = ft_strlen(s) + 1;
-	dest = get_grbg(prompt, len, sizeof(char));
+	dest = gc_get(data, len, sizeof(char));
 	if (dest == NULL)
 		return (NULL);
 	while (s[i] != '\0')
@@ -34,7 +36,7 @@ char	*grbg_strdup(t_prompt *prompt, const char *s)
 	return (dest);
 }
 
-char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start,
+char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 		size_t len)
 {
 	size_t	i;
@@ -42,10 +44,10 @@ char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start,
 
 	i = 0;
 	if (ft_strlen(s) < start)
-		return (grbg_strdup(prompt, ""));
+		return (gc_strdup(data, ""));
 	if (ft_strlen(s + start) < len)
 		len = ft_strlen(s + start);
-	dest = get_grbg(prompt, len + 1, sizeof(char));
+	dest = gc_get(data, len + 1, sizeof(char));
 	if (!dest)
 		return (NULL);
 	while (i < len)
@@ -57,13 +59,13 @@ char	*grbg_substr(t_prompt *prompt, char const *s, unsigned int start,
 	return (dest);
 }
 
-char	*grbg_strjoin(t_prompt *prompt, char const *s1, char const *s2)
+char	*gc_strjoin(t_minirt *data, char const *s1, char const *s2)
 {
 	size_t	len;
 	char	*dest;
 
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	dest = get_grbg(prompt, sizeof(char), len);
+	dest = gc_get(data, sizeof(char), len);
 	if (!dest)
 		return (NULL);
 	ft_strlcpy(dest, s1, ft_strlen(s1) + 1);

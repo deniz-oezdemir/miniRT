@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grbg_itoa.c                                        :+:      :+:    :+:   */
+/*   gc_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:50:59 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/25 15:52:49 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:57:50 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+//delete file if not needed
+
+# include "../../include/minirt.h"
 
 static int	get_len(long n)
 {
@@ -52,19 +54,19 @@ static char	*fill_the_array(int len, char *dest, int n)
 	return (dest);
 }
 
-char	*grbg_itoa(t_prompt *prompt, int n)
+char	*gc_itoa(t_minirt *data, int n)
 {
 	char	*dest;
 	size_t	len;
 	long	num;
 
 	if (n == -2147483648)
-		return (dest = grbg_strdup(prompt, "-2147483648"));
+		return (dest = gc_strdup(data, "-2147483648"));
 	if (n == 0)
-		return (dest = grbg_strdup(prompt, "0"));
+		return (dest = gc_strdup(data, "0"));
 	num = n;
 	len = get_len(num);
-	dest = get_grbg(prompt, len + 1, sizeof(char));
+	dest = gc_get(data, len + 1, sizeof(char));
 	if (!dest)
 		return (NULL);
 	dest = fill_the_array(len, dest, num);

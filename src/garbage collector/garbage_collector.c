@@ -6,14 +6,14 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/04/25 15:48:54 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:55:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+# include "../../include/minirt.h"
 
 /*	nmemb and size of new memory space (same as for ft_calloc) */
-void	*get_grbg(t_prompt *prompt, size_t nmemb, size_t size)
+void	*gc_get(t_minirt *data, size_t nmemb, size_t size)
 {
 	void	*new;
 
@@ -21,29 +21,29 @@ void	*get_grbg(t_prompt *prompt, size_t nmemb, size_t size)
 	if (!new)
 	{
 		ft_putstr_fd("memory allocation error\n", 2);
-		g_exitstatus = 1;
+		//g_exitstatus = 1; //from minishell, replace with exit/error
 		return (NULL);
 	}
-	collect_grbg(prompt, new);
+	collect_grbg(data, new);
 	return (new);
 }
 
-/*	can also be used without get_grbg to collect malloc'ed space */
-void	collect_grbg(t_prompt *prompt, void *new)
+/*	can also be used without gc_get to collect malloc'ed space */
+void	gc_collect(t_minirt *data, void *new)
 {
-	t_grbg	*node;
-	t_grbg	*tmp;
-	t_grbg	**head;
+	t_list	*node;
+	t_list	*tmp;
+	t_list	**head;
 
-	head = &(prompt->grbg_lst);
-	node = ft_calloc(1, sizeof(t_grbg));
+	head = &(data->grbg);
+	node = ft_calloc(1, sizeof(t_list));
 	if (!node)
 	{
 		ft_putstr_fd("memory allocation error\n", 2);
-		g_exitstatus = 1;
+		//g_exitstatus = 1; //from minishell, replace with exit/error
 		return ;
 	}
-	node->ptr = new;
+	node->content = new;
 	node->next = NULL;
 	if (!(*head))
 	{
@@ -57,16 +57,16 @@ void	collect_grbg(t_prompt *prompt, void *new)
 	return ;
 }
 
-void	free_grbg(t_grbg *head)
+void	gc_free(t_list *grbg)
 {
-	t_grbg	*curr;
-	t_grbg	*prev;
+	t_list	*curr;
+	t_list	*prev;
 
-	curr = head;
+	curr = grbg;
 	while (curr)
 	{
-		if (curr->ptr)
-			free(curr->ptr);
+		if (curr->content)
+			free(curr->content);
 		prev = curr;
 		if (curr->next)
 			curr = curr->next;

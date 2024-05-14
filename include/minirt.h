@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 14:12:44 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:55:42 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_minirt
 	int			fd;
 	t_list		*scene;
 	t_list		*objects;
+	t_list		*grbg;
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_img		*mlx_img;
@@ -86,5 +87,11 @@ void	remove_newline(char **str);
 void	*get_nth_content(t_list *list, int n);
 void	move_to_nth_node(t_list **list, int n);
 void	print_list(t_list *head);
+
+/* Garbage collector */
+void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
+void	gc_collect(t_minirt *data, void *new);
+void	gc_free(t_list *grbg);
+
 
 #endif
