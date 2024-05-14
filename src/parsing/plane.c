@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 13:11:35 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:59:13 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 	plane->g = check_rgb(get_nth_content(*input_lst, 8));
 	plane->b = check_rgb(get_nth_content(*input_lst, 9));
 	if (!validate_plane(plane))
-		return ; // TODO: print an error and clean everything
+		return (pars_error(PLANE_ERR));
 	ft_lstadd_back(&(data->objects), ft_lstnew(plane));
 	move_to_nth_node(input_lst, 9);
 	printf("Plane OK\n");

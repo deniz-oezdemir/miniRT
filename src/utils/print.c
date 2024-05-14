@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 14:38:28 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:00:57 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void print_list(t_list *head) {
 			}
 			// Add more else if clauses for other struct types...
 		}
+		printf("\n");
 		current = current->next;
 	}
 }

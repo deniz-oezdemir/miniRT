@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:46:53 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 14:34:28 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:58:47 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	parse_cylinder(t_minirt *data, t_list **input_lst)
 	cylinder->g = check_rgb(get_nth_content(*input_lst, 10));
 	cylinder->b = check_rgb(get_nth_content(*input_lst, 11));
 	if (!validate_cylinder(cylinder))
-		return ; // TODO: print an error and clean everything
+		return (pars_error(CYLINDER_ERR));
 	ft_lstadd_back(&(data->objects), ft_lstnew(cylinder));
 	move_to_nth_node(input_lst, 11);
 	printf("Cylinder OK\n");

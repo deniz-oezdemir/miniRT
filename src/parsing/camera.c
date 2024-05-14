@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 13:05:18 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:58:38 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	parse_camera(t_minirt *data, t_list **input_lst)
 	camera->zv = check_vec3(get_nth_content(*input_lst, 6));
 	camera->fov = check_fov(get_nth_content(*input_lst, 7));
 	if (!validate_camera(camera))
-		return ; // TODO: print an error and clean everything
+		return (pars_error(CAMERA_ERR));
 	ft_lstadd_back(&(data->objects), ft_lstnew(camera));
 	move_to_nth_node(input_lst, 7);
 	printf("Camera OK\n");
