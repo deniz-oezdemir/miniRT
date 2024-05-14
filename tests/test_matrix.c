@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_tests.c                                        :+:      :+:    :+:   */
+/*   test_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 16:26:23 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 18:35:37 by denizozd         ###   ########.fr       */
+/*   Created: 2024/05/14 18:28:28 by denizozd          #+#    #+#             */
+/*   Updated: 2024/05/14 18:32:02 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/tests.h"
 # include "../include/minirt.h"
+# include "../include/tests.h"
 
-int main(void)
+
+void	test_init_matrix(t_minirt *data)
 {
-    t_minirt	*data;
+	void **matrix;
 
-    printf("--- Test init_matrix ---\n");
-    data = init_mlx();
-
-    // test_is_digit();
-    // test_is_identifier();
-    // test_is_in_range();
-    test_init_matrix(data);
-    return (0);
+	matrix = init_matrix(data, 3,3);
+	if (matrix != NULL)
+		printf("passed");
 }
