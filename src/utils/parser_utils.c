@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:32:22 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/13 18:50:23 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:03:36 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	*get_nth_content(t_list *list, int n)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < n && list != NULL)
 		list = list->next;
 	if (list != NULL)
-		return list->content;
+		return (list->content);
 	else
-		return NULL;
+		return (NULL);
 }
 
 void	move_to_nth_node(t_list **list, int n)
