@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 15:45:15 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:31:52 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,60 @@ typedef struct s_amblight{
 	int		b;
 }	t_amblight;
 
+typedef struct s_camera{
+	char	*name;
+	double	x;
+	double	y;
+	double	z;
+	int		xv;
+	int		yv;
+	int		zv;
+	int		fov;
+}	t_camera;
+
+typedef struct s_light{
+	char	*name;
+	double	x;
+	double	y;
+	double	z;
+	double	intensity;
+	int		r;
+	int		g;
+	int		b;
+}	t_light;
+
+typedef struct s_sphere{
+	char	*name;
+	double	x;
+	double	y;
+	double	z;
+	double	diameter;
+	int		r;
+	int		g;
+	int		b;
+}	t_sphere;
+
+typedef struct s_plane{
+	char	*name;
+	double	x;
+	double	y;
+	double	z;
+	int		xv;
+	int		yv;
+	int		zv;
+	int		r;
+	int		g;
+	int		b;
+}	t_plane;
+
 typedef struct s_cylinder{
 	char	*name;
 	double	x;
 	double	y;
 	double	z;
-	double	xv;
-	double	yv;
-	double	zv;
+	int		xv;
+	int		yv;
+	int		zv;
 	double	diameter;
 	double	height;
 	int		r;

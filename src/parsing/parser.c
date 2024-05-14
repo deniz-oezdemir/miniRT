@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 12:08:19 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:14:00 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,18 @@
 			//throw error: incorrect scene
 		//free gnl, free split
 
-void	file_to_scene_list(t_minirt *data)
+static void	separate_by_comma(t_minirt *data, char *space_separated)
+{
+	char	**comma_separated;
+	int		i;
+
+	i = 0;
+	comma_separated = ft_split(space_separated, ','); //free list scene at exit
+	while(comma_separated[i])
+		ft_lstadd_back(&(data->scene), ft_lstnew(comma_separated[i++]));
+}
+
+static void	file_to_scene_list(t_minirt *data)
 {
 	char	*line;
 	char	**space_separated;
@@ -35,6 +46,7 @@ void	file_to_scene_list(t_minirt *data)
 	line = get_next_line(data->fd);
 	if (!line || !ft_isprint(line[0]))
 		printf("Error: file\n");
+	remove_newline(&line);
 	while (line && ft_isprint(line[0]))
 	{
 		space_separated = ft_split(line, ' '); //free list scene at exit
@@ -47,29 +59,43 @@ void	file_to_scene_list(t_minirt *data)
 				ft_lstadd_back(&(data->scene), ft_lstnew(space_separated[i]));
 		}
 		line = get_next_line(data->fd);
+		remove_newline(&line);
 	}
-	free(line); //as last line is \0 for end of file
+	free(line);
 }
 
-void	separate_by_comma(t_minirt *data, char *space_separated)
+static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 {
-	char	**comma_separated;
-	int		i;
-
-	i = 0;
-	comma_separated = ft_split(space_separated, ','); //free list scene at exit
-	while(comma_separated[i])
-		ft_lstadd_back(&(data->scene), ft_lstnew(comma_separated[i++]));
+	if (!ft_strncmp((*list)->content, "A", 1))
+		parse_ambient_light(data, list);
+	else if (!ft_strncmp((*list)->content, "C", 1))
+		parse_camera(data, list);
+	else if (!ft_strncmp((*list)->content, "L", 1))
+		parse_light(data, list);
+	else if (!ft_strncmp((*list)->content, "sp", 2))
+		parse_sphere(data, list);
+	else if (!ft_strncmp((*list)->content, "pl", 2))
+		parse_plane(data, list);
+	else if (!ft_strncmp((*list)->content, "cy", 2))
+		parse_cylinder(data, list);
 }
 
-void	scene_list_to_structs_list(t_minirt *data)
+void parse(t_minirt *data, char *file_name)
 {
+	data->fd = open(file_name, O_RDONLY, 0);
+	if (data->fd < 0)
+		printf("Error: opening file\n");
+	file_to_scene_list(data);
+	close(data->fd);
 	while(data->scene)
 	{
-		if (!ft_strncmp(data->scene->content, "A", 1))
-			parse_ambient_light(data, data->scene);
+		if (is_identifier(data->scene->content))
+			scene_list_to_structs_list(data, &(data->scene));
+		else
+		{
+			printf("TODO: implement exit in case of parsing error\n");
+			break ;
+		}
 		data->scene = data->scene->next;
 	}
 }
-
-

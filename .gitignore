@@ -2,4 +2,9 @@
 *.a
 
 minirt
+test_minirt
+run_tests
 main
+
+obj/
+*.dSYM/

@@ -2,6 +2,7 @@
 	"files.associations": {
 		"minirt.h": "c",
 		"keysym.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"tests.h": "c"
 	}
 }
