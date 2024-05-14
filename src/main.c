@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 14:36:40 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:15:23 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	render_scene(t_minirt *data)
 {
 	color_background(data, BACKGROUND_COLOR);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, 
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 		data->mlx_img->img_ptr, 200, 0);
 }
 
@@ -31,16 +31,16 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	data = init_mlx();
-
 	parse(data, argv[1]);
 	// Print scene objects attributes
 	printf("\nScene objects:\n"); //check
 	print_list(data->objects);
-
 	// Start MLX window
-	// init_window(data);
-	// print_instruction(data);
-	// render_scene(data);
-	// mlx_loop(data->mlx_ptr);
+	init_window(data);
+	print_instruction(data);
+	render_scene(data);
+	mlx_loop(data->mlx_ptr);
+
+	exit_program(data); //clean and exit
 	return (0);
 }

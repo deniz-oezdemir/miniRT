@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 15:56:53 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:10:43 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_minirt
 	int			fd;
 	t_list		*scene;
 	t_list		*objects;
+	t_list		*grbg;
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_img		*mlx_img;
@@ -59,7 +60,7 @@ typedef struct s_minirt
 /* Minilib functions */
 t_minirt	*init_mlx(void);
 void	init_window(t_minirt *data);
-void	destroy_window(t_minirt *data);
+void	exit_program(t_minirt *data);
 
 /* MLX keyboard and mouse hooks */
 int		handle_keyboard_input(int keysym, t_minirt *data);
@@ -92,7 +93,7 @@ int		check_vec3(char *arg);
 int		check_fov(char *arg);
 
 /* Handlers */
-void	pars_error(int err_code);
+void	pars_error(t_minirt *data, int err_code);
 
 /* utils */
 double	atof(const char *str);
@@ -100,5 +101,15 @@ void	remove_newline(char **str);
 void	*get_nth_content(t_list *list, int n);
 void	move_to_nth_node(t_list **list, int n);
 void	print_list(t_list *head);
+
+/* Garbage collector */
+void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
+void	gc_collect(t_minirt *data, void *new);
+void	gc_free(t_list *grbg);
+
+t_list	*gc_lstnew(t_minirt *data, void *content);
+char	**gc_split(t_minirt *data, char const *s, char c);
+char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
+		size_t len);
 
 #endif

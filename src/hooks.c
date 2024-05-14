@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:52:31 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/07 11:56:51 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:07:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	handle_keyboard_input(int keysym, t_minirt *data)
 {
 	if (keysym == XK_Escape)
-		destroy_window(data);
+		exit_program(data);
 	printf("The %d key has been pressed\n\n", keysym);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, 
-		data->mlx_img->img_ptr, 200, 0);
+	// mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
+	// 	data->mlx_img->img_ptr, 200, 0);
 	return (0);
 }
 
@@ -31,6 +31,6 @@ int	handle_mouse_input(int keysym, t_minirt *data)
 
 int	handle_close_button(t_minirt *data)
 {
-	destroy_window(data);
+	exit_program(data);
 	return (0);
 }

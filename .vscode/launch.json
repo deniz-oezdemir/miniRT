@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/src/main",
-			"args": [],
+			"args": ["../scene_subject.rt"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

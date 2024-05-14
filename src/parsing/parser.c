@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 14:14:00 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:57:16 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,37 +31,39 @@ static void	separate_by_comma(t_minirt *data, char *space_separated)
 	int		i;
 
 	i = 0;
-	comma_separated = ft_split(space_separated, ','); //free list scene at exit
+	comma_separated = gc_split(data, space_separated, ','); //free list scene at exit
+	//gc_collect(data, comma_separated);
 	while(comma_separated[i])
-		ft_lstadd_back(&(data->scene), ft_lstnew(comma_separated[i++]));
+		ft_lstadd_back(&(data->scene), gc_lstnew(data, comma_separated[i++]));
 }
 
 static void	file_to_scene_list(t_minirt *data)
 {
 	char	*line;
 	char	**space_separated;
-	char	**comma_separated;
 	int		i;
 
 	line = get_next_line(data->fd);
+	gc_collect(data, line);
 	if (!line || !ft_isprint(line[0]))
 		printf("Error: file\n");
 	remove_newline(&line);
 	while (line && ft_isprint(line[0]))
 	{
-		space_separated = ft_split(line, ' '); //free list scene at exit
+		space_separated = gc_split(data, line, ' ');
+		//gc_collect(data, space_separated);
 		i = -1;
 		while (space_separated[++i])
 		{
 			if (ft_strchr(space_separated[i], ','))
 				separate_by_comma(data, space_separated[i]);
 			else
-				ft_lstadd_back(&(data->scene), ft_lstnew(space_separated[i]));
+				ft_lstadd_back(&(data->scene), gc_lstnew(data, space_separated[i]));
 		}
 		line = get_next_line(data->fd);
+		gc_collect(data, line);
 		remove_newline(&line);
 	}
-	free(line);
 }
 
 static void	scene_list_to_structs_list(t_minirt *data, t_list **list)

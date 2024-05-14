@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:08 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 15:59:01 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:11:59 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parse_light(t_minirt *data, t_list **input_lst)
 {
 	t_light	*light;
 
-	light = ft_calloc(1, sizeof(t_light));
+	light = gc_get(data, 1, sizeof(t_light));
 	if (!light)
 		printf("Error: allocation failed\n");
 	light->name = (*input_lst)->content;
@@ -37,8 +37,8 @@ void	parse_light(t_minirt *data, t_list **input_lst)
 	light->g = check_rgb(get_nth_content(*input_lst, 6));
 	light->b = check_rgb(get_nth_content(*input_lst, 7));
 	if (!validate_light(light))
-		return (pars_error(LIGHT_ERR));
-	ft_lstadd_back(&(data->objects), ft_lstnew(light));
+		return (pars_error(data, LIGHT_ERR));
+	ft_lstadd_back(&(data->objects), gc_lstnew(data, light));
 	move_to_nth_node(input_lst, 7);
 	printf("Light OK\n");
 }
