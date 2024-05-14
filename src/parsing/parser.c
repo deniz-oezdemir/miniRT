@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/13 14:40:05 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:14:00 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	file_to_scene_list(t_minirt *data)
 		line = get_next_line(data->fd);
 		remove_newline(&line);
 	}
-	free(line); //as last line is \0 for end of file
+	free(line);
 }
 
 static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
@@ -97,8 +97,5 @@ void parse(t_minirt *data, char *file_name)
 			break ;
 		}
 		data->scene = data->scene->next;
-		// Print next node - for DEBUGGING only
-		if (data->scene != NULL)
-			printf("NEXT NODE: %s\n", (char *)data->scene->content);
 	}
 }

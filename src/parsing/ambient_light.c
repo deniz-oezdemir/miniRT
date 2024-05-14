@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:10:53 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/13 18:53:16 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:04:48 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static bool	validate_amblight(t_amblight *amblight)
 {
 	if ((amblight->intensity < 0)
 		|| (amblight->r < 0) || (amblight->g < 0) || (amblight->b < 0))
-		return false;
-	return true;
+		return (false);
+	return (true);
 }
 
 void	parse_ambient_light(t_minirt *data, t_list **input_lst)

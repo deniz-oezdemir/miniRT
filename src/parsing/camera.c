@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/13 18:53:19 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:05:18 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	parse_camera(t_minirt *data, t_list **input_lst)
 		return ; // TODO: print an error and clean everything
 	ft_lstadd_back(&(data->objects), ft_lstnew(camera));
 	move_to_nth_node(input_lst, 7);
-	printf("Camera light OK\n");
+	printf("Camera OK\n");
 }
