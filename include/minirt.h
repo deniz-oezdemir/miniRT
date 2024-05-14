@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 14:55:42 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:05:21 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,9 @@ void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
 void	gc_collect(t_minirt *data, void *new);
 void	gc_free(t_list *grbg);
 
+t_list	*gc_lstnew(t_minirt *data, void *content);
+char	**gc_split(t_minirt *data, char const *s, char c);
+char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
+		size_t len);
 
 #endif

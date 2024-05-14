@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 13:05:18 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:03:36 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parse_camera(t_minirt *data, t_list **input_lst)
 {
 	t_camera	*camera;
 
-	camera = ft_calloc(1, sizeof(t_camera));
+	camera = gc_get(data, 1, sizeof(t_camera));
 	if (!camera)
 		printf("Error: allocation failed\n");
 	camera->name = (*input_lst)->content;
@@ -38,7 +38,7 @@ void	parse_camera(t_minirt *data, t_list **input_lst)
 	camera->fov = check_fov(get_nth_content(*input_lst, 7));
 	if (!validate_camera(camera))
 		return ; // TODO: print an error and clean everything
-	ft_lstadd_back(&(data->objects), ft_lstnew(camera));
+	ft_lstadd_back(&(data->objects), gc_lstnew(data, camera));
 	move_to_nth_node(input_lst, 7);
 	printf("Camera OK\n");
 }

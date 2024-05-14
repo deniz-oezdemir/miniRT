@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:23:50 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/03 16:14:23 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:36:48 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	destroy_window(t_minirt *data)
 		mlx_destroy_display(data->mlx_ptr);
 	if (data->mlx_ptr != NULL)
 		free(data->mlx_ptr);
-	free(data);
-	exit(EXIT_SUCCESS);
+	if (data->mlx_img != NULL)
+		free(data->mlx_img);
+	//free(data);
+	//exit(EXIT_SUCCESS);
 }

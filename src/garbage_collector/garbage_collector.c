@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 14:55:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:07:32 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*gc_get(t_minirt *data, size_t nmemb, size_t size)
 		//g_exitstatus = 1; //from minishell, replace with exit/error
 		return (NULL);
 	}
-	collect_grbg(data, new);
+	gc_collect(data, new);
 	return (new);
 }
 

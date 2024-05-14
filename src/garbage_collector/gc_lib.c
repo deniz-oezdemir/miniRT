@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 21:10:07 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/05/14 14:57:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:41:01 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "../../include/minirt.h"
 
 /* custom libft functions with gc_get instead of malloc or ft_calloc*/
+
 
 char	*gc_strdup(t_minirt *data, const char *s)
 {
@@ -58,7 +59,7 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 	dest[i] = '\0';
 	return (dest);
 }
-
+/*
 char	*gc_strjoin(t_minirt *data, char const *s1, char const *s2)
 {
 	size_t	len;
@@ -71,4 +72,17 @@ char	*gc_strjoin(t_minirt *data, char const *s1, char const *s2)
 	ft_strlcpy(dest, s1, ft_strlen(s1) + 1);
 	ft_strlcat(dest, s2, len);
 	return (dest);
+}
+*/
+
+t_list	*gc_lstnew(t_minirt *data, void *content)
+{
+	t_list	*new;
+
+	new = gc_get(data, 1, sizeof(t_list));
+	if (new == NULL)
+		return (0);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

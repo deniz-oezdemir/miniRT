@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:46:53 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/13 19:05:34 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:03:39 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	parse_cylinder(t_minirt *data, t_list **input_lst)
 {
 	t_cylinder	*cylinder;
 
-	cylinder = ft_calloc(1, sizeof(t_cylinder));
+	cylinder = gc_get(data, 1, sizeof(t_cylinder));
 	if (!cylinder)
 		printf("Error: allocation failed\n");
 	cylinder->name = (*input_lst)->content;
@@ -43,7 +43,7 @@ void	parse_cylinder(t_minirt *data, t_list **input_lst)
 	cylinder->b = check_rgb(get_nth_content(*input_lst, 11));
 	if (!validate_cylinder(cylinder))
 		return ; // TODO: print an error and clean everything
-	ft_lstadd_back(&(data->objects), ft_lstnew(cylinder));
+	ft_lstadd_back(&(data->objects), gc_lstnew(data, cylinder));
 	move_to_nth_node(input_lst, 11);
 	printf("Cylinder OK\n");
 }

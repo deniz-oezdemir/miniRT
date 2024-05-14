@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 13:11:35 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:03:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 {
 	t_plane	*plane;
 
-	plane = ft_calloc(1, sizeof(t_plane));
+	plane = gc_get(data, 1, sizeof(t_plane));
 	if (!plane)
 		printf("Error: allocation failed\n");
 	plane->name = (*input_lst)->content;
@@ -40,7 +40,7 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 	plane->b = check_rgb(get_nth_content(*input_lst, 9));
 	if (!validate_plane(plane))
 		return ; // TODO: print an error and clean everything
-	ft_lstadd_back(&(data->objects), ft_lstnew(plane));
+	ft_lstadd_back(&(data->objects), gc_lstnew(data, plane));
 	move_to_nth_node(input_lst, 9);
 	printf("Plane OK\n");
 }

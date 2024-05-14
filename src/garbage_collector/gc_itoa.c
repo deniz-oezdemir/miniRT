@@ -6,14 +6,14 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:50:59 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 14:57:50 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:03:33 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //delete file if not needed
 
 # include "../../include/minirt.h"
-
+/*
 static int	get_len(long n)
 {
 	size_t	len;
@@ -72,3 +72,4 @@ char	*gc_itoa(t_minirt *data, int n)
 	dest = fill_the_array(len, dest, num);
 	return (dest);
 }
+*/

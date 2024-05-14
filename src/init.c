@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/06 13:14:36 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:30:46 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_minirt	*init_mlx(void)
 {
 	t_minirt	*data;
 
-	data = (t_minirt *)malloc(sizeof(t_minirt));
+	data = (t_minirt *)ft_calloc(1, sizeof(t_minirt));
 	if (data == NULL)
 		exit (MLX_ERROR);
 	data->mlx_ptr = mlx_init();
@@ -27,13 +27,14 @@ t_minirt	*init_mlx(void)
 		exit (MLX_ERROR);
 	}
 	data->mlx_win = NULL;
-	data->mlx_img = (t_img *)malloc(sizeof(t_img)); //check and free
+	data->mlx_img = (t_img *)ft_calloc(1, sizeof(t_img)); //check and free
 	if (data->mlx_img == NULL)
 		exit (MLX_ERROR);
 	data->mlx_img->img_pixels_ptr = NULL;
 	data->fd = 0;
 	data->scene = NULL;
 	data->objects = NULL;
+	data->grbg = NULL;
 	return (data);
 }
 
