@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 14:13:13 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:38:28 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,17 @@ void print_list(t_list *head) {
 
 	while (current != NULL) {
 		if (current->content != NULL) {
-			if (!strncmp(((t_amblight *)current->content)->name, "A", 1)  ) {
+			if (!ft_strncmp(((t_amblight *)current->content)->name, "A", 1)  ) {
 				print_amblight((t_amblight *)current->content);
-			} else if (!strncmp(((t_camera *)current->content)->name, "C", 1)) {
+			} else if (!ft_strncmp(((t_camera *)current->content)->name, "C", 1)) {
 				print_camera((t_camera *)current->content);
-			} else if (!strncmp(((t_light *)current->content)->name, "L", 1)) {
+			} else if (!ft_strncmp(((t_light *)current->content)->name, "L", 1)) {
 				print_light((t_light *)current->content);
-			} else if (!strncmp(((t_sphere *)current->content)->name, "sp", 2)) {
+			} else if (!ft_strncmp(((t_sphere *)current->content)->name, "sp", 2)) {
 				print_sphere((t_sphere *)current->content);
-			} else if (!strncmp(((t_plane *)current->content)->name, "pl", 2)) {
+			} else if (!ft_strncmp(((t_plane *)current->content)->name, "pl", 2)) {
 				print_plane((t_plane *)current->content);
-			} else if (!strncmp(((t_cylinder *)current->content)->name, "cy", 2)) {
+			} else if (!ft_strncmp(((t_cylinder *)current->content)->name, "cy", 2)) {
 				print_cylinder((t_cylinder *)current->content);
 			}
 			// Add more else if clauses for other struct types...
