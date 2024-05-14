@@ -6,12 +6,12 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/13 14:25:52 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:13:13 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/minirt.h"
-
+// DO NOT SUBMIT !!!
 // Print function for each type of object
 void print_amblight(t_amblight *obj)
 {
@@ -60,4 +60,29 @@ void print_cylinder(t_cylinder *obj)
 	printf("Diameter: %lf\n", obj->diameter);
 	printf("Height: %lf\n", obj->height);
 	printf("RGB: (%d, %d, %d)\n", obj->r, obj->g, obj->b);
+}
+
+
+void print_list(t_list *head) {
+	t_list *current = head;
+
+	while (current != NULL) {
+		if (current->content != NULL) {
+			if (!strncmp(((t_amblight *)current->content)->name, "A", 1)  ) {
+				print_amblight((t_amblight *)current->content);
+			} else if (!strncmp(((t_camera *)current->content)->name, "C", 1)) {
+				print_camera((t_camera *)current->content);
+			} else if (!strncmp(((t_light *)current->content)->name, "L", 1)) {
+				print_light((t_light *)current->content);
+			} else if (!strncmp(((t_sphere *)current->content)->name, "sp", 2)) {
+				print_sphere((t_sphere *)current->content);
+			} else if (!strncmp(((t_plane *)current->content)->name, "pl", 2)) {
+				print_plane((t_plane *)current->content);
+			} else if (!strncmp(((t_cylinder *)current->content)->name, "cy", 2)) {
+				print_cylinder((t_cylinder *)current->content);
+			}
+			// Add more else if clauses for other struct types...
+		}
+		current = current->next;
+	}
 }
