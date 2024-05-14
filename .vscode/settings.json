@@ -3,6 +3,7 @@
 		"minirt.h": "c",
 		"keysym.h": "c",
 		"mlx.h": "c",
-		"tests.h": "c"
+		"tests.h": "c",
+		"errors.h": "c"
 	}
 }
