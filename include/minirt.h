@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/15 11:28:29 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:13:24 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,9 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 		size_t len);
 
 /* Matrix */
-int	***init_matrix(t_minirt *data, int row, int col);
+int	***init_ptr_matrix(t_minirt *data, int row, int col);
+double	**init_int_matrix(t_minirt *data, int row, int col);
+double	**init_double_matrix(t_minirt *data, int row, int col);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);
@@ -129,5 +131,10 @@ t_vec3	vec_neg(t_vec3 v);
 double	vec_dot(t_vec3 a, t_vec3 b);
 void	test_vec_ops(); //delete
 void	print_vec3(t_vec3 v, char* label); //delete
+
+/* Matrix operations */
+int get_rows(double **mtx);
+int get_cols(double **mtx);
+void test_mtx();
 
 #endif
