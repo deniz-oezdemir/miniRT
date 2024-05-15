@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/15 10:59:06 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:28:29 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <X11/keysym.h>
 # include "../lib/libft/libft.h"
 # include "errors.h"
+# include "math.h"
 
 # define WIN_NAME	"MiniRT"
 # define WIN_WIDTH	1000
@@ -124,6 +125,8 @@ int	***init_matrix(t_minirt *data, int row, int col);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);
+t_vec3	vec_neg(t_vec3 v);
+double	vec_dot(t_vec3 a, t_vec3 b);
 void	test_vec_ops(); //delete
 void	print_vec3(t_vec3 v, char* label); //delete
 
