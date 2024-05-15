@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/15 10:30:26 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:03:02 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,17 @@ int	main(int argc, char **argv)
 	print_list(data->objects);
 
 
-	// TEST integer-pointer-matrix
+	// Test integer-pointer-matrix
+	printf("\nMatrix:\n"); //check
 	int ***matrix = NULL;
 	matrix = init_matrix(data, 7, 9);
 	int arr[63];
 	int a = 0;
-	while (a < 63)
-		arr[a] = ++a;
+	while (a <= 63)
+	{
+		arr[a] = a;
+		a++;
+	}
 	int i = 0, j = 0, k = 1;
 	while (i < 7)
 	{
@@ -68,6 +72,9 @@ int	main(int argc, char **argv)
 		printf("\n");
 	}
 
+	// Test vec ops
+	printf("\nVecs:\n"); //check
+	test_vec_ops();
 
 	// Start MLX window
 	// init_window(data);

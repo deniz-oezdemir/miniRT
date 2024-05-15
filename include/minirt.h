@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/15 10:22:43 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:59:06 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,10 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 
 /* Matrix */
 int	***init_matrix(t_minirt *data, int row, int col);
+
+/* Vector operations */
+t_vec3	vec_add(t_vec3 a, t_vec3 b);
+void	test_vec_ops(); //delete
+void	print_vec3(t_vec3 v, char* label); //delete
 
 #endif
