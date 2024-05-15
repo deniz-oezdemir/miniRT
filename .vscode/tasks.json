@@ -18,6 +18,7 @@
                 "${fileDirname}/garbage_collector/gc_lib.c",
                 "${fileDirname}/garbage_collector/gc_split.c",
                 "${fileDirname}/handlers/error_handler.c",
+                "${fileDirname}/matrix_ops/init_matrix.c",
                 "${fileDirname}/parsing/parser.c",
                 "${fileDirname}/parsing/check.c",
                 "${fileDirname}/parsing/ambient_light.c",

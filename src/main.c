@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 19:03:57 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:09:50 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,34 @@ int	main(int argc, char **argv)
 	printf("\nScene objects:\n"); //check
 	print_list(data->objects);
 
-	int **matrix;
-	// TEST matrix
-	matrix = init_matrix(data, 3,3);
-	if (matrix != NULL)
-		printf("passed");
 
-	int i, j, k = 0;
-	while (i <= 3)
+	// TEST-matrix
+	int **matrix = NULL;
+	matrix = init_matrix(data, 7, 9);
+	int i = 0, j = 0, k = 1;
+	while (i < 7)
 	{
-		while(j <= 3)
+		while(j < 9)
 		{
 			matrix[i][j] = k++;
 			j++;
 		}
+		j = 0;
 		i++;
 	}
-
-	while (i <= 3)
+	i = 0, j = 0;
+	while (i < 7)
 	{
-		while(j <= 3)
+		while(j < 9)
 		{
 			printf("%d ", matrix[i][j]);
 			j++;
 		}
+		j = 0;
 		i++;
 		printf("\n");
 	}
+
 
 	// Start MLX window
 	// init_window(data);
