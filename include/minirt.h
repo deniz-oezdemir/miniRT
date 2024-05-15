@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/15 09:51:19 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:22:43 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,6 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 		size_t len);
 
 /* Matrix */
-int	**init_matrix(t_minirt *data, int row, int col);
+int	***init_matrix(t_minirt *data, int row, int col);
 
 #endif
