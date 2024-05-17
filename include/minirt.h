@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 14:41:33 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:07:10 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t dim);
 
 void	test_mtx();
 void	print_mtx(t_mtx mtx);
+t_mtx	translation_mtx(double x, double y, double z);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);

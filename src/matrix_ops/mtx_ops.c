@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 14:07:56 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:07:33 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	test_mtx()
 	print_mtx(a_transp);
 	printf("\nMatrix a * matrix b transposed:\n");
 	print_mtx(mult_transp);
+	printf("\nTranslation-Matrix of 34.56, 1243, 0.976796:\n");
+	print_mtx(translation_mtx(34.56, 1243, 0.976796));
 }
 
 void	print_mtx(t_mtx mtx)
