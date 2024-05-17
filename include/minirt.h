@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/15 11:28:29 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:58:24 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 
 # define MLX_ERROR	1
 
+# define MTX_DIM	4 //matrix dimension, maybe just substitute MTX_DIM with 4 everywhere at the end
+# define MTX_SIZE	16 //matrix number of elements, must be set to MTX_DIM^2
+
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -64,6 +67,12 @@ typedef struct s_vec3
 	double	y;
 	double	z;
 }	t_vec3;
+
+typedef struct s_mtx
+{
+	double	mtx[MTX_DIM][MTX_DIM];
+	size_t	size;
+}	t_mtx;
 
 /* Minilib functions */
 t_minirt	*init_mlx(void);
@@ -121,7 +130,13 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 		size_t len);
 
 /* Matrix */
-int	***init_matrix(t_minirt *data, int row, int col);
+int	***init_matrix(t_minirt *data, int row, int col); //probably to be deleted
+
+t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
+t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t size);
+
+void	test_mtx();
+void	print_mtx(t_mtx mtx);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);

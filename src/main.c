@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/15 11:03:02 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:04:24 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,18 @@ int	main(int argc, char **argv)
 	printf("\nScene objects:\n"); //check
 	print_list(data->objects);
 
+	// Test vec ops
+	printf("\nVecs:\n"); //check
+	test_vec_ops();
+
+	// Start MLX window
+	// init_window(data);
+	// print_instruction(data);
+	// render_scene(data);
+	// mlx_loop(data->mlx_ptr);
 
 	// Test integer-pointer-matrix
-	printf("\nMatrix:\n"); //check
+	printf("\nInteger-Pointer Matrix: (to be deleted?)\n"); //check
 	int ***matrix = NULL;
 	matrix = init_matrix(data, 7, 9);
 	int arr[63];
@@ -72,15 +81,9 @@ int	main(int argc, char **argv)
 		printf("\n");
 	}
 
-	// Test vec ops
-	printf("\nVecs:\n"); //check
-	test_vec_ops();
-
-	// Start MLX window
-	// init_window(data);
-	// print_instruction(data);
-	// render_scene(data);
-	// mlx_loop(data->mlx_ptr);
+	// Test new matrix
+	printf("\nNew Matrix:\n"); //check
+	test_mtx();
 
 	exit_program(data); //clean and exit
 	return (0);
