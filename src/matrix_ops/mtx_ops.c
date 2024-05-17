@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 15:43:34 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:17:16 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,11 @@ void	test_mtx()
 	printf("\n\nMatrix Transformations:\n");
 	printf("\nTranslation-Matrix of 34.56, 1243, 0.976796:\n");
 	print_mtx(translation_mtx(34.56, 1243, 0.976796));
-	printf("\nMultiplying point (-3, 4, 5) by translation(5, -3, 2):\n");
+	printf("\nMultiplying point (-3, 4, 5) by translation (5, -3, 2):\n");
 	t_vec3 p = {-3, 4, 5, 1};
 	print_vec3(mult_pnt_mtx(p, translation_mtx(5, -3, 2)), "(2, 1, 7, 1) expected");
-	printf("\n!Multiplying by the inverse of a translation matrix (p. 45): @Tiziano tbd as inverse needed\n");
-	printf("\nMultiplying vector (-3, 4, 5) by translation(5, -3, 2):\n");
+	printf("\nTBD Multiplying by the inverse of a translation matrix (p. 45): @Tiziano inverse needed\n");
+	printf("\nMultiplying vector (-3, 4, 5) by translation (5, -3, 2):\n");
 	t_vec3 v = {-3, 4, 5, 0};
 	print_vec3(mult_pnt_mtx(v, translation_mtx(5, -3, 2)), "(-3, 4, 5, 0) expected");
 }
