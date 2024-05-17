@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 16:52:48 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:03:28 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,9 @@ void	print_mtx(t_mtx mtx);
 t_mtx	translation_mtx(double x, double y, double z);
 
 t_mtx	rot_x(double radians);
+t_mtx	rot_y(double radians);
+t_mtx	rot_z(double radians);
+
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);
