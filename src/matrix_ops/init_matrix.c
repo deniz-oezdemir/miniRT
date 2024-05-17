@@ -18,8 +18,7 @@ int	***init_ptr_matrix(t_minirt *data, int row, int col)
 	int ***matrix;
 	int i;
 
-	matrix = (int ***)gc_get(data, row, sizeof(int **));
-	i = 0;
+	matrix = (int ***)gc_get(data, row, sizeof(int **)); i = 0;
 	while (i < row)
 	{
 		matrix[i] = (int **)gc_get(data, col, sizeof(int *));
