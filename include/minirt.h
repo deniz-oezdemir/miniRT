@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 15:23:16 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:52:48 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 
 # define MTX_DIM	4 //matrix dimension, maybe just substitute MTX_DIM with 4 everywhere at the end
 # define MTX_SIZE	16 //matrix number of elements, must be set to MTX_DIM^2
+# define PI 3.14159265358979323846
 
 typedef struct s_img
 {
@@ -137,6 +138,8 @@ t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t dim);
 void	test_mtx();
 void	print_mtx(t_mtx mtx);
 t_mtx	translation_mtx(double x, double y, double z);
+
+t_mtx	rot_x(double radians);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);

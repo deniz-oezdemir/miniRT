@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 16:17:16 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:57:30 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,15 @@ void	test_mtx()
 	printf("\nMultiplying vector (-3, 4, 5) by translation (5, -3, 2):\n");
 	t_vec3 v = {-3, 4, 5, 0};
 	print_vec3(mult_pnt_mtx(v, translation_mtx(5, -3, 2)), "(-3, 4, 5, 0) expected");
+
+	printf("\n\nRotating point (0, 1, 0) around the x axis:\n");
+	p = (t_vec3){0, 1, 0, 1};
+	print_vec3(mult_pnt_mtx(p, rot_x(PI/4)), "Half a quarter: (0, √2/2, √2/2, 1) expected");
+	print_vec3(mult_pnt_mtx(p, rot_x(PI/2)), "Full quarter: (0, 0, 1, 1) expected");
+	printf("\nTBD inverse of rotation (p. 49): @Tiziano inverse needed\n");
+
+
+
 }
 
 void	print_mtx(t_mtx mtx)
