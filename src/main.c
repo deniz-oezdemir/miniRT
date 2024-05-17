@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 13:20:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:10:02 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	print_list(data->objects);
 
 	// Test vec ops
-	printf("\nVecs:\n"); //check
+	printf("\nVec ops:\n"); //check
 	test_vec_ops();
 
 	// Start MLX window
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	// mlx_loop(data->mlx_ptr);
 
 	// Test new matrix
-	printf("\n\nMatrices:\n"); //check
+	printf("\n\nMatrix ops:\n"); //check
 	test_mtx();
 
 	exit_program(data); //clean and exit

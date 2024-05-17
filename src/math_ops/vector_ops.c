@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 10:46:45 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 14:48:58 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:39:03 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void test_vec_ops()
 void print_vec3(t_vec3 v, char* label)
 {
 	int precision = 8;
-	printf("%s:	(%.*f,	%.*f,	%.*f 	%d)\n", label, precision, v.x, precision, v.y, precision, v.z, v.w);
+	printf("%s:	(%.*f,	%.*f,	%.*f,	%f)\n", label, precision, v.x, precision, v.y, precision, v.z, v.w);
 }

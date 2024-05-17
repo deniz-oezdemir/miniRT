@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 15:07:33 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:43:34 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,23 @@ t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b)
 		row++;
 	}
 	return (create_mtx(r, MTX_DIM));
+}
+
+t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m)
+{
+	double r[MTX_DIM];
+	size_t	row;
+
+	row = 0;
+	while (row < MTX_DIM)
+	{
+		r[row] = m.mtx[row][0] * p.x \
+			+ m.mtx[row][1] * p.y \
+			+ m.mtx[row][2] * p.z \
+			+ m.mtx[row][3] * p.w;
+		row++;
+	}
+	return ((t_vec3){r[0], r[1], r[2], r[3]});
 }
 
 t_mtx	transp_mtx(t_mtx m)
@@ -98,8 +115,17 @@ void	test_mtx()
 	print_mtx(a_transp);
 	printf("\nMatrix a * matrix b transposed:\n");
 	print_mtx(mult_transp);
+
+	printf("\n\nMatrix Transformations:\n");
 	printf("\nTranslation-Matrix of 34.56, 1243, 0.976796:\n");
 	print_mtx(translation_mtx(34.56, 1243, 0.976796));
+	printf("\nMultiplying point (-3, 4, 5) by translation(5, -3, 2):\n");
+	t_vec3 p = {-3, 4, 5, 1};
+	print_vec3(mult_pnt_mtx(p, translation_mtx(5, -3, 2)), "(2, 1, 7, 1) expected");
+	printf("\n!Multiplying by the inverse of a translation matrix (p. 45): @Tiziano tbd as inverse needed\n");
+	printf("\nMultiplying vector (-3, 4, 5) by translation(5, -3, 2):\n");
+	t_vec3 v = {-3, 4, 5, 0};
+	print_vec3(mult_pnt_mtx(v, translation_mtx(5, -3, 2)), "(-3, 4, 5, 0) expected");
 }
 
 void	print_mtx(t_mtx mtx)

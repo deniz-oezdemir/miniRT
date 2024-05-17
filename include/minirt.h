@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 15:07:10 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:23:16 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_vec3
 	double	x;
 	double	y;
 	double	z;
-	int		w;
+	double	w;
 }	t_vec3;
 
 typedef struct s_mtx
