@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 12:04:24 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:20:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,43 +46,8 @@ int	main(int argc, char **argv)
 	// render_scene(data);
 	// mlx_loop(data->mlx_ptr);
 
-	// Test integer-pointer-matrix
-	printf("\nInteger-Pointer Matrix: (to be deleted?)\n"); //check
-	int ***matrix = NULL;
-	matrix = init_matrix(data, 7, 9);
-	int arr[63];
-	int a = 0;
-	while (a <= 63)
-	{
-		arr[a] = a;
-		a++;
-	}
-	int i = 0, j = 0, k = 1;
-	while (i < 7)
-	{
-		while(j < 9)
-		{
-			(matrix[i][j]) = &arr[k++];
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	i = 0, j = 0;
-	while (i < 7)
-	{
-		while(j < 9)
-		{
-			printf("%d ", *matrix[i][j]);
-			j++;
-		}
-		j = 0;
-		i++;
-		printf("\n");
-	}
-
 	// Test new matrix
-	printf("\nNew Matrix:\n"); //check
+	printf("\n\nMatrices:\n"); //check
 	test_mtx();
 
 	exit_program(data); //clean and exit

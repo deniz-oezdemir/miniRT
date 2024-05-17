@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 12:08:18 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:20:36 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t size)
 void	test_mtx()
 {
 	double a_data[MTX_DIM][MTX_DIM] = {
-		{1, 2, 3, 4},
+		{1.56, 2, 3, 4},
 		{5, 6, 7, 8},
-		{9, 8, 7, 6},
+		{9, 8, 7, 69.4242},
 		{5, 4, 3, 2}
 	};
 	double b_data[MTX_DIM][MTX_DIM] = {
@@ -65,11 +65,11 @@ void	test_mtx()
 
 	t_mtx	result = mult_mtx_mtx(a, b);
 
-	printf("Matrix a:\n");
+	printf("\nMatrix a:\n");
 	print_mtx(a);
-	printf("Matrix b:\n");
+	printf("\nMatrix b:\n");
 	print_mtx(b);
-	printf("Matrix a * matrix b:\n");
+	printf("\nMatrix a * matrix b:\n");
 	print_mtx(result);
 
 }
@@ -85,7 +85,7 @@ void	print_mtx(t_mtx mtx)
 		col = 0;
 		while (col < mtx.size)
 		{
-			printf("%.2f ", mtx.mtx[row][col]);
+			printf("%.3f ", mtx.mtx[row][col]);
 			col++;
 		}
 		printf("\n");

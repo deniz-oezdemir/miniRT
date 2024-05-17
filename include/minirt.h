@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 11:58:24 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:19:00 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,6 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 		size_t len);
 
 /* Matrix */
-int	***init_matrix(t_minirt *data, int row, int col); //probably to be deleted
-
 t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
 t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t size);
 
