@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 13:20:36 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:07:56 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,35 @@ t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b)
 		}
 		row++;
 	}
-	return (create_mtx(r, MTX_DIM)); //why not MTX_SIZE instead of MTX_DIM?
+	return (create_mtx(r, MTX_DIM));
 }
 
-t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t size)
+t_mtx	transp_mtx(t_mtx m)
+{
+	double	r[MTX_DIM][MTX_DIM];
+	size_t	row;
+	size_t	col;
+
+	ft_bzero(r, sizeof(double) * MTX_SIZE);
+	row = 0;
+	while(row < m.dim)
+	{
+		col = 0;
+		while(col < m.dim)
+		{
+			r[col][row] = m.mtx[row][col];
+			col++;
+		}
+		row++;
+	}
+	return (create_mtx(r, MTX_DIM));
+}
+
+t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t dim)
 {
 	t_mtx	r;
 
-	r.size = size;
+	r.dim = dim;
 	ft_memmove(r.mtx, m, sizeof(double) * MTX_SIZE);
 	return (r);
 }
@@ -63,15 +84,20 @@ void	test_mtx()
 	t_mtx	a = create_mtx(a_data, MTX_DIM);
 	t_mtx	b = create_mtx(b_data, MTX_DIM);
 
-	t_mtx	result = mult_mtx_mtx(a, b);
+	t_mtx	mult = mult_mtx_mtx(a, b);
+	t_mtx	a_transp = transp_mtx(a);
+	t_mtx	mult_transp = transp_mtx(mult);
 
 	printf("\nMatrix a:\n");
 	print_mtx(a);
 	printf("\nMatrix b:\n");
 	print_mtx(b);
 	printf("\nMatrix a * matrix b:\n");
-	print_mtx(result);
-
+	print_mtx(mult);
+	printf("\nMatrix a transposed:\n");
+	print_mtx(a_transp);
+	printf("\nMatrix a * matrix b transposed:\n");
+	print_mtx(mult_transp);
 }
 
 void	print_mtx(t_mtx mtx)
@@ -80,10 +106,10 @@ void	print_mtx(t_mtx mtx)
 	size_t	col;
 
 	row = 0;
-	while (row < mtx.size)
+	while (row < mtx.dim)
 	{
 		col = 0;
-		while (col < mtx.size)
+		while (col < mtx.dim)
 		{
 			printf("%.3f ", mtx.mtx[row][col]);
 			col++;

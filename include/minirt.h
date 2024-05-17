@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 13:19:00 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:37:27 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_vec3
 typedef struct s_mtx
 {
 	double	mtx[MTX_DIM][MTX_DIM];
-	size_t	size;
+	size_t	dim;
 }	t_mtx;
 
 /* Minilib functions */
@@ -131,7 +131,7 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 
 /* Matrix */
 t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
-t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t size);
+t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t dim);
 
 void	test_mtx();
 void	print_mtx(t_mtx mtx);
