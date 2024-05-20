@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/20 10:22:00 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:31:30 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,18 @@ t_mtx	transp_mtx(t_mtx m)
 		}
 		row++;
 	}
+	return (create_mtx(r, MTX_DIM));
+}
+
+t_mtx	identity_mtx(size_t dim)
+{
+	double	r[MTX_DIM][MTX_DIM];
+	int		i;
+
+	ft_bzero(r, sizeof(double) * MTX_SIZE);
+	i = -1;
+	while (++i < dim)
+		r[i][i] = 1.0;
 	return (create_mtx(r, MTX_DIM));
 }
 
