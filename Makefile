@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
+#    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/14 16:40:23 by denizozd         ###   ########.fr        #
+#    Updated: 2024/05/20 10:00:46 by tiacovel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,12 +49,12 @@ ifeq ($(OS), Darwin)
 endif
 
 # Source files (excluding main.c and test files)
-SRC = $(wildcard $(SRCDIR)/**/*.c)
+SRC = $(wildcard $(SRCDIR)/**/*.c) $(wildcard $(SRCDIR)/*.c)
 SRC := $(filter-out $(SRCDIR)/main.c, $(SRC))
 SRC := $(filter-out $(wildcard $(TESTDIR)/*.c), $(SRC))
 
 # Excluded source files
-EXCLUDED_SRC = $(wildcard $(SRCDIR)/*.c)
+EXCLUDED_SRC = $(SRCDIR)/main.c
 # Excluded test files
 EXCLUDED_TEST = $(wildcard $(TESTDIR)/*.c)
 
