@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:22:55 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/08 11:10:54 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:02:43 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* Function to run tests for the is_digits function */
 void test_is_digit(void) {
-	printf("--- Test is_digit ---\n");
+	printf("\n--- Test is_digit ---\n");
 	// Test cases
 	char *test_cases[] = {
 		"12345",        // All digits
@@ -49,7 +49,7 @@ void test_is_digit(void) {
 
 /* Function to run tests for the is_identifier function */
 void test_is_identifier(void) {
-	printf("--- Test is_identifier ---\n");
+	printf("\n--- Test is_identifier ---\n");
 	
 	// Test cases
 	char *test_cases[] = {
@@ -90,7 +90,7 @@ void test_is_identifier(void) {
 
 /* Function to run tests for the is_in_range function */
 void test_is_in_range(void) {
-	printf("--- Test is_in_range ---\n");
+	printf("\n--- Test is_in_range ---\n");
 	
 	// Test cases
 	char *test_cases[] = {

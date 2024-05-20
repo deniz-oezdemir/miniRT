@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:42 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 18:35:24 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:25:49 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdbool.h>
+# include "minirt.h"
 
 /* Tests */
 void	test_is_digit(void);
 void	test_is_identifier(void);
 void	test_is_in_range(void);
-void	test_init_matrix(t_minirt *data);
+void	test_vec_ops(void);
+void	test_mtx(void);
 
 /* Utils */
 void    print_test_result(char *test_case, bool expected, bool actual);
