@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 16:44:48 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:21:52 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void print_cylinder(t_cylinder *obj)
 }
 
 
-void print_list(t_list *head) {
+void print_scene_objects(t_list *head) {
 	t_list *current = head;
 
 	while (current != NULL) {
@@ -85,5 +85,30 @@ void print_list(t_list *head) {
 		}
 		printf("\n");
 		current = current->next;
+	}
+}
+
+void print_vec3(t_vec3 v, char* label)
+{
+	int precision = 8;
+	printf("%s:	(%.*f,	%.*f,	%.*f,	%f)\n", label, precision, v.x, precision, v.y, precision, v.z, v.w);
+}
+
+void	print_mtx(t_mtx mtx)
+{
+	size_t	row;
+	size_t	col;
+
+	row = 0;
+	while (row < mtx.dim)
+	{
+		col = 0;
+		while (col < mtx.dim)
+		{
+			printf("%.3f ", mtx.mtx[row][col]);
+			col++;
+		}
+		printf("\n");
+		row++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_ops.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 10:46:45 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 15:39:03 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:13:16 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,4 @@ double	vec_dot(t_vec3 a, t_vec3 b)
 
 	r = a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
 	return (r);
-}
-
-void test_vec_ops()
-{
-	t_vec3 a = {1.0, 2.0, -3.0, 0.0};
-	t_vec3 b = {-4.0, 999.0, 0.567321, 0.0};
-	print_vec3(a, "a");
-	print_vec3(b, "b");
-    print_vec3(vec_add(a, b), "a + b");
-	print_vec3(vec_neg(a), "a negated");
-	print_vec3(vec_neg(b), "b negated");
-	printf("magnitude of a: %.8f\n", magnitude(a));
-	printf("magnitude of b: %.8f\n", magnitude(b));
-	t_vec3 c = {0, 0, 1};
-	printf("magnitude of (0, 0, 1): %.8f\n", magnitude(c));
-	printf("dot product of a, b: %.8f\n", vec_dot(a, b));
-	printf("dot product of a, c: %.8f\n", vec_dot(a, c));
-}
-
-void print_vec3(t_vec3 v, char* label)
-{
-	int precision = 8;
-	printf("%s:	(%.*f,	%.*f,	%.*f,	%f)\n", label, precision, v.x, precision, v.y, precision, v.z, v.w);
 }

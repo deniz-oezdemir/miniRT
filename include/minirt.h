@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 17:03:28 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:29:39 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ double	atof(const char *str);
 void	remove_newline(char **str);
 void	*get_nth_content(t_list *list, int n);
 void	move_to_nth_node(t_list **list, int n);
-void	print_list(t_list *head);
 
 /* Garbage collector */
 void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
@@ -132,23 +131,27 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 		size_t len);
 
 /* Matrix */
-t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
 t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t dim);
-
-void	test_mtx();
-void	print_mtx(t_mtx mtx);
+t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
+t_mtx	transp_mtx(t_mtx m);
 t_mtx	translation_mtx(double x, double y, double z);
 
 t_mtx	rot_x(double radians);
 t_mtx	rot_y(double radians);
 t_mtx	rot_z(double radians);
 
-
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);
 t_vec3	vec_neg(t_vec3 v);
+t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m);
+
 double	vec_dot(t_vec3 a, t_vec3 b);
-void	test_vec_ops(); //delete
-void	print_vec3(t_vec3 v, char* label); //delete
+double	magnitude(t_vec3 v);
+
+/* Print stuffs */
+// To be deleted befor submission
+void	print_scene_objects(t_list *head);
+void	print_vec3(t_vec3 v, char* label);
+void	print_mtx(t_mtx mtx);
 
 #endif
