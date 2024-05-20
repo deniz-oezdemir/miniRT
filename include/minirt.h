@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/20 10:29:39 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/20 11:11:41 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,9 @@ t_mtx	rot_z(double radians);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);
+t_vec3	vec_sub(t_vec3 a, t_vec3 b);
+t_vec3	vec_mul(double a, t_vec3 b);
+t_vec3	vec_div(double a, t_vec3 b);
 t_vec3	vec_neg(t_vec3 v);
 t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m);
 
