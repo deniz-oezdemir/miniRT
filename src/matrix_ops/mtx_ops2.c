@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:31:11 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/21 10:21:16 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:12:49 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,23 @@ t_mtx	sub_mtx(t_mtx m, int x_row, int x_col)
 }
 
 /* Calculate the determinant of the given submatrix. */
-/* It works with 3x3 matrixes. */
 double	mtx_minor(t_mtx m, int x_row, int x_col)
 {
-	t_mtx	sub;
+	t_mtx	sub ;
+	double	det;
 
-	if (m.dim != 3)
-		return (INT_MIN);
 	sub = sub_mtx(m, x_row, x_col);
-	return (determinant_2x2(sub));
+	det = mtx_determinant(sub);
+	return (det);
 }
 
-/* Calculate the cofactor of a matrix 3x3. The cofactor of this */
+/* Calculate the cofactor of a matrix. The cofactor of this */
 /* function is equal to the determinant of a the sub-matrix */
 /* obtained by deleting the x_row and x_col from the given matrix */
 double	mtx_cofactor(t_mtx m, int row, int col)
 {
 	double	cofactor;
 
-	if (m.dim != 3)
-		return (INT_MIN);
 	cofactor = mtx_minor(m, row, col);
 	if ((row + col) % 2 != 0)
 		cofactor *= -1;
@@ -87,18 +84,12 @@ double	mtx_determinant(t_mtx m)
 {
 	size_t	col;
 	double	det;
-	int		sign;
 
 	if (m.dim == 2)
 		return (determinant_2x2(m));
-	sign = 1;
 	det = 0;
 	col = -1;
 	while (++col < m.dim)
-	{
-		if ((col % 2) != 0)
-			sign = -1;
 		det+= mtx_cofactor(m, 0, col) * m.mtx[0][col];
-	}
 	return (det);
 }
