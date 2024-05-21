@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/21 12:04:28 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:08:34 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,28 @@ t_mtx	identity_mtx(size_t dim)
 	while (++i < dim)
 		r[i][i] = 1.0;
 	return (create_mtx((const double *)r, MTX_DIM));
+}
+
+t_mtx	invert_mtx(t_mtx m)
+{
+	double	r[m.dim][m.dim];
+	double	det;
+	t_mtx	inv;
+	size_t	row;
+	size_t	col;
+
+	det = mtx_determinant(m);
+	if (det == 0)
+	{
+		inv.dim = 0;
+		return (inv);
+	}
+	row = -1;
+	while (++row < m.dim)
+	{
+		col = -1;
+		while (++col < m.dim)
+			r[col][row] = mtx_cofactor(m, row, col) / det;
+	}
+	return (create_mtx((const double *)r, m.dim));
 }
