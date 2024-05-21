@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/21 10:19:25 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:04:28 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,3 @@ t_mtx	identity_mtx(size_t dim)
 		r[i][i] = 1.0;
 	return (create_mtx((const double *)r, MTX_DIM));
 }
-
-/* t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t dim)
-{
-	t_mtx	r;
-
-	r.dim = dim;
-	ft_memmove(r.mtx, m, sizeof(double) * MTX_SIZE);
-	return (r);
-} */
