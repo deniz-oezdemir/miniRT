@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:42 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/21 11:48:12 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:33:55 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	test_is_digit(void);
 void	test_is_identifier(void);
 void	test_is_in_range(void);
 void	test_vec_ops(void);
-void	test_mtx(void);
+void	test_mtx_ops(void);
+void	test_mtx_trans(void);
 void	test_determinant_2x2(void);
 void	test_sub_mtx(void);
 void	test_mtx_minor(void);
