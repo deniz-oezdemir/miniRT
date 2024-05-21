@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:42 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/20 19:22:44 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:48:12 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	test_is_in_range(void);
 void	test_vec_ops(void);
 void	test_mtx(void);
 void	test_determinant_2x2(void);
+void	test_sub_mtx(void);
+void	test_mtx_minor(void);
+void	test_mtx_cofactor(void);
+void	test_mtx_determinant(void);
+void	test_mtx_determinant_4x4(void);
 
 /* Utils */
 void    print_test_result(char *test_case, bool expected, bool actual);

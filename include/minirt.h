@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/21 10:22:16 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:38:54 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ t_vec3	vec_sub(t_vec3 a, t_vec3 b);
 t_vec3	vec_mul(double a, t_vec3 b);
 t_vec3	vec_div(double a, t_vec3 b);
 t_vec3	vec_neg(t_vec3 v);
+t_vec3	vec_norm(t_vec3 a);
+t_vec3	vec_cross(t_vec3 a, t_vec3 b);
 t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m);
 
 double	vec_dot(t_vec3 a, t_vec3 b);
