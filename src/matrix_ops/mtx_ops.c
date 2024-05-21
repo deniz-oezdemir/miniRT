@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/20 19:31:30 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:19:25 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b)
 		}
 		row++;
 	}
-	return (create_mtx(r, MTX_DIM));
+	return (create_mtx((const double *)r, MTX_DIM));
 }
 
 t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m)
@@ -71,7 +71,7 @@ t_mtx	transp_mtx(t_mtx m)
 		}
 		row++;
 	}
-	return (create_mtx(r, MTX_DIM));
+	return (create_mtx((const double *)r, MTX_DIM));
 }
 
 t_mtx	identity_mtx(size_t dim)
@@ -83,14 +83,14 @@ t_mtx	identity_mtx(size_t dim)
 	i = -1;
 	while (++i < dim)
 		r[i][i] = 1.0;
-	return (create_mtx(r, MTX_DIM));
+	return (create_mtx((const double *)r, MTX_DIM));
 }
 
-t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t dim)
+/* t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t dim)
 {
 	t_mtx	r;
 
 	r.dim = dim;
 	ft_memmove(r.mtx, m, sizeof(double) * MTX_SIZE);
 	return (r);
-}
+} */

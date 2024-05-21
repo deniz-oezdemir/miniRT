@@ -6,14 +6,14 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:31:11 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/20 19:26:03 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:21:16 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
 /* Calculate the determinant of a 2x2 matrix */
-static double	determinant_2x2(t_mtx m)
+double	determinant_2x2(t_mtx m)
 {
 	double	det;
 
@@ -25,7 +25,7 @@ static double	determinant_2x2(t_mtx m)
 
 /* Extrapolate the sub-matrix of a generic matrix by */
 /* deleting the x_row and x_col from the given matrix. */
-static t_mtx	sub_mtx(t_mtx m, int x_row, int x_col)
+t_mtx	sub_mtx(t_mtx m, int x_row, int x_col)
 {
 	double	r[m.dim - 1][m.dim - 1];
 	size_t	row;
@@ -51,7 +51,7 @@ static t_mtx	sub_mtx(t_mtx m, int x_row, int x_col)
 		}
 		new_row++;
 	}
-	return(create_mtx(r, m.dim - 1));
+	return(create_mtx((const double *)r, m.dim - 1));
 }
 
 /* Calculate the determinant of the given submatrix. */

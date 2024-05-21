@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 10:20:13 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/20 10:30:39 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:24:39 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	test_mtx()
 
 	printf("\n--- Test Matrix operations ---\n");
 	
-	t_mtx	a = create_mtx(a_data, MTX_DIM);
-	t_mtx	b = create_mtx(b_data, MTX_DIM);
+	t_mtx	a = create_mtx((const double *)a_data, MTX_DIM);
+	t_mtx	b = create_mtx((const double *)b_data, MTX_DIM);
 
 	t_mtx	mult = mult_mtx_mtx(a, b);
 	t_mtx	a_transp = transp_mtx(a);

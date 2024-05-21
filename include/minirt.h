@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/20 11:11:41 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:22:16 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_vec3
 
 typedef struct s_mtx
 {
-	double	mtx[MTX_DIM][MTX_DIM];
+	double	**mtx;
 	size_t	dim;
 }	t_mtx;
 
@@ -131,7 +131,7 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 		size_t len);
 
 /* Matrix */
-t_mtx	create_mtx(const double m[MTX_DIM][MTX_DIM], size_t dim);
+t_mtx	create_mtx(const double *m, size_t dim);
 t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
 t_mtx	transp_mtx(t_mtx m);
 t_mtx	translation_mtx(double x, double y, double z);
@@ -139,6 +139,13 @@ t_mtx	translation_mtx(double x, double y, double z);
 t_mtx	rot_x(double radians);
 t_mtx	rot_y(double radians);
 t_mtx	rot_z(double radians);
+
+/* Matrix operations */
+double	determinant_2x2(t_mtx m);
+t_mtx	sub_mtx(t_mtx m, int x_row, int x_col);
+double	mtx_minor(t_mtx m, int x_row, int x_col);
+double	mtx_cofactor(t_mtx m, int row, int col);
+double	mtx_determinant(t_mtx m);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);

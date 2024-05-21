@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_trans.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:57:46 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/17 16:39:49 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:24:15 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ t_mtx	translation_mtx(double x, double y, double z)
 	{0, 0, 0, 1}
 	};
 
-	return (create_mtx(r, MTX_DIM));
+	return (create_mtx((const double *)r, MTX_DIM));
 }
