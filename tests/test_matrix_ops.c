@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 10:20:13 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/23 15:33:59 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:39:06 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	test_mtx_ops(void)
 	};
 
 	printf("\n--- Test Matrix operations ---\n");
-	
+
 	t_mtx	a = create_mtx((const double *)a_data, MTX_DIM);
 	t_mtx	b = create_mtx((const double *)b_data, MTX_DIM);
 	t_mtx	c = create_mtx((const double *)c_data, MTX_DIM);
@@ -96,4 +96,18 @@ void	test_mtx_ops(void)
 // 	print_vec3(mult_pnt_mtx(p, rot_z(PI/4)), "Half a quarter: (-√2/2, √2/2, 0, 1) expected");
 // 	print_vec3(mult_pnt_mtx(p, rot_z(PI/2)), "Full quarter: (-1, 0, 0, 1) expected");
 
+printf("\n\nA scaling matrix (2, 3, 4) applied to a point (-4, 6, 8):\n");
+	p = (t_vec3){-4, 6, 8, 1};
+	print_vec3(mult_pnt_mtx(p, scaling(2, 3, 4)), "(-8, 18, 32) expected");
+
+printf("\n\nA scaling matrix (2, 3, 4) applied to a vector (-4, 6, 8):\n");
+	p = (t_vec3){-4, 6, 8, 0};
+	print_vec3(mult_pnt_mtx(p, scaling(2, 3, 4)), "(-8, 18, 32) expected");
+
+printf("\nTBD Multiplying by the inverse of a scaling matrix (p. 46): @Tiziano inverse needed\n");
+
+
+printf("\n\nReflection is scaling by a negativ value (-1, 1, 1) applied to a point (2, 3, 4):\n");
+	p = (t_vec3){2, 3, 4, 1};
+	print_vec3(mult_pnt_mtx(p, scaling(-1, 1, 1)), "(-2, 3, 4) expected");
 }
