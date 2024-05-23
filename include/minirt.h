@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/23 15:39:55 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:42:10 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 /* Matrix operations*/
 t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
 t_mtx	transp_mtx(t_mtx m);
+t_mtx	invert_mtx(t_mtx m);
 
 
 /* Matrix transformations */
