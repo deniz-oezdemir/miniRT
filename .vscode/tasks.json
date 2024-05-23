@@ -168,7 +168,8 @@
                 "-lft",
                 "-L${fileDirname}/../lib/mlx_linux",
                 "-lX11",
-                "-lXext"
+                "-lXext",
+                "-lm"
             ],
             "options": {
                 "cwd": "${fileDirname}"
