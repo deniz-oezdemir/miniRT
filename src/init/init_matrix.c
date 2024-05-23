@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:50:07 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/23 11:56:39 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:32:41 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void free_mtx(t_mtx *matrix)
 static double	**allocate_matrix(size_t dim)
 {
 	double	**matrix;
-	size_t	i;
+	int		i;
 
 	matrix = malloc(dim * sizeof(double *));
 	if (!matrix)
@@ -50,8 +50,8 @@ static double	**allocate_matrix(size_t dim)
 
 t_mtx	create_mtx(const double *m, size_t dim)
 {
-	t_mtx r;
-	size_t	i;
+	t_mtx	r;
+	int		i;
 	
 	r.dim = dim;
 	r.mtx = allocate_matrix(dim);

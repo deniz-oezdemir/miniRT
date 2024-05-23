@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/21 17:08:34 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:36:14 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ t_mtx	invert_mtx(t_mtx m)
 	double	r[m.dim][m.dim];
 	double	det;
 	t_mtx	inv;
-	size_t	row;
-	size_t	col;
+	int		row;
+	int		col;
 
 	det = mtx_determinant(m);
-	if (det == 0)
+	if (det == 0) // Replace wit a is_equal function for doubles
 	{
 		inv.dim = 0;
 		return (inv);

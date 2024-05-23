@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:17:58 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/21 11:47:54 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:08:48 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	test_sub_mtx(void)
 	print_mtx(m);
 	printf("\nSub-matrix 1-1:\n");
 	print_mtx(sub);
+	printf("\nSub-matrix 3-3:\n");
+	print_mtx(sub_mtx(m, 3, 3));
 }
 
 void	test_mtx_minor(void)

@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 10:20:13 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/21 17:30:49 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:33:59 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ void	test_mtx_ops(void)
 	t_mtx	a_transp = transp_mtx(a);
 	t_mtx	mult_transp = transp_mtx(mult);
 	t_mtx	inv_mtx = invert_mtx(c);
-	printf("\n--- Test aaaaa ---\n");
 	t_mtx	inv_mtx2 = invert_mtx(d);
-	printf("\n--- Test bbb ---\n");
 
 	printf("\nMatrix a:\n");
 	print_mtx(a);

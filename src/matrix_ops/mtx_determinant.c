@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mtx_ops2.c                                         :+:      :+:    :+:   */
+/*   mtx_determinant.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:31:11 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/21 12:12:49 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:31:56 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,24 @@ double	determinant_2x2(t_mtx m)
 t_mtx	sub_mtx(t_mtx m, int x_row, int x_col)
 {
 	double	r[m.dim - 1][m.dim - 1];
-	size_t	row;
-	size_t	col;
+	int		row;
+	int		col;
 	size_t	new_row;
 	size_t	new_col;
 
 	ft_bzero(r, sizeof(double) * ((m.dim - 1)*(m.dim - 1)));
 	new_row = 0;
 	row = -1;
-	while (++row < m.dim)
+	while (++row < m.dim && new_row < m.dim - 1)
 	{
+		if (row == x_row)
+			continue ;
 		col = -1;
 		new_col = 0;
-		if (row == x_row)
-			row++;
-		while (++col < m.dim)
+		while (++col < m.dim && new_col < m.dim - 1)
 		{
 			if (col == x_col)
-				col++;
+				continue ;
 			r[new_row][new_col] = m.mtx[row][col];
 			new_col++;
 		}
@@ -82,7 +82,7 @@ double	mtx_cofactor(t_mtx m, int row, int col)
 /* cofactors expansion method. */
 double	mtx_determinant(t_mtx m)
 {
-	size_t	col;
+	int		col;
 	double	det;
 
 	if (m.dim == 2)
