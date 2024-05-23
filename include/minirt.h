@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/21 12:38:54 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:20:56 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,11 +134,14 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 t_mtx	create_mtx(const double *m, size_t dim);
 t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
 t_mtx	transp_mtx(t_mtx m);
-t_mtx	translation_mtx(double x, double y, double z);
 
+
+/* Matrix transformations */
+t_mtx	scaling(double x, double y, double z);
 t_mtx	rot_x(double radians);
 t_mtx	rot_y(double radians);
 t_mtx	rot_z(double radians);
+t_mtx	translation_mtx(double x, double y, double z);
 
 /* Matrix operations */
 double	determinant_2x2(t_mtx m);
