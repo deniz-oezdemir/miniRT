@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/24 13:05:34 by tiacovel         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MINIRT_H
 # define MINIRT_H
 
@@ -62,6 +50,7 @@ typedef struct s_minirt
 	// t_scene	*scene;
 }	t_minirt;
 
+/* w = 1 for points, w = 0 for vectors */
 typedef struct s_vec3
 {
 	double	x;
@@ -186,6 +175,7 @@ double	magnitude(t_vec3 v);
 
 /* Ray casting */
 // input = ray, distance (double) || output Position = Point(vec3)
+t_ray	get_ray(t_vec3 origin, t_vec3 dir);
 t_vec3	position(t_ray ray, double dist);
 
 /* Print stuffs */
