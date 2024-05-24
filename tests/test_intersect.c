@@ -29,13 +29,12 @@ void test_inter()
 	printf("expected inter1 = 5: %.3f\n", i.i1);
 	printf("expected inter2 = 5: %.3f\n", i.i2);
 
-	printf("\nA ray misses a sphere <<<--- NEEDS DEBUGGING!\n");
+	printf("\nA ray misses a sphere\n");
 	ray = get_ray((t_vec3){0, 2, -5, 1}, (t_vec3){0, 0, 1, 0});
 	i = inter_sphere(&s, ray);
-	printf("expected seg fault\n");
 	printf("expected count = 0: %d\n", i.count);
-	printf("unexpected inter1: %.3f\n", i.i1);
-	printf("unexpected inter2: %.3f\n", i.i2);
+	printf("inter1 set to 0: %.3f\n", i.i1);
+	printf("inter2 set to 0: %.3f\n", i.i2);
 
 	printf("\nA ray originates inside a sphere\n");
 	ray = get_ray((t_vec3){0, 0, 0, 1}, (t_vec3){0, 0, 1, 0});
