@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:51:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/23 15:42:10 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:05:34 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,20 @@ typedef struct s_mtx
 	double	**mtx;
 	size_t	dim;
 }	t_mtx;
+
+typedef struct s_inter
+{
+	char	*name;
+	int		count;
+	int		i1;
+	int		i2;
+}	t_inter;
+
+typedef struct s_ray
+{
+	t_vec3	origin;
+	t_vec3	dir;
+}	t_ray;
 
 /* Init and exit functions */
 t_minirt	*init_mlx(void);
@@ -169,6 +183,10 @@ t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m);
 
 double	vec_dot(t_vec3 a, t_vec3 b);
 double	magnitude(t_vec3 v);
+
+/* Ray casting */
+// input = ray, distance (double) || output Position = Point(vec3)
+t_vec3	position(t_ray ray, double dist);
 
 /* Print stuffs */
 // To be deleted befor submission
