@@ -24,19 +24,4 @@ void test_rays()
 	print_vec3(position(r, 1.0), "expected point 3, 3, 4");
 	print_vec3(position(r, -1.0), "expected point 1, 3, 4");
 	print_vec3(position(r, 2.5), "expected point 4.5, 3, 4");
-
-	/*
-	print_vec3(vec_add(a, b), "a + b");
-	print_vec3(vec_sub(a, b), "a - b");
-	print_vec3(vec_mul(scalar, b), "a * b");
-	print_vec3(vec_div(scalar, b), "a / b");
-	print_vec3(vec_neg(a), "a negated");
-	print_vec3(vec_neg(b), "b negated");
-	printf("magnitude of a: %.8f\n", magnitude(a));
-	printf("magnitude of b: %.8f\n", magnitude(b));
-	print_vec3(vec_norm(a), "a normalized");
-	printf("magnitude of (0, 0, 1): %.8f\n", magnitude(c));
-	printf("dot product of a, b: %.8f\n", vec_dot(a, b));
-	printf("dot product of a, c: %.8f\n", vec_dot(a, c));
-	print_vec3(vec_cross(a, b), "cross product a * b");*/
 }

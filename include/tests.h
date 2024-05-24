@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:42 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/24 15:18:50 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/24 23:16:27 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	test_mtx_cofactor(void);
 void	test_mtx_determinant(void);
 void	test_mtx_determinant_4x4(void);
 void	test_rays();
+void	test_inter();
+
 
 /* Utils */
 void    print_test_result(char *test_case, bool expected, bool actual);

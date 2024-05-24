@@ -69,8 +69,8 @@ typedef struct s_inter
 {
 	char	*name;
 	int		count;
-	int		i1;
-	int		i2;
+	double	i1;
+	double	i2;
 }	t_inter;
 
 typedef struct s_ray
@@ -78,6 +78,17 @@ typedef struct s_ray
 	t_vec3	origin;
 	t_vec3	dir;
 }	t_ray;
+
+/* discriminiant type to perform calculations only once */
+typedef struct s_discr
+{
+	double	a;
+	double	b;
+	double	c;
+	double	t1;
+	double	t2;
+	double	discr;
+}	t_discr;
 
 /* Init and exit functions */
 t_minirt	*init_mlx(void);
@@ -177,6 +188,10 @@ double	magnitude(t_vec3 v);
 // input = ray, distance (double) || output Position = Point(vec3)
 t_ray	get_ray(t_vec3 origin, t_vec3 dir);
 t_vec3	position(t_ray ray, double dist);
+
+/* Ray intersects sphere */
+t_inter inter_sphere(void *object, t_ray ray);
+t_discr discriminant(t_sphere *sphere, t_ray ray);
 
 /* Print stuffs */
 // To be deleted befor submission
