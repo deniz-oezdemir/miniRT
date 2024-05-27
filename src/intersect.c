@@ -1,22 +1,32 @@
 # include "../include/minirt.h"
 
-t_inter inter_sphere(void *object, t_ray ray)
+/* wrapper function for different shapes intersection: takes minirt struct as input*/
+void intersections(t_minirt *data, t_ray ray)
 {
-	t_inter r;
+	t_list *tmp = data->objects; //objects might become world
+	while (tmp)
+	{
+		//check what type of object
+		inter_sphere(sphere, ray, data->xs); //sphere tbd
+		tmp = tmp->next;
+	}
+}
+
+bool inter_sphere(void *object, t_ray ray, t_list *xs)
+{
 	t_discr d;
 
 	d = discriminant((t_sphere *)object, ray);
-	printf("discriminant: %.9f\n", d.discr);
-	if (d.discr < 0)
-		r.count = 0; // future optimization: do not execute anything else in this function
-	else if (d.discr == 0)
-		r.count = 1;
-	else if (d.discr > 0)
-		r.count = 2;
-	r.name = ((t_sphere *)object)->name;
-	r.i1 = d.t1;
-	r.i2 = d.t2;
-	return (r);
+	if (d.discr < 0) //no valid intersections
+		return (false);
+	else if (d.discr == 0) //tangent: both intersections are equal
+		ft_lstadd_back(&xs, ft_lstnew(&((t_inter){object, d.t1})));
+	else
+	{
+		ft_lstadd_back(&xs, ft_lstnew(&((t_inter){object, d.t1})));
+		ft_lstadd_back(&xs, ft_lstnew(&((t_inter){object, d.t2})));
+	}
+	return (true);
 }
 
 t_discr discriminant(t_sphere *sphere, t_ray ray)
@@ -36,8 +46,8 @@ t_discr discriminant(t_sphere *sphere, t_ray ray)
 	}
 	else
 	{
-	r.t1 = (-r.b - sqrt(r.discr)) / (2 * r.a);
-	r.t2 = (-r.b + sqrt(r.discr)) / (2 * r.a);
+		r.t1 = (-r.b - sqrt(r.discr)) / (2 * r.a);
+		r.t2 = (-r.b + sqrt(r.discr)) / (2 * r.a);
 	}
 	return (r);
 }

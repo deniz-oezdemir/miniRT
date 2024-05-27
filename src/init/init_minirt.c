@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minirt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/21 15:42:27 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:46:42 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_minirt	*init_mlx(void)
 	data->scene = NULL;
 	data->objects = NULL;
 	data->grbg = NULL;
+	data->xs = NULL;
 	return (data);
 }
 

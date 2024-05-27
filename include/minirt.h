@@ -47,6 +47,7 @@ typedef struct s_minirt
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_img		*mlx_img;
+	t_list		*xs;
 	// t_scene	*scene;
 }	t_minirt;
 
@@ -67,10 +68,14 @@ typedef struct s_mtx
 
 typedef struct s_inter
 {
-	char	*name;
-	int		count;
-	double	i1;
-	double	i2;
+	t_shape *shape;
+	double	inter;
+
+	/* fix in other code
+	char	*name; //
+	int		count; //delete
+	double	i1; //only one i
+	double	i2;*/
 }	t_inter;
 
 typedef struct s_ray
@@ -190,8 +195,9 @@ t_ray	get_ray(t_vec3 origin, t_vec3 dir);
 t_vec3	position(t_ray ray, double dist);
 
 /* Ray intersects sphere */
-t_inter inter_sphere(void *object, t_ray ray);
-t_discr discriminant(t_sphere *sphere, t_ray ray);
+void	intersections(t_minirt *minirt, t_ray ray);
+bool	inter_sphere(void *object, t_ray ray, t_list *xs);
+t_discr	discriminant(t_sphere *sphere, t_ray ray);
 
 /* Print stuffs */
 // To be deleted befor submission
