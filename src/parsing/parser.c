@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 15:57:16 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:13:05 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/minirt.h"
-
-	//loop
-		//gnl
-		//split
-		// if A
-			//parse_ambient_light(data); //atoi
-		//else if C
-			//parse_cylindr
-		//else if ...
-			///...
-		//else
-			//throw error: incorrect scene
-		//free gnl, free split
 
 static void	separate_by_comma(t_minirt *data, char *space_separated)
 {

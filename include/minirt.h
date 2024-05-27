@@ -12,6 +12,7 @@
 # include "../lib/libft/libft.h"
 # include "errors.h"
 # include "math.h"
+# include "tuples.h"
 
 # define WIN_NAME	"MiniRT"
 # define WIN_WIDTH	1000
@@ -38,12 +39,23 @@ typedef struct s_img
 	int		line_len;
 }	t_img;
 
+typedef struct s_world
+{
+	t_list	*xs;
+	t_list	*objects;
+	t_list	*lights;
+	int		object_nbr;
+	int		light_nbr;
+	//t_color	ambient;
+}	t_world;
+
 typedef struct s_minirt
 {
 	int			fd;
 	t_list		*scene;
 	t_list		*objects;
 	t_list		*grbg;
+	t_world		*world;
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_img		*mlx_img;
@@ -51,13 +63,13 @@ typedef struct s_minirt
 }	t_minirt;
 
 /* w = 1 for points, w = 0 for vectors */
-typedef struct s_vec3
+/* typedef struct s_vec3
 {
 	double	x;
 	double	y;
 	double	z;
 	double	w;
-}	t_vec3;
+}	t_vec3; */
 
 typedef struct s_mtx
 {

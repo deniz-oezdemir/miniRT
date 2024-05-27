@@ -13,7 +13,7 @@ t_inter inter_sphere(void *object, t_ray ray)
 		r.count = 1;
 	else if (d.discr > 0)
 		r.count = 2;
-	r.name = ((t_sphere *)object)->name;
+	//r.name = ((t_sphere *)object)->name;
 	r.i1 = d.t1;
 	r.i2 = d.t2;
 	return (r);

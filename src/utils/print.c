@@ -6,14 +6,14 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/20 10:21:52 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:38:35 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/minirt.h"
 // DO NOT SUBMIT !!!
 // Print function for each type of object
-void print_amblight(t_amblight *obj)
+/* void print_amblight(t_amblight *obj)
 {
 	printf("Name: %s\n", obj->name);
 	printf("Intensity: %lf\n", obj->intensity);
@@ -86,7 +86,7 @@ void print_scene_objects(t_list *head) {
 		printf("\n");
 		current = current->next;
 	}
-}
+} */
 
 void print_vec3(t_vec3 v, char* label)
 {

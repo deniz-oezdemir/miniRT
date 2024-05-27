@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/20 10:37:46 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:28:31 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	parse(data, argv[1]);
 	// Print scene objects attributes
 	printf("\nScene objects:\n"); //check
-	print_scene_objects(data->objects);
+	//print_scene_objects(data->objects);
 
 	// Start MLX window
 	// init_window(data);
