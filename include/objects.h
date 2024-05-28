@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/28 11:50:38 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:42:57 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@ typedef enum e_obj_type {
 }	t_obj_type;
 
 typedef struct s_amblight{
-	char *name; // delete it later
 	double	intensity;
-	int		r;
-	int		g;
-	int		b;
+	t_color	color;
 }	t_amblight;
 
 typedef struct s_camera{
@@ -37,12 +34,11 @@ typedef struct s_camera{
 	int		fov;
 }	t_camera;
 
-typedef struct s_light{
-	t_obj_type	name;
+typedef struct s_pntlight{
 	t_vec3	center;
 	double	intensity;
 	t_color	color;
-}	t_light;
+}	t_pntlight;
 
 typedef struct s_sphere{
 	t_vec3	center;
@@ -75,3 +71,13 @@ typedef struct s_shape
 	};
 	//t_material		material;
 }	t_shape;
+
+typedef struct s_light
+{
+	t_obj_type	name;
+	union
+	{
+		t_amblight	amb_light;
+		t_pntlight	pnt_light;
+	};
+}	t_light;

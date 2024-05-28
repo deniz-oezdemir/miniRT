@@ -6,13 +6,13 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:08 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/28 11:55:41 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:50:31 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/minirt.h"
 
-static bool	validate_light(t_light *light)
+static bool	validate_light(t_pntlight *light)
 {
 	if ((light->intensity < 0)
 		|| light->center.x < INT_MIN
@@ -25,7 +25,7 @@ static bool	validate_light(t_light *light)
 	return (true);
 }
 
-void	parse_light(t_minirt *data, t_list **input_lst)
+void	parse_pnt_light(t_minirt *data, t_list **input_lst)
 {
 	t_light	*light;
 
@@ -33,14 +33,14 @@ void	parse_light(t_minirt *data, t_list **input_lst)
 	if (!light)
 		printf("Error: allocation failed\n");
 	light->name = PNT_LIGHT;
-	light->center.x = check_coordinate(get_nth_content(*input_lst, 1));
-	light->center.y = check_coordinate(get_nth_content(*input_lst, 2));
-	light->center.z = check_coordinate(get_nth_content(*input_lst, 3));
-	light->intensity = check_intensity(get_nth_content(*input_lst, 4));
-	light->color.r = check_rgb(get_nth_content(*input_lst, 5));
-	light->color.g = check_rgb(get_nth_content(*input_lst, 6));
-	light->color.b = check_rgb(get_nth_content(*input_lst, 7));
-	if (!validate_light(light))
+	light->pnt_light.center.x = check_coordinate(get_nth_content(*input_lst, 1));
+	light->pnt_light.center.y = check_coordinate(get_nth_content(*input_lst, 2));
+	light->pnt_light.center.z = check_coordinate(get_nth_content(*input_lst, 3));
+	light->pnt_light.intensity = check_intensity(get_nth_content(*input_lst, 4));
+	light->pnt_light.color.r = check_rgb(get_nth_content(*input_lst, 5));
+	light->pnt_light.color.g = check_rgb(get_nth_content(*input_lst, 6));
+	light->pnt_light.color.b = check_rgb(get_nth_content(*input_lst, 7));
+	if (!validate_light(&(light->pnt_light)))
 		return (pars_error(data, LIGHT_ERR));
 	ft_lstadd_back(&(data->world->lights), gc_lstnew(data, light));
 	data->world->light_nbr++;
