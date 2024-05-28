@@ -44,6 +44,7 @@ typedef struct s_world
 	t_list	*xs;
 	t_list	*objects;
 	t_list	*lights;
+	t_camera	*camera;
 	int		object_nbr;
 	int		light_nbr;
 	//t_color	ambient;
