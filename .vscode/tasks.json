@@ -10,6 +10,7 @@
                 "-g",
                 "${file}",
                 "${fileDirname}/cleaning.c",
+                "${fileDirname}/intersect.c",
                 "${fileDirname}/init/init_minirt.c",
                 "${fileDirname}/init/init_matrix.c",
                 "${fileDirname}/matrix_ops/mtx_determinant.c",
@@ -30,7 +31,7 @@
                 "${fileDirname}/hooks.c",
                 "${fileDirname}/parsing/ambient_light.c",
                 "${fileDirname}/parsing/check.c",
-                "${fileDirname}/parsing/light.c",
+                "${fileDirname}/parsing/point_light.c",
                 "${fileDirname}/parsing/cylinder.c",
                 "${fileDirname}/parsing/sphere.c",
                 "${fileDirname}/parsing/camera.c",
@@ -47,7 +48,8 @@
                 "-lft",
                 "-L${fileDirname}/../lib/mlx",
                 "-lX11",
-                "-lXext"
+                "-lXext",
+                "-lm"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -88,7 +90,7 @@
                 "${fileDirname}/hooks.c",
                 "${fileDirname}/parsing/ambient_light.c",
                 "${fileDirname}/parsing/check.c",
-                "${fileDirname}/parsing/light.c",
+                "${fileDirname}/parsing/point_light.c",
                 "${fileDirname}/parsing/cylinder.c",
                 "${fileDirname}/parsing/sphere.c",
                 "${fileDirname}/parsing/camera.c",
@@ -104,7 +106,8 @@
                 "-lX11",
                 "-lXext",
                 "-L${fileDirname}/../lib/libft",
-                "-lft"
+                "-lft",
+                "-lm"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -151,7 +154,7 @@
                 "${fileDirname}/../src/hooks.c",
                 "${fileDirname}/../src/parsing/ambient_light.c",
                 "${fileDirname}/../src/parsing/check.c",
-                "${fileDirname}/../src/parsing/light.c",
+                "${fileDirname}/../src/parsing/point_light.c",
                 "${fileDirname}/../src/parsing/cylinder.c",
                 "${fileDirname}/../src/parsing/sphere.c",
                 "${fileDirname}/../src/parsing/camera.c",
@@ -232,7 +235,8 @@
                 "-lX11",
                 "-lXext",
                 "-L${fileDirname}/../lib/libft",
-                "-lft"
+                "-lft",
+                "-lm"
             ],
             "options": {
                 "cwd": "${fileDirname}"
