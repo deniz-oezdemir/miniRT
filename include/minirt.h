@@ -123,7 +123,7 @@ void	print_instruction(t_minirt *data);
 void	parse(t_minirt *data, char *file_name);
 void	parse_ambient_light(t_minirt *data, t_list **al);
 void	parse_camera(t_minirt *data, t_list **list);
-void	parse_light(t_minirt *data, t_list **list);
+void	parse_pnt_light(t_minirt *data, t_list **list);
 void	parse_sphere(t_minirt *data, t_list **list);
 void	parse_plane(t_minirt *data, t_list **list);
 void	parse_cylinder(t_minirt *data, t_list **list);
