@@ -41,9 +41,9 @@ typedef struct s_img
 
 typedef struct s_world
 {
-	t_list	*xs;
-	t_list	*objects;
-	t_list	*lights;
+	//t_list	*xs;
+	t_list		*objects;
+	t_list		*lights;
 	t_camera	*camera;
 	int		object_nbr;
 	int		light_nbr;
@@ -62,15 +62,6 @@ typedef struct s_minirt
 	t_img		*mlx_img;
 	// t_scene	*scene;
 }	t_minirt;
-
-/* w = 1 for points, w = 0 for vectors */
-/* typedef struct s_vec3
-{
-	double	x;
-	double	y;
-	double	z;
-	double	w;
-}	t_vec3; */
 
 typedef struct s_mtx
 {
@@ -208,7 +199,7 @@ t_discr discriminant(t_sphere *sphere, t_ray ray);
 
 /* Print stuffs */
 // To be deleted befor submission
-void	print_scene_objects(t_list *head);
+void	print_scene_objects(t_world *world);
 void	print_vec3(t_vec3 v, char* label);
 void	print_mtx(t_mtx mtx);
 

@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/27 15:13:05 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:56:41 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 	else if (!ft_strncmp((*list)->content, "C", 1))
 		parse_camera(data, list);
 	else if (!ft_strncmp((*list)->content, "L", 1))
-		parse_light(data, list);
+		parse_pnt_light(data, list);
 	else if (!ft_strncmp((*list)->content, "sp", 2))
 		parse_sphere(data, list);
 	else if (!ft_strncmp((*list)->content, "pl", 2))

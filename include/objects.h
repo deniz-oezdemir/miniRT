@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/28 15:42:57 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:52:57 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ typedef enum e_obj_type {
     SPHERE,
     PLANE,
 	CYLINDER,
-	PLANE,
 	CAMERA,
 	PNT_LIGHT,
 	AMB_LIGHT
