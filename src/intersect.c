@@ -56,6 +56,22 @@ bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray)
 	return (true);
 }
 
+t_inter	hit(t_list *xs)
+{
+	t_inter	min_inter;
+	t_inter	*inter;
+
+	min_inter = (t_inter){NULL, (double)INT_MAX}; //TODO: probably we don't need this, to be optimezed
+	while (xs != NULL)
+	{
+		inter = (t_inter *)xs->content;
+		if (inter->inter <= min_inter.inter && inter->inter > 0) //TODO: change attr name? inter.inter looks ugly
+			min_inter = *inter;
+		xs = xs->next;
+	}
+	return (min_inter);
+}
+
 /* wrapper function for different shapes intersection: takes minirt struct as input*/
 void	intersections(t_minirt *data, t_ray ray)
 {
