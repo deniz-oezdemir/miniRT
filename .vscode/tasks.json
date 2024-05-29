@@ -63,7 +63,7 @@
         {
             "type": "cppbuild",
             "label": "compile miniRT MacOS",
-            "command": "/usr/bin/clang",
+            "command": "/usr/bin/cc",
             "args": [
                 "-fcolor-diagnostics",
                 "-fansi-escape-codes",
