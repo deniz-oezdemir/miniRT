@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 15:57:16 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:56:41 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/minirt.h"
-
-	//loop
-		//gnl
-		//split
-		// if A
-			//parse_ambient_light(data); //atoi
-		//else if C
-			//parse_cylindr
-		//else if ...
-			///...
-		//else
-			//throw error: incorrect scene
-		//free gnl, free split
 
 static void	separate_by_comma(t_minirt *data, char *space_separated)
 {
@@ -73,7 +60,7 @@ static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 	else if (!ft_strncmp((*list)->content, "C", 1))
 		parse_camera(data, list);
 	else if (!ft_strncmp((*list)->content, "L", 1))
-		parse_light(data, list);
+		parse_pnt_light(data, list);
 	else if (!ft_strncmp((*list)->content, "sp", 2))
 		parse_sphere(data, list);
 	else if (!ft_strncmp((*list)->content, "pl", 2))
