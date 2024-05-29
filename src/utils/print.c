@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/28 17:55:26 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/29 08:51:03 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,18 @@ void print_scene_objects(t_world *world)
 {
 	t_list	*shapes = world->objects;
 	t_list	*lights = world->lights;
-	int i = 0;
 
-	printf("\n*** Scene objects ***\n");
-	printf("\n");
+	printf("\n*** Scene objects ***\n\n");
 	if (world->camera != NULL)
 		print_camera(world->camera);
 	printf(" \nShapes:\n");
+	if (shapes == NULL)
+		printf("Empty Shapes list!\n");
 	while (shapes != NULL)
 	{
-		i++;
-		printf("%d\n", i);
 		if (shapes->content == NULL)
-		{
-			printf("BOOOOO\n");
 			continue;
-		}
-		printf("Shape code: %d\n", ((t_shape *)shapes->content)->name);
+		printf("Shape ID: %d\n", ((t_shape *)shapes->content)->name);
 		if (((t_shape *)shapes->content)->name  == SPHERE)
 			print_sphere(&((t_shape *)shapes->content)->sphere);
 		else if (((t_shape *)shapes->content)->name  == PLANE)
@@ -94,6 +89,8 @@ void print_scene_objects(t_world *world)
 		shapes = shapes->next;
 	}
 	printf(" \nLights:\n");
+	if (lights == NULL)
+		printf("Empty Lights list!\n");
 	while (lights != NULL)
 	{
 		if (lights->content == NULL)
