@@ -194,6 +194,7 @@ t_vec3	position(t_ray ray, double dist);
 void	intersections(t_minirt *minirt, t_ray ray);
 bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray);
 t_discr	discriminant(t_sphere *sphere, t_ray ray);
+t_inter	hit(t_list *xs);
 
 /* Print stuffs */
 // To be deleted befor submission
