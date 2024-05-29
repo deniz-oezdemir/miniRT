@@ -1,15 +1,12 @@
 # include "../include/minirt.h"
 # include "../include/tests.h"
 
-void free_inter(void *content)
-{
-	t_inter *inter_content = (t_inter *)content;
-	// Set the shape pointer to NULL but don't free the shape
-	inter_content->shape = NULL;
-}
-
 void test_inter(t_minirt *data)
 {
+	printf ("\n*** Test intersections 1 sphere ***\n\n");
+	free_world(data->world);
+	parse(data, "scene_1_sphere.rt");
+
 	t_ray ray = get_ray((t_vec3){0, 0, -5, 1}, (t_vec3){0, 0, 1, 0});
 
 	printf("\nA ray intersects a sphere at two points\n");

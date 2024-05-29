@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:42 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/29 09:28:35 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:23:52 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ void	test_mtx_determinant(void);
 void	test_mtx_determinant_4x4(void);
 void	test_rays();
 void	test_inter(t_minirt *data);
+void	test_inter_2(t_minirt *data);
 
 
 /* Utils */
-void    print_test_result(char *test_case, bool expected, bool actual);
+void	print_test_result(char *test_case, bool expected, bool actual);
+void	free_inter(void *content);
+void	free_world(t_world *world);
 
 #endif

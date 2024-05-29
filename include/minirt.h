@@ -41,13 +41,11 @@ typedef struct s_img
 
 typedef struct s_world
 {
-	//t_list	*xs;
 	t_list		*objects;
 	t_list		*lights;
 	t_camera	*camera;
 	int		object_nbr;
 	int		light_nbr;
-	//t_color	ambient;
 }	t_world;
 
 typedef struct s_minirt
@@ -194,7 +192,7 @@ t_vec3	position(t_ray ray, double dist);
 
 /* Ray intersects sphere */
 void	intersections(t_minirt *minirt, t_ray ray);
-bool	inter_sphere(t_shape *shape, t_ray ray, t_list **xs);
+bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray);
 t_discr	discriminant(t_sphere *sphere, t_ray ray);
 
 /* Print stuffs */
