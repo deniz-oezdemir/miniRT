@@ -1,35 +1,39 @@
 # include "../include/minirt.h"
 
 /* wrapper function for different shapes intersection: takes minirt struct as input*/
-void intersections(t_minirt *data, t_ray ray)
+void	intersections(t_minirt *data, t_ray ray)
 {
-	t_list *tmp = data->objects; //objects might become world
-	while (tmp)
+	t_list	*shapes; //objects might become world
+	t_shape	*shape;
+
+	shapes = data->world->objects;
+	while (shapes != NULL)
 	{
-		//check what type of object
-		inter_sphere(sphere, ray, data->xs); //sphere tbd
-		tmp = tmp->next;
+		shape = (t_shape *)shapes->content;
+		if (shape->name == SPHERE)
+			inter_sphere(shape, ray, &data->xs);
+		shapes = shapes->next;
 	}
 }
 
-bool inter_sphere(void *object, t_ray ray, t_list *xs)
+bool	inter_sphere(t_shape *shape, t_ray ray, t_list **xs)
 {
-	t_discr d;
+	t_discr	d;
 
-	d = discriminant((t_sphere *)object, ray);
+	d = discriminant(&shape->sphere, ray);
 	if (d.discr < 0) //no valid intersections
 		return (false);
 	else if (d.discr == 0) //tangent: both intersections are equal
-		ft_lstadd_back(&xs, ft_lstnew(&((t_inter){object, d.t1})));
+		ft_lstadd_back(xs, ft_lstnew(&((t_inter){shape, d.t1})));
 	else
 	{
-		ft_lstadd_back(&xs, ft_lstnew(&((t_inter){object, d.t1})));
-		ft_lstadd_back(&xs, ft_lstnew(&((t_inter){object, d.t2})));
+		ft_lstadd_back(xs, ft_lstnew(&((t_inter){shape, d.t1})));
+		ft_lstadd_back(xs, ft_lstnew(&((t_inter){shape, d.t2})));
 	}
 	return (true);
 }
 
-t_discr discriminant(t_sphere *sphere, t_ray ray)
+t_discr	discriminant(t_sphere *sphere, t_ray ray)
 {
 	t_discr	r;
 	t_vec3	sphere_to_ray;

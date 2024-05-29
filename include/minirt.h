@@ -72,14 +72,8 @@ typedef struct s_mtx
 
 typedef struct s_inter
 {
-	t_shape *shape;
+	t_shape	*shape;
 	double	inter;
-
-	/* fix in other code
-	char	*name; //
-	int		count; //delete
-	double	i1; //only one i
-	double	i2;*/
 }	t_inter;
 
 typedef struct s_ray
@@ -200,7 +194,7 @@ t_vec3	position(t_ray ray, double dist);
 
 /* Ray intersects sphere */
 void	intersections(t_minirt *minirt, t_ray ray);
-bool	inter_sphere(void *object, t_ray ray, t_list *xs);
+bool	inter_sphere(t_shape *shape, t_ray ray, t_list **xs);
 t_discr	discriminant(t_sphere *sphere, t_ray ray);
 
 /* Print stuffs */

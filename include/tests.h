@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:42 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/24 23:16:27 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/29 09:28:35 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	test_mtx_cofactor(void);
 void	test_mtx_determinant(void);
 void	test_mtx_determinant_4x4(void);
 void	test_rays();
-void	test_inter();
+void	test_inter(t_minirt *data);
 
 
 /* Utils */

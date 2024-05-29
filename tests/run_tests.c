@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_tests.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:23 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/24 23:16:07 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:52:59 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 
 int main(void)
 {
-	// t_minirt	*data;
+	t_minirt	*data;
 
+	data = init_mlx();
+	parse(data, "scene_first_sphere.rt");
+	// print_scene_objects(data->world);
+	
 	// test_is_digit();
 	// test_is_identifier();
 	// test_is_in_range();
@@ -30,6 +34,6 @@ int main(void)
 	// test_mtx_ops();
 	// test_mtx_trans();
 	// test_rays();
-	test_inter();
+	test_inter(data);
 	return (0);
 }
