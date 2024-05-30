@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/28 16:55:59 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:49:38 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 /* Render the scene */
 /* for test only */
-void	render_scene(t_minirt *data)
+/* void	render_scene(t_minirt *data)
 {
 	print_instruction(data);
 	color_background(data, BACKGROUND_COLOR);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 		data->mlx_img->img_ptr, 200, 0);
-}
+} */
 
 int	main(int argc, char **argv)
 {
@@ -34,12 +34,12 @@ int	main(int argc, char **argv)
 	data = init_mlx();
 	parse(data, argv[1]);
 	// Print scene objects attributes
-	print_scene_objects(data->world);
+	// print_scene_objects(data->world);
 
 	// Start MLX window
-	// init_window(data);
-	// render_scene(data);
-	// mlx_loop(data->mlx_ptr);
+	init_window(data);
+	render_scene(data);
+	mlx_loop(data->mlx_ptr);
 
 	exit_program(data); //clean and exit
 	return (EXIT_SUCCESS);

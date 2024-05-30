@@ -16,10 +16,10 @@
 
 # define WIN_NAME	"MiniRT"
 # define WIN_WIDTH	1000
-# define WIN_HEIGHT	600
+# define WIN_HEIGHT	800
 
-# define IMG_WIDTH	800
-# define IMG_HEIGHT	600
+# define IMG_WIDTH	100
+# define IMG_HEIGHT	100
 
 # define BACKGROUND_COLOR	0x202020
 # define TEXT_COLOR			0xffffff
@@ -195,6 +195,9 @@ void	intersections(t_minirt *minirt, t_ray ray);
 bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray);
 t_discr	discriminant(t_sphere *sphere, t_ray ray);
 t_inter	hit(t_list *xs);
+
+/* Render scene */
+void	render_scene(t_minirt *data);
 
 /* Print stuffs */
 // To be deleted befor submission
