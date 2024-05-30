@@ -5,7 +5,7 @@ t_inter	*init_inter(t_minirt *data, t_shape *shape, double inter)
 {
 	t_inter	*new_inter;
 
-	new_inter = (t_inter *)gc_get(data, 1, sizeof(t_inter));
+	new_inter = (t_inter *)gc_get(data, 1, sizeof(t_inter)); //Maybe we dont need to store the nters in the gc if we use lstclear
 	if (!new_inter)
 	{ 
 		perror("Failed to allocate t_inter");
