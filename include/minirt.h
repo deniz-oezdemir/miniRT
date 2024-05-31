@@ -18,8 +18,8 @@
 # define WIN_WIDTH	1000
 # define WIN_HEIGHT	800
 
-# define IMG_WIDTH	300
-# define IMG_HEIGHT	300
+# define IMG_WIDTH	100
+# define IMG_HEIGHT	100
 
 # define BACKGROUND_COLOR	0x202020
 # define TEXT_COLOR			0xffffff
