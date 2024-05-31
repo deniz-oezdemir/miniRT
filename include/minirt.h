@@ -199,6 +199,10 @@ t_inter	hit(t_list *xs);
 /* Render scene */
 void	render_scene(t_minirt *data);
 
+/* Lighting */
+void test_light(t_minirt *data);
+t_vec3 normal_at(t_sphere *sphere, t_vec3 p);
+
 /* Print stuffs */
 // To be deleted befor submission
 void	print_scene_objects(t_world *world);
