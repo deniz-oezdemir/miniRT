@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/31 14:50:43 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:10:20 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	main(int argc, char **argv)
 	}
 	data = init_mlx();
 	parse(data, argv[1]);
-	// Print scene objects attributes
-	// print_scene_objects(data->world);
+	//Print scene objects attributes
+	print_scene_objects(data->world);
 
 	// Start MLX window
 	//init_window(data);
@@ -42,6 +42,13 @@ int	main(int argc, char **argv)
 	//mlx_loop(data->mlx_ptr);
 
 	test_light(data);
+
+	//casting missing to test with input file
+	printf("\nc0\n");
+	t_shape *sphere = data->world->objects->next->next->content;
+	printf("\nc1\n");
+	print_material(sphere->material);
+
 	exit_program(data); //clean and exit
 	return (EXIT_SUCCESS);
 }

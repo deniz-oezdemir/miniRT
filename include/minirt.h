@@ -30,6 +30,8 @@
 # define MTX_SIZE	16 //matrix number of elements, must be set to MTX_DIM^2
 # define PI 3.14159265358979323846
 
+typedef struct s_material t_material;
+
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -202,11 +204,14 @@ void	render_scene(t_minirt *data);
 /* Lighting */
 void test_light(t_minirt *data);
 t_vec3 normal_at(t_sphere *sphere, t_vec3 p);
+t_material default_material(void);
 
 /* Print stuffs */
 // To be deleted befor submission
 void	print_scene_objects(t_world *world);
 void	print_vec3(t_vec3 v, char* label);
 void	print_mtx(t_mtx mtx);
+void print_material(t_material material);
+void print_color(t_color color, char *description);
 
 #endif

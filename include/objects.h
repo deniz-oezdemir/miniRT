@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/28 16:52:57 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:23:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_camera{
 	int		fov;
 }	t_camera;
 
+//duplicate?
 typedef struct s_pntlight{
 	t_vec3	center;
 	double	intensity;
@@ -59,6 +60,20 @@ typedef struct s_cylinder{
 	t_color	color;
 }	t_cylinder;
 
+//lighting
+typedef struct s_pointlight{
+	t_vec3	position;
+	t_color intensity;
+}	t_pointlight;
+
+typedef struct s_material{
+	t_color		color;
+	double		ambient; //might need to be changed to t_amblight or t_color
+	double		diffuse;
+	double		specular;
+	double		shininess;
+}	t_material;
+
 typedef struct s_shape
 {
 	t_obj_type	name;
@@ -68,7 +83,7 @@ typedef struct s_shape
 		t_plane		plane;
 		t_cylinder	cylinder;
 	};
-	//t_material		material;
+	t_material		material;
 }	t_shape;
 
 typedef struct s_light
@@ -80,3 +95,6 @@ typedef struct s_light
 		t_pntlight	pnt_light;
 	};
 }	t_light;
+
+
+
