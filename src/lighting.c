@@ -64,8 +64,10 @@ t_color color_add(t_color color1, t_color color2)
 t_color lighting(t_material material, t_pointlight light, t_vec3 point, t_vec3 eyev, t_vec3 normalv)
 {
     t_color effective_color = mult_colors(material.color, light.intensity);
+    print_color(effective_color, "Effective color");
     t_vec3 lightv = vec_norm(vec_sub(light.position, point));
     t_color ambient = mult_colors(effective_color, material.ambient);
+    print_color(ambient, "Ambient");
     double light_dot_normal = vec_dot(lightv, normalv);
     t_color diffuse;
     t_color specular;
@@ -86,6 +88,8 @@ t_color lighting(t_material material, t_pointlight light, t_vec3 point, t_vec3 e
             double factor = pow(reflect_dot_eye, material.shininess);
             specular = mult_color_scalar(light.intensity, material.specular * factor);
         }
+        print_color(diffuse, "Diffuse");
+        print_color(specular, "Specular");
     }
     return (color_add(color_add(ambient, diffuse), specular));
 }
@@ -142,19 +146,19 @@ void test_light(t_minirt *data)
     .specular = 0.9,
     .shininess = 200.0
     };
-    printf("Material color: (%d, %d, %d)\n", m.color.r, m.color.g, m.color.b);
-    printf("Material ambient: %f\n", m.ambient);
+    print_color(m.color, "Material color");
+    print_color(m.ambient, "Material ambient");
     printf("Material diffuse: %f\n", m.diffuse);
     printf("Material specular: %f\n", m.specular);
     printf("Material shininess: %f\n", m.shininess);
 
     t_vec3 eyev = {0, 0, -1, 0};
     t_vec3 normalv = {0, 0, -1, 0};
-    t_vec3 position = {0, 0, 0, 1};
-    t_color intensity = {1, 1, 1};
-    t_pointlight light = pointlight(position, intensity);
+    position = (t_vec3){0, 0, 0, 1};
+    intensity = (t_color){1, 1, 1};
+    light = pointlight((t_vec3){0, 0, -10, 1}, intensity);
 
-    t_material m = {
+    m = (t_material){
         .color = {1, 1, 1},
         .ambient = {0.1, 0.1, 0.1},
         .diffuse = 0.9,
@@ -164,18 +168,46 @@ void test_light(t_minirt *data)
 
     t_color result = lighting(m, light, position, eyev, normalv);
 
-    printf("Test: Lighting with the eye between the light and the surface\n");
-    printf("Result color: (%f, %f, %f)\n", result.r, result.g, result.b);
+    printf("\nTest: Lighting with the eye between the light and the surface\n");
+    print_color(result, "Result color");
+
+
+    eyev = (t_vec3){0, sqrt(2)/2, -sqrt(2)/2, 0};
+    normalv = (t_vec3){0, 0, -1, 0};
+    result = lighting(m, light, position, eyev, normalv);
+    printf("\nTest: Lighting with the eye between the light and the surface, eye offset 45 degrees\n");
+    print_color(result, "Result color");
+
+    eyev = (t_vec3){0, 0, -1, 0};
+    normalv = (t_vec3){0, 0, -1, 0};
+    light = pointlight((t_vec3){0, 10, -10, 1}, intensity);
+    result = lighting(m, light, position, eyev, normalv);
+    printf("\nTest: Lighting with eye opposite surface, light offset 45 degrees\n");
+    print_color(result, "Result color");
+
+    eyev = (t_vec3){0, -sqrt(2)/2, -sqrt(2)/2, 0};
+    normalv = (t_vec3){0, 0, -1, 0};
+    light = pointlight((t_vec3){0, 10, -10, 1}, intensity);
+    result = lighting(m, light, position, eyev, normalv);
+    printf("\nTest: Lighting with eye in the path of the reflection vector\n");
+    print_color(result, "Result color");
+
+    eyev = (t_vec3){0, 0, -1, 0};
+    normalv = (t_vec3){0, 0, -1, 0};
+    light = pointlight((t_vec3){0, 0, 10, 1}, intensity);
+    result = lighting(m, light, position, eyev, normalv);
+    printf("\nTest: Lighting with the light behind the surface\n");
+    print_color(result, "Result color");
 }
 
 
 void print_color(t_color color, char *description) {
-    printf("%s: (%d, %d, %d)\n", description, color.r, color.g, color.b);
+    printf("%s: (%f, %f, %f)\n", description, color.r, color.g, color.b);
 }
 
 void print_material(t_material material) {
     printf("Material:\n");
-    printf("Ambient: %f\n", material.ambient);
+    print_color(material.ambient, "Ambient");
     printf("Diffuse: %f\n", material.diffuse);
     printf("Specular: %f\n", material.specular);
     printf("Shininess: %f\n", material.shininess);

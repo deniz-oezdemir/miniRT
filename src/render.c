@@ -7,7 +7,7 @@ void free_inter(void *content)
 	// Set the shape pointer to NULL but don't free the shape
 	inter_content->shape = NULL;
 }
-
+/*
 static int	rgb(t_color color)
 {
 	return (
@@ -15,7 +15,7 @@ static int	rgb(t_color color)
 		| color.g << 8
 		| color.b
 	);
-}
+}*/
 
 void    render_scene(t_minirt *data)
 {
@@ -55,7 +55,7 @@ void    render_scene(t_minirt *data)
 			if (hit_int.shape != NULL)
 			{
 				//printf("hit\n");
-				color_pixel(data, x, y, rgb(hit_int.shape->sphere.color));
+				//color_pixel(data, x, y, rgb(hit_int.shape->sphere.color)); //function rgg: bitshifting not possible with doubles - will be replaced by lighting anyways
 			}
 			ft_lstclear(&data->xs, free_inter);
 		}
