@@ -22,10 +22,11 @@ t_pointlight	pointlight(t_vec3 position, t_color intensity)
 	});
 }
 
+//change to change phong model rendering
 t_material default_material()
 {
     t_material m = {
-        .color = {1, 1, 1},
+        .color = {0.031, 0.62, 0.114},
         .ambient = {0.1, 0.1, 0.1},
         .diffuse = 0.9,
         .specular = 0.9,
@@ -64,10 +65,10 @@ t_color color_add(t_color color1, t_color color2)
 t_color lighting(t_material material, t_pointlight light, t_vec3 point, t_vec3 eyev, t_vec3 normalv)
 {
     t_color effective_color = mult_colors(material.color, light.intensity);
-    print_color(effective_color, "Effective color");
+    //print_color(effective_color, "Effective color");
     t_vec3 lightv = vec_norm(vec_sub(light.position, point));
     t_color ambient = mult_colors(effective_color, material.ambient);
-    print_color(ambient, "Ambient");
+    //print_color(ambient, "Ambient");
     double light_dot_normal = vec_dot(lightv, normalv);
     t_color diffuse;
     t_color specular;
@@ -88,8 +89,8 @@ t_color lighting(t_material material, t_pointlight light, t_vec3 point, t_vec3 e
             double factor = pow(reflect_dot_eye, material.shininess);
             specular = mult_color_scalar(light.intensity, material.specular * factor);
         }
-        print_color(diffuse, "Diffuse");
-        print_color(specular, "Specular");
+        //print_color(diffuse, "Diffuse");
+        //print_color(specular, "Specular");
     }
     return (color_add(color_add(ambient, diffuse), specular));
 }
@@ -207,6 +208,7 @@ void print_color(t_color color, char *description) {
 
 void print_material(t_material material) {
     printf("Material:\n");
+    print_color(material.color, "Color");
     print_color(material.ambient, "Ambient");
     printf("Diffuse: %f\n", material.diffuse);
     printf("Specular: %f\n", material.specular);
