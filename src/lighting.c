@@ -60,6 +60,7 @@ t_color color_add(t_color color1, t_color color2)
     };
 }
 
+//heavy copilot reliance -> needs testing!
 t_color lighting(t_material material, t_pointlight light, t_vec3 point, t_vec3 eyev, t_vec3 normalv)
 {
     t_color effective_color = mult_colors(material.color, light.intensity);

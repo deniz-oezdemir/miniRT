@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/31 17:23:45 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:55:26 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_pointlight{
 
 typedef struct s_material{
 	t_color		color;
-	double		ambient; //might need to be changed to t_amblight or t_color
+	t_color		ambient; //might need to be changed to t_amblight or t_color
 	double		diffuse;
 	double		specular;
 	double		shininess;
