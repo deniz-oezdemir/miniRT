@@ -135,6 +135,7 @@ double	atof(const char *str);
 void	remove_newline(char **str);
 void	*get_nth_content(t_list *list, int n);
 void	move_to_nth_node(t_list **list, int n);
+double	deg_to_rad(double degrees);
 
 /* Garbage collector */
 void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
@@ -188,7 +189,7 @@ double	magnitude(t_vec3 v);
 
 /* Ray casting */
 // input = ray, distance (double) || output Position = Point(vec3)
-t_ray	get_ray(t_vec3 origin, t_vec3 dir);
+t_ray	cast_ray(t_vec3 origin, t_vec3 dir);
 t_vec3	position(t_ray ray, double dist);
 
 /* Ray intersects sphere */

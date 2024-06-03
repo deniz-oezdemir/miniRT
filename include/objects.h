@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/28 16:52:57 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:52:31 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ typedef struct s_camera{
 	t_vec3	center;
 	t_vec3	dir;
 	int		fov;
+	int		hsize;
+	int		vsize;
+	double	half_width;
+	double	half_height;
+	double	pixel_size;
+	t_mtx	trans_view;
 }	t_camera;
 
 typedef struct s_pntlight{
