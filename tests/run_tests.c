@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:23 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/30 11:00:52 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:29:49 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int main(void)
 	// test_mtx_ops();
 	// test_mtx_trans();
 	// test_rays();
-	test_inter(data);
-	test_inter_2(data);
+	// test_inter(data);
+	// test_inter_2(data);
+	test_transform_view(data);
 	return (0);
 }
