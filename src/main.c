@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/31 14:50:43 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:20:21 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	main(int argc, char **argv)
 	// print_scene_objects(data->world);
 
 	// Start MLX window
-	//init_window(data);
-	//render_scene(data);
-	//mlx_loop(data->mlx_ptr);
+	init_window(data);
+	render_scene(data);
+	mlx_loop(data->mlx_ptr);
 
-	test_light(data);
+	// test_light(data);
 	exit_program(data); //clean and exit
 	return (EXIT_SUCCESS);
 }
