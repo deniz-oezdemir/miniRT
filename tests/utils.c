@@ -3,20 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:43:45 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/29 11:57:41 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:32:02 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/tests.h"
 
 /* Function to compare expected and actual results and print the test result */
-void print_test_result(char *test_case, bool expected, bool actual) {
-	if (test_case != NULL) {
+void print_test_result(char *test_case, bool expected, bool actual)
+{
+	if (test_case != NULL)
+	{
 		printf("%s: %s\n", test_case, expected == actual ? "Passed" : "Failed");
-	} else {
+	}
+	else
+	{
 		printf("NULL : %s\n", expected == actual ? "Passed" : "Failed");
 	}
 }
@@ -29,42 +33,64 @@ void free_inter(void *content)
 	inter_content->shape = NULL;
 }
 
-void del_object(void *content) {
-    t_shape *inter_content = (t_shape *)content;
-    // Set the shape pointer to NULL but don't free the shape
-    printf("Setting shape pointer %p to NULL\n", (void *)inter_content);
-    // Free the t_inter struct itself
-    free(inter_content);
+void del_object(void *content)
+{
+	t_shape *inter_content = (t_shape *)content;
+	// Set the shape pointer to NULL but don't free the shape
+	printf("Setting shape pointer %p to NULL\n", (void *)inter_content);
+	// Free the t_inter struct itself
+	free(inter_content);
 	inter_content = NULL;
 }
 
-void del_light(void *content) {
-    t_light *light_content = (t_light *)content;
-    // Free the t_light struct itself
+void del_light(void *content)
+{
+	t_light *light_content = (t_light *)content;
+	// Free the t_light struct itself
 	printf("Setting light pointer %p to NULL\n", (void *)light_content);
-    free(light_content);
+	free(light_content);
 }
 
-void free_world(t_world *world) {
-    if (!world) return;
-    // Clear the objects list without freeing shapes
-	if (world->objects != NULL) {
+void free_world(t_world *world)
+{
+	if (!world)
+		return;
+	// Clear the objects list without freeing shapes
+	if (world->objects != NULL)
+	{
 		world->object_nbr = 0;
 		ft_lstclear(&world->objects, del_object);
 	}
-    	
-    // Clear the lights list and free the light structs
-	if (world->lights != NULL) {
+
+	// Clear the lights list and free the light structs
+	if (world->lights != NULL)
+	{
 		world->light_nbr = 0;
 		ft_lstclear(&world->lights, del_light);
 	}
-    	
-    // Free the camera if it is dynamically allocated
-    if (world->camera != NULL) {
+
+	// Free the camera if it is dynamically allocated
+	if (world->camera != NULL)
+	{
 		printf("Free camera\n\n");
-        free(world->camera);
-        world->camera = NULL;
-    }
-    // Free the world struct itself
-    //free(world);
+		free(world->camera);
+		world->camera = NULL;
+	}
+	// Free the world struct itself
+	// free(world);
+}
+
+void print_color(t_color color, char *description)
+{
+	printf("%s: (%f, %f, %f)\n", description, color.r, color.g, color.b);
+}
+
+void print_material(t_material material)
+{
+	printf("Material:\n");
+	// print_color(material.color, "Color");
+	// print_color(material.ambient, "Ambient");
+	printf("Diffuse: %f\n", material.diffuse);
+	printf("Specular: %f\n", material.specular);
+	printf("Shininess: %f\n", material.shininess);
 }

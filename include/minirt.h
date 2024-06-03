@@ -45,6 +45,7 @@ typedef struct s_world
 {
 	t_list		*objects;
 	t_list		*lights;
+	t_amblight		*ambient_light;
 	t_camera	*camera;
 	int		object_nbr;
 	int		light_nbr;
@@ -183,6 +184,8 @@ t_vec3	vec_neg(t_vec3 v);
 t_vec3	vec_norm(t_vec3 a);
 t_vec3	vec_cross(t_vec3 a, t_vec3 b);
 t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m);
+t_vec3	normal_at(t_sphere *sphere, t_vec3 p);
+t_vec3	reflect(t_vec3 in, t_vec3 normal);
 
 double	vec_dot(t_vec3 a, t_vec3 b);
 double	magnitude(t_vec3 v);
@@ -202,18 +205,21 @@ t_inter	hit(t_list *xs);
 void	render_scene(t_minirt *data);
 
 /* Lighting */
-void test_light(t_minirt *data);
-t_vec3 normal_at(t_sphere *sphere, t_vec3 p);
-t_material default_material(void);
-t_pointlight	pointlight(t_vec3 position, t_color intensity);
-t_color lighting(t_material material, t_pointlight light, t_vec3 point, t_vec3 eyev, t_vec3 normalv);
+void			test_light(t_minirt *data); //move to tests
+t_material		default_material(void);
+t_color			lighting(t_minirt *data, t_shape *shape, t_pntlight *plight, t_vec3 point, t_vec3 eyev, t_vec3 normalv);
+
+/* Color operations */
+t_color	color_add(t_color a, t_color b);
+t_color	mult_colors(t_color a, t_color b);
+t_color	mult_color_scalar(t_color color, double scalar);
 
 /* Print stuffs */
 // To be deleted befor submission
 void	print_scene_objects(t_world *world);
 void	print_vec3(t_vec3 v, char* label);
 void	print_mtx(t_mtx mtx);
-void print_material(t_material material);
-void print_color(t_color color, char *description);
+void	print_material(t_material material);
+void	print_color(t_color color, char *description);
 
 #endif

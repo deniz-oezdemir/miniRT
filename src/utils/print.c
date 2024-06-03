@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/31 21:55:27 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:34:30 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,13 @@ void print_scene_objects(t_world *world)
 		printf("\n");
 		lights = lights->next;
 	}
+	print_amblight(world->ambient_light);
 }
 
 void print_vec3(t_vec3 v, char* label)
 {
 	int precision = 8;
-	printf("%s:	(%.*f,	%.*f,	%.*f,	%f)\n", label, precision, v.x, precision, v.y, precision, v.z, v.w);
+	printf("%s:	(%f,	%f,	%f,	%f)\n", label, v.x, v.y,  v.z, v.w);
 }
 
 void	print_mtx(t_mtx mtx)

@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/28 16:56:41 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:00:49 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
-static void	separate_by_comma(t_minirt *data, char *space_separated)
+static void separate_by_comma(t_minirt *data, char *space_separated)
 {
-	char	**comma_separated;
-	int		i;
+	char **comma_separated;
+	int i;
 
 	i = 0;
-	comma_separated = gc_split(data, space_separated, ','); //free list scene at exit
-	//gc_collect(data, comma_separated);
-	while(comma_separated[i])
+	comma_separated = gc_split(data, space_separated, ','); // free list scene at exit
+	// gc_collect(data, comma_separated);
+	while (comma_separated[i])
 		ft_lstadd_back(&(data->scene), gc_lstnew(data, comma_separated[i++]));
 }
 
-static void	file_to_scene_list(t_minirt *data)
+static void file_to_scene_list(t_minirt *data)
 {
-	char	*line;
-	char	**space_separated;
-	int		i;
+	char *line;
+	char **space_separated;
+	int i;
 
 	line = get_next_line(data->fd);
 	gc_collect(data, line);
@@ -38,7 +38,7 @@ static void	file_to_scene_list(t_minirt *data)
 	while (line && ft_isprint(line[0]))
 	{
 		space_separated = gc_split(data, line, ' ');
-		//gc_collect(data, space_separated);
+		// gc_collect(data, space_separated);
 		i = -1;
 		while (space_separated[++i])
 		{
@@ -53,7 +53,7 @@ static void	file_to_scene_list(t_minirt *data)
 	}
 }
 
-static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
+static void scene_list_to_structs_list(t_minirt *data, t_list **list)
 {
 	if (!ft_strncmp((*list)->content, "A", 1))
 		parse_ambient_light(data, list);
@@ -76,15 +76,16 @@ void parse(t_minirt *data, char *file_name)
 		printf("Error: opening file\n");
 	file_to_scene_list(data);
 	close(data->fd);
-	while(data->scene)
+	while (data->scene)
 	{
 		if (is_identifier(data->scene->content))
 			scene_list_to_structs_list(data, &(data->scene));
 		else
 		{
 			printf("TODO: implement exit in case of parsing error\n");
-			break ;
+			break;
 		}
 		data->scene = data->scene->next;
 	}
+	t_light *light = ((t_light *)data->world->lights->content);
 }
