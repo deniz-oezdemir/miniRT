@@ -164,6 +164,7 @@ t_mtx	sub_mtx(t_mtx m, int x_row, int x_col);
 double	mtx_minor(t_mtx m, int x_row, int x_col);
 double	mtx_cofactor(t_mtx m, int row, int col);
 double	mtx_determinant(t_mtx m);
+t_mtx	identity_mtx(size_t dim);
 
 /* Matrix transformations */
 t_mtx	translation_mtx(double x, double y, double z);
@@ -202,6 +203,9 @@ void	render_scene(t_minirt *data);
 /* Lighting */
 void test_light(t_minirt *data);
 t_vec3 normal_at(t_sphere *sphere, t_vec3 p);
+
+/* Camera */
+t_mtx	transform_view(t_vec3 from,t_vec3 to,t_vec3 up);
 
 /* Print stuffs */
 // To be deleted befor submission
