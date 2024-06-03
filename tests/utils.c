@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:43:45 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/29 11:57:41 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:32:21 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void print_test_result(char *test_case, bool expected, bool actual) {
 }
 
 /* Clear the intersection list "xs" and free each node. */
-void free_inter(void *content)
+/* void free_inter(void *content)
 {
 	t_inter *inter_content = (t_inter *)content;
 	// Set the shape pointer to NULL but don't free the shape
 	inter_content->shape = NULL;
-}
+} */
 
 void del_object(void *content) {
     t_shape *inter_content = (t_shape *)content;
