@@ -48,7 +48,7 @@ void    render_scene(t_minirt *data)
 		{
 			world_x = -wall_size / 2 + pixel_size * x;
 			position = (t_vec3){world_x, world_y, wall_z, 1};
-			ray = get_ray(data->world->camera->center, vec_norm(vec_sub(position, data->world->camera->center)));
+			ray = cast_ray(data->world->camera->center, vec_norm(vec_sub(position, data->world->camera->center)));
 			//printf("x = %f | y = %f | w_x = %f | w_y = %f\n", x, y, world_x, world_y);
 			intersections(data, ray);
 			hit_int = hit(data->xs);
