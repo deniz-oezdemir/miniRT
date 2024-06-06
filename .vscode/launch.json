@@ -9,7 +9,9 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/src/main",
-			"args": ["../scene_subject.rt"],
+			"args": [
+				"../scene_1_sphere_first_render.rt"
+			],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],
@@ -34,7 +36,9 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/src/main",
-			"args": ["../scene_subject.rt"],
+			"args": [
+				"../scene_subject.rt"
+			],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/29 08:51:03 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:34:30 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void print_amblight(t_amblight *obj)
 {
 	printf("Name: Ambient light\n");
 	printf("Intensity: %lf\n", obj->intensity);
-	printf("RGB: (%d, %d, %d)\n", obj->color.r, obj->color.g, obj->color.b);
+	printf("RGB: (%f, %f, %f)\n", obj->color.r, obj->color.g, obj->color.b);
 }
 
 void print_camera(t_camera *obj)
@@ -33,7 +33,7 @@ void print_light(t_pntlight *obj)
 	printf("Name: Point light\n");
 	printf("Coordinates: (%lf, %lf, %lf)\n", obj->center.x, obj->center.y, obj->center.z);
 	printf("Intensity: %lf\n", obj->intensity);
-	printf("RGB: (%d, %d, %d)\n", obj->color.r, obj->color.g, obj->color.b);
+	printf("RGB: (%f, %f, %f)\n", obj->color.r, obj->color.g, obj->color.b);
 }
 
 void print_sphere(t_sphere *obj)
@@ -41,7 +41,7 @@ void print_sphere(t_sphere *obj)
 	printf("Name: Sphere\n");
 	printf("Center: (%lf, %lf, %lf)\n", obj->center.x, obj->center.y, obj->center.z);
 	printf("Diameter: %lf\n", obj->diameter);
-	printf("RGB: (%d, %d, %d)\n", obj->color.r, obj->color.g, obj->color.b);
+	printf("RGB: (%f, %f, %f)\n", obj->color.r, obj->color.g, obj->color.b);
 }
 
 void print_plane(t_plane *obj)
@@ -49,7 +49,7 @@ void print_plane(t_plane *obj)
 	printf("Name: Plane\n");
 	printf("Coordinates: (%lf, %lf, %lf)\n", obj->center.x, obj->center.y, obj->center.z);
 	printf("Normal: (%f, %f, %f)\n", obj->dir.x, obj->dir.y, obj->dir.z);
-	printf("RGB: (%d, %d, %d)\n", obj->color.r, obj->color.g, obj->color.b);
+	printf("RGB: (%f, %f, %f)\n", obj->color.r, obj->color.g, obj->color.b);
 }
 
 void print_cylinder(t_cylinder *obj)
@@ -59,7 +59,7 @@ void print_cylinder(t_cylinder *obj)
 	printf("Axis direction: (%f, %f, %f)\n", obj->dir.x, obj->dir.y, obj->dir.z);
 	printf("Diameter: %lf\n", obj->diameter);
 	printf("Height: %lf\n", obj->height);
-	printf("RGB: (%d, %d, %d)\n", obj->color.r, obj->color.g, obj->color.b);
+	printf("RGB: (%f, %f, %f)\n", obj->color.r, obj->color.g, obj->color.b);
 }
 
 
@@ -102,12 +102,13 @@ void print_scene_objects(t_world *world)
 		printf("\n");
 		lights = lights->next;
 	}
+	print_amblight(world->ambient_light);
 }
 
 void print_vec3(t_vec3 v, char* label)
 {
 	int precision = 8;
-	printf("%s:	(%.*f,	%.*f,	%.*f,	%f)\n", label, precision, v.x, precision, v.y, precision, v.z, v.w);
+	printf("%s:	(%f,	%f,	%f,	%f)\n", label, v.x, v.y,  v.z, v.w);
 }
 
 void	print_mtx(t_mtx mtx)

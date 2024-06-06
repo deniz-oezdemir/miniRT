@@ -1,4 +1,4 @@
-# include "../include/minirt.h"
+#include "../include/minirt.h"
 
 /* Clear the intersection list "xs" and free each node. */
 void free_inter(void *content)
@@ -8,6 +8,19 @@ void free_inter(void *content)
 	inter_content->shape = NULL;
 }
 
+static int convert(double color)
+{
+	if (color > 1)
+		color = 1;
+	color *= 255 + 0.5;
+	return (color);
+}
+
+static int rgb(t_color color)
+{
+	return (convert(color.r) << 16 | convert(color.g) << 8 | convert(color.b));
+}
+/*
 static int	rgb(t_color color)
 {
 	return (
@@ -15,30 +28,31 @@ static int	rgb(t_color color)
 		| color.g << 8
 		| color.b
 	);
-}
+}*/
 
-void    render_scene(t_minirt *data)
+void render_scene(t_minirt *data)
 {
 	double x;
 	double y;
 	double world_x;
 	double world_y;
-	double wall_z;
-	double wall_size;
-	double pixel_size;
-	t_vec3 position;
+	double wall_z = 10.0;
+	double wall_size = 7.0;
+	double pixel_size = wall_size / IMG_HEIGHT;
+	t_vec3 pos;
 	t_ray ray;
-	t_inter	hit_int;
+	t_inter hit_int;
+	t_vec3 point;
+	t_vec3 eyev;
+	t_vec3 normalv;
+	t_color color;
 
 	print_instruction(data);
 	color_background(data, BACKGROUND_COLOR);
 
-	wall_z = 10;
-	wall_size = 7.0;
-	pixel_size = wall_size / IMG_HEIGHT;
-	//printf("pixel size: %f\n", pixel_size);
 	y = -1.0;
-	//printf("Start rendering...\n");
+	printf("Start rendering...\n");
+
 	while (++y < IMG_HEIGHT)
 	{
 		printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
@@ -54,13 +68,16 @@ void    render_scene(t_minirt *data)
 			hit_int = hit(data->xs);
 			if (hit_int.shape != NULL)
 			{
-				//printf("hit\n");
-				color_pixel(data, x, y, rgb(hit_int.shape->sphere.color));
+				point = position(ray, hit_int.inter);
+				eyev = vec_neg(ray.dir);
+				normalv = normal_at(&(hit_int.shape->sphere), point);
+				color = lighting(data, hit_int.shape, &((t_light *)data->world->lights->content)->pnt_light, point, eyev, normalv);
+				color_pixel(data, x, y, rgb(color));
 			}
 			ft_lstclear(&data->xs, free_inter);
 		}
 	}
 	printf("\rRendering: 100%%\n");
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
- 		data->mlx_img->img_ptr, 200, 0);
+							data->mlx_img->img_ptr, 200, 0);
 }
