@@ -7,7 +7,7 @@ t_inter	*init_inter(t_minirt *data, t_shape *shape, double inter)
 
 	new_inter = (t_inter *)gc_get(data, 1, sizeof(t_inter)); //Maybe we dont need to store the nters in the gc if we use lstclear
 	if (!new_inter)
-	{ 
+	{
 		perror("Failed to allocate t_inter");
 		return (NULL); // Probably not needed when using the gc
 	}
@@ -56,6 +56,24 @@ bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray)
 	return (true);
 }
 
+bool	inter_plane(t_minirt *data, t_shape *shape, t_ray ray)
+{
+	double	t;
+	double	tmp;
+
+	if (ray.dir.y < 0)
+	{
+		tmp = -ray.dir.y;
+		if (tmp < EPSILON)
+			return (false);
+	}
+	if (ray.dir.y < EPSILON)
+		return (false);
+	t = -ray.origin.y / ray.dir.y; //only works for planes parallel to the xz plane
+	ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, t)));
+	return (true);
+}
+
 t_inter	hit(t_list *xs)
 {
 	t_inter	min_inter;
@@ -84,6 +102,8 @@ void	intersections(t_minirt *data, t_ray ray)
 		shape = (t_shape *)shapes->content;
 		if (shape->name == SPHERE)
 			inter_sphere(data, shape, ray);
+		if (shape->name == PLANE)
+			inter_plane(data, shape, ray);
 		shapes = shapes->next;
 	}
 }

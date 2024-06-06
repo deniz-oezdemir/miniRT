@@ -29,6 +29,8 @@
 # define MTX_DIM	4 //matrix dimension, maybe just substitute MTX_DIM with 4 everywhere at the end
 # define MTX_SIZE	16 //matrix number of elements, must be set to MTX_DIM^2
 # define PI 3.14159265358979323846
+# define PI_2 1.57079632679489661923
+# define EPSILON		0.00001
 
 typedef struct s_material t_material;
 
@@ -174,6 +176,7 @@ t_mtx	translation_mtx(double x, double y, double z);
 t_mtx	rot_x(double radians);
 t_mtx	rot_y(double radians);
 t_mtx	rot_z(double radians);
+t_mtx	rotation_mtx(t_vec3 vec);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);

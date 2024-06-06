@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/03 16:24:14 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:02:12 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_shape
 		t_cylinder cylinder;
 	};
 	t_material material;
+	t_vec3 normal; //use also for sphere
 } t_shape;
 
 typedef struct s_light
