@@ -52,6 +52,7 @@ bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray)
 	{
 		ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t1)));
 		ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t2)));
+		printf("t1= %f, t2= %f\n", d.t1, d.t2);
 	}
 	return (true);
 }

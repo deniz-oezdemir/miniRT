@@ -18,11 +18,13 @@ t_color	lighting(t_comps comps, t_amblight *ambient_light, t_pntlight *plight)
 	light_dot_normal = vec_dot(lightv, comps.normalv);
 	if (light_dot_normal < 0)
 	{
+		printf("CHcek 2");
 		diffuse = (t_color){0, 0, 0};
 		specular = (t_color){0, 0, 0};
 	}
 	else
 	{
+		printf("CHcek 3\n");
 		diffuse = mult_color_scalar(effective_color, 
 			comps.shape->material.diffuse * light_dot_normal);
 		reflectv = reflect(vec_neg(lightv), comps.normalv);

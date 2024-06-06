@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/06 12:33:33 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:06:57 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,16 @@ void	init_window(t_minirt *data)
 
 void	init_camera_view(t_camera *camera)
 {
-	double		half_view;
-	double		aspect;
+	double	half_view;
+	double	aspect;
 
-	// camera = data->world->camera;
-	camera->trans_view = identity_mtx(4);
+	camera->transform = transform_view(camera->center, point(0, 1, 0), camera->dir);
+	camera->inverse = invert_mtx(camera->transform);
 	camera->hsize = IMG_WIDTH;
 	camera->vsize = IMG_HEIGHT;
 	aspect = camera->hsize / camera->vsize;
-	half_view = tan((deg_to_rad(camera->fov))/2);
+	half_view = tan((deg_to_rad(camera->fov / 2)));
+	//printf("\nhalf_view: %f\n", half_view);
 	if (aspect >= 1)
 	{
 		camera->half_width = half_view;

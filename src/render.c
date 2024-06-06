@@ -21,10 +21,11 @@ t_color	shade_hit(t_world *world, t_comps comps)
 	t_list		*lights;
 	t_pntlight	*light;
 
-	color = (t_color){0, 0, 0};
+	color =  mult_colors(comps.shape->color, world->ambient_light->light);
 	lights = world->lights;
 	while (lights != NULL)
 	{
+		printf("check\n");
 		light = (t_pntlight *)lights->content;
 		color = color_add(color, lighting(comps, world->ambient_light, light));
 		lights = lights->next;
@@ -43,6 +44,7 @@ t_color	color_at(t_minirt *data, t_ray ray)
 	hit_inter = hit(data->xs);
 	if (hit_inter.shape != NULL)
 	{
+		printf("hit: %f\n", hit_inter.inter);
 		comps = prepare_computations(hit_inter, ray);
 		color = shade_hit(data->world, comps);
 	}
@@ -58,18 +60,20 @@ void render_scene(t_minirt *data)
 	t_color	color;
 
 	print_instruction(data);
-	// color_background(data, BACKGROUND_COLOR);
+	color_background(data, BACKGROUND_COLOR);
 	y = -1.0;
 	printf("Start rendering...\n");
 
-	while (++y < IMG_HEIGHT)
+	while (++y < data->world->camera->vsize)
 	{
 		printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
 		x = -1.0;
-		while (++x < IMG_WIDTH)
+		while (++x < data->world->camera->hsize)
 		{
-			//printf("x = %f | y = %f \n", x, y);
+			printf("x = %f | y = %f \n", x, y);
 			ray = cast_ray(data->world->camera, x, y);
+			// print_vec3(ray.origin, "vec origin");
+			// print_vec3(ray.dir, "vec dir");
 			color = color_at(data, ray);
 			color_pixel(data, x, y, rgb(color));
 		}

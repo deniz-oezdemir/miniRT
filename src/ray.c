@@ -20,20 +20,16 @@ t_vec3 vector(double x, double y, double z) // Implement also in other functions
 
 t_ray	cast_ray(t_camera *camera, int px, int py)
 {
-	double	x_offset;
-	double	y_offset;
 	double	world_x;
 	double	world_y;
 	t_vec3	pixel;
 	t_vec3	origin;
 	t_vec3	direction;
 
-	x_offset = (px + 0.5) * camera->pixel_size;
-	y_offset = (py + 0.5) * camera->pixel_size;
-	world_x = camera->half_width - x_offset;
-	world_y = camera->half_height - y_offset;
-	pixel = mult_pnt_mtx(point(world_x, world_y, -1), invert_mtx(camera->trans_view));
-	origin = mult_pnt_mtx(camera->center, invert_mtx(camera->trans_view));
+	world_x = camera->half_width - (px + 0.5) * camera->pixel_size;
+	world_y = camera->half_height - (py + 0.5) * camera->pixel_size;
+	pixel = mult_pnt_mtx(point(world_x, world_y, -1), camera->inverse); // change with camera inverse
+	origin = mult_pnt_mtx(point(0,0,0),  camera->inverse);
 	direction = vec_norm(vec_sub(pixel, origin));
 	return ((t_ray){origin, direction});
 }

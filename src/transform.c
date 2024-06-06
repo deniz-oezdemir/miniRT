@@ -20,9 +20,12 @@ t_mtx	transform_view(t_vec3 from,t_vec3 to,t_vec3 up)
 	t_vec3	forward;
 	t_vec3	left;
 	t_vec3	true_up;
+	t_mtx	orientation;
 
 	forward = vec_norm(vec_sub(to, from));
 	left = vec_cross(forward, vec_norm(up));
 	true_up = vec_cross(left, forward);
-	return (orientation_mtx(left, true_up, forward));
+	orientation = orientation_mtx(left, true_up, forward);
+	return (mult_mtx_mtx(orientation, 
+		translation_mtx(-from.x, -from.y, -from.z)));
 }
