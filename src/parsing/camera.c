@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/28 11:26:10 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:29:05 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	parse_camera(t_minirt *data, t_list **input_lst)
 	camera->fov = check_fov(get_nth_content(*input_lst, 7));
 	if (!validate_camera(camera))
 		return (pars_error(data, CAMERA_ERR));
+	init_camera_view(camera);
 	data->world->camera = camera;
 	move_to_nth_node(input_lst, 7);
 	printf("Camera OK\n");

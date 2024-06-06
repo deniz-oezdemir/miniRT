@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:35 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/03 16:38:07 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:34:36 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void parse_sphere(t_minirt *data, t_list **input_lst)
 	sh->sphere.center.z = check_coordinate(get_nth_content(*input_lst, 3));
 	sh->sphere.center.w = 1;
 	sh->sphere.diameter = check_coordinate(get_nth_content(*input_lst, 4));
-	sh->sphere.color.r = check_rgb(get_nth_content(*input_lst, 5)) / 255.0;
-	sh->sphere.color.g = check_rgb(get_nth_content(*input_lst, 6)) / 255.0;
-	sh->sphere.color.b = check_rgb(get_nth_content(*input_lst, 7)) / 255.0;
+	sh->color.r = check_rgb(get_nth_content(*input_lst, 5)) / 255.0;
+	sh->color.g = check_rgb(get_nth_content(*input_lst, 6)) / 255.0;
+	sh->color.b = check_rgb(get_nth_content(*input_lst, 7)) / 255.0;
 	if (!validate_sphere(&(sh->sphere)))
 		return (pars_error(data, SPHERE_ERR));
 	sh->material = default_material(); // for lighting

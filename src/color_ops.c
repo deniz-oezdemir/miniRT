@@ -26,3 +26,16 @@ t_color	mult_color_scalar(t_color color, double scalar)
 	});
 }
 
+/* Check what it does */
+static int	convert(double color)
+{
+	if (color > 1)
+		color = 1;
+	color *= 255 + 0.5;
+	return (color);
+}
+
+int	rgb(t_color color)
+{
+	return (convert(color.r) << 16 | convert(color.g) << 8 | convert(color.b));
+}

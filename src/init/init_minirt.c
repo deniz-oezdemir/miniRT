@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/03 18:09:51 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:33:33 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,13 @@ void	init_window(t_minirt *data)
 	mlx_mouse_hook(data->mlx_win, handle_mouse_input, data);
 }
 
-void	init_camera(t_minirt *data)
+void	init_camera_view(t_camera *camera)
 {
-	t_camera	*camera;
 	double		half_view;
 	double		aspect;
 
+	// camera = data->world->camera;
 	camera->trans_view = identity_mtx(4);
-	camera = data->world->camera;
 	camera->hsize = IMG_WIDTH;
 	camera->vsize = IMG_HEIGHT;
 	aspect = camera->hsize / camera->vsize;
@@ -79,5 +78,5 @@ void	init_camera(t_minirt *data)
 		camera->half_width = half_view * aspect;
 		camera->half_height = half_view;
 	}
-	camera->pixel_size = (camera->half_width * 2) / camera->hsize;
+	camera->pixel_size = (camera->half_width * 2) / (double)camera->hsize;
 }

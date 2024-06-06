@@ -1,80 +1,77 @@
 #include "../include/minirt.h"
 
-/* Clear the intersection list "xs" and free each node. */
-void free_inter(void *content)
+t_comps	prepare_computations(t_inter inter, t_ray ray)
 {
-	t_inter *inter_content = (t_inter *)content;
-	// Set the shape pointer to NULL but don't free the shape
-	inter_content->shape = NULL;
+	t_comps	comps;
+
+	comps.t = inter.inter;
+	comps.shape = inter.shape;
+	comps.point = position(ray, inter.inter);
+	comps.eyev = vec_neg(ray.dir);
+	comps.normalv = normal_at(&(inter.shape->sphere), comps.point);
+	comps.inside = false;
+	if (vec_dot(comps.normalv, comps.eyev) < 0)
+		comps.inside = true;
+	return (comps);
 }
 
-static int convert(double color)
+t_color	shade_hit(t_world *world, t_comps comps)
 {
-	if (color > 1)
-		color = 1;
-	color *= 255 + 0.5;
+	t_color		color;
+	t_list		*lights;
+	t_pntlight	*light;
+
+	color = (t_color){0, 0, 0};
+	lights = world->lights;
+	while (lights != NULL)
+	{
+		light = (t_pntlight *)lights->content;
+		color = color_add(color, lighting(comps, world->ambient_light, light));
+		lights = lights->next;
+	}
 	return (color);
 }
 
-static int rgb(t_color color)
+t_color	color_at(t_minirt *data, t_ray ray)
 {
-	return (convert(color.r) << 16 | convert(color.g) << 8 | convert(color.b));
+	t_inter	hit_inter;
+	t_comps	comps;
+	t_color	color;
+
+	color = (t_color){0, 0, 0};
+	intersections(data, ray);
+	hit_inter = hit(data->xs);
+	if (hit_inter.shape != NULL)
+	{
+		comps = prepare_computations(hit_inter, ray);
+		color = shade_hit(data->world, comps);
+	}
+	ft_lstclear(&data->xs, free_inter);
+	return (color);
 }
-/*
-static int	rgb(t_color color)
-{
-	return (
-		color.r << 16
-		| color.g << 8
-		| color.b
-	);
-}*/
 
 void render_scene(t_minirt *data)
 {
-	double x;
-	double y;
-	double world_x;
-	double world_y;
-	double wall_z = 10.0;
-	double wall_size = 7.0;
-	double pixel_size = wall_size / IMG_HEIGHT;
-	t_vec3 pos;
-	t_ray ray;
-	t_inter hit_int;
-	t_vec3 point;
-	t_vec3 eyev;
-	t_vec3 normalv;
-	t_color color;
+	double	x;
+	double	y;
+	t_ray	ray;
+	t_color	color;
 
 	print_instruction(data);
-	color_background(data, BACKGROUND_COLOR);
-
+	// color_background(data, BACKGROUND_COLOR);
 	y = -1.0;
 	printf("Start rendering...\n");
 
 	while (++y < IMG_HEIGHT)
 	{
 		printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
-		world_y = wall_size / 2 - pixel_size * y;
 		x = -1.0;
 		while (++x < IMG_WIDTH)
 		{
-			world_x = -wall_size / 2 + pixel_size * x;
-			position = (t_vec3){world_x, world_y, wall_z, 1};
-			ray = cast_ray(data->world->camera->center, vec_norm(vec_sub(position, data->world->camera->center)));
-			//printf("x = %f | y = %f | w_x = %f | w_y = %f\n", x, y, world_x, world_y);
-			intersections(data, ray);
-			hit_int = hit(data->xs);
-			if (hit_int.shape != NULL)
-			{
-				point = position(ray, hit_int.inter);
-				eyev = vec_neg(ray.dir);
-				normalv = normal_at(&(hit_int.shape->sphere), point);
-				color = lighting(data, hit_int.shape, &((t_light *)data->world->lights->content)->pnt_light, point, eyev, normalv);
-				color_pixel(data, x, y, rgb(color));
-			}
-			ft_lstclear(&data->xs, free_inter);
+			//printf("x = %f | y = %f \n", x, y);
+			ray = cast_ray(data->world->camera, x, y);
+			color = color_at(data, ray);
+			color_pixel(data, x, y, rgb(color));
 		}
 	}
 	printf("\rRendering: 100%%\n");

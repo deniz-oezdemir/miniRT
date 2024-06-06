@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   cleaning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:23:50 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/14 17:15:55 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:31:08 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/minirt.h"
+
+/* Clear the intersection list "xs" and free each node. */
+void	free_inter(void *content)
+{
+	t_inter	*inter_content;
+
+	inter_content = (t_inter *)content;
+	inter_content->shape = NULL;
+}
 
 void	exit_program(t_minirt *data)
 {
