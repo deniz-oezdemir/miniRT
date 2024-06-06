@@ -18,8 +18,8 @@
 # define WIN_WIDTH	1000
 # define WIN_HEIGHT	800
 
-# define IMG_WIDTH	200
-# define IMG_HEIGHT	200
+# define IMG_WIDTH	300
+# define IMG_HEIGHT	300
 
 # define BACKGROUND_COLOR	0x202020
 # define TEXT_COLOR			0xffffff
@@ -147,6 +147,7 @@ void	move_to_nth_node(t_list **list, int n);
 double	deg_to_rad(double degrees);
 void	free_inter(void *content);
 int		rgb(t_color color);
+t_vec3	point(double x, double y, double z);
 
 /* Garbage collector */
 void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
