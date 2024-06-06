@@ -45,7 +45,7 @@ typedef struct s_world
 {
 	t_list		*objects;
 	t_list		*lights;
-	t_amblight		*ambient_light;
+	t_amblight	*ambient_light;
 	t_camera	*camera;
 	int		object_nbr;
 	int		light_nbr;
@@ -64,12 +64,6 @@ typedef struct s_minirt
 	t_list		*xs;
 	// t_scene	*scene;
 }	t_minirt;
-
-typedef struct s_mtx
-{
-	double	**mtx;
-	size_t	dim;
-}	t_mtx;
 
 typedef struct s_inter
 {
@@ -94,10 +88,22 @@ typedef struct s_discr
 	double	discr;
 }	t_discr;
 
+typedef struct s_comps
+{
+	double	t;
+	t_shape	*shape;
+	t_vec3	point;
+	t_vec3	eyev;
+	t_vec3	normalv;
+	bool	inside;
+	// t_vec3	over_point;
+}	t_comps;
+
 /* Init and exit functions */
 t_minirt	*init_mlx(void);
 t_mtx	create_mtx(const double *m, size_t dim);
 void	init_window(t_minirt *data);
+void	init_camera_view(t_camera *camera);
 void	exit_program(t_minirt *data);
 
 /* MLX keyboard and mouse hooks */
@@ -139,6 +145,8 @@ void	remove_newline(char **str);
 void	*get_nth_content(t_list *list, int n);
 void	move_to_nth_node(t_list **list, int n);
 double	deg_to_rad(double degrees);
+void	free_inter(void *content);
+int		rgb(t_color color);
 
 /* Garbage collector */
 void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
@@ -194,7 +202,7 @@ double	magnitude(t_vec3 v);
 
 /* Ray casting */
 // input = ray, distance (double) || output Position = Point(vec3)
-t_ray	cast_ray(t_vec3 origin, t_vec3 dir);
+t_ray	cast_ray(t_camera *camera, int px, int py);
 t_vec3	position(t_ray ray, double dist);
 
 /* Ray intersects sphere */
@@ -207,9 +215,8 @@ t_inter	hit(t_list *xs);
 void	render_scene(t_minirt *data);
 
 /* Lighting */
-void			test_light(t_minirt *data); //move to tests
 t_material		default_material(void);
-t_color			lighting(t_minirt *data, t_shape *shape, t_pntlight *plight, t_vec3 point, t_vec3 eyev, t_vec3 normalv);
+t_color			lighting(t_comps comps, t_amblight *ambient_light, t_pntlight *plight);
 
 /* Color operations */
 t_color	color_add(t_color a, t_color b);
