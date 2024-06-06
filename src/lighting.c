@@ -18,7 +18,7 @@ t_color	lighting(t_comps comps, t_amblight *ambient_light, t_pntlight *plight)
 	light_dot_normal = vec_dot(lightv, comps.normalv);
 	if (light_dot_normal < 0)
 	{
-		printf("CHcek 2");
+		printf("Check: fot_norm < 0\n");
 		diffuse = (t_color){0, 0, 0};
 		specular = (t_color){0, 0, 0};
 	}
@@ -29,6 +29,7 @@ t_color	lighting(t_comps comps, t_amblight *ambient_light, t_pntlight *plight)
 			comps.shape->material.diffuse * light_dot_normal);
 		reflectv = reflect(vec_neg(lightv), comps.normalv);
 		reflect_dot_eye = vec_dot(reflectv, comps.eyev);
+		printf("Dot eye: %f\n", reflect_dot_eye);
 		if (reflect_dot_eye <= 0)
 			specular = (t_color){0, 0, 0};
 		else

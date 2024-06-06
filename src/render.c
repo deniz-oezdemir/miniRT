@@ -9,6 +9,7 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 	comps.point = position(ray, inter.inter);
 	comps.eyev = vec_neg(ray.dir);
 	comps.normalv = normal_at(&(inter.shape->sphere), comps.point);
+	print_vec3(comps.normalv, "Normal at");
 	comps.inside = false;
 	if (vec_dot(comps.normalv, comps.eyev) < 0)
 		comps.inside = true;
@@ -25,7 +26,6 @@ t_color	shade_hit(t_world *world, t_comps comps)
 	lights = world->lights;
 	while (lights != NULL)
 	{
-		printf("check\n");
 		light = (t_pntlight *)lights->content;
 		color = color_add(color, lighting(comps, world->ambient_light, light));
 		lights = lights->next;
@@ -39,7 +39,7 @@ t_color	color_at(t_minirt *data, t_ray ray)
 	t_comps	comps;
 	t_color	color;
 
-	color = (t_color){0, 0, 0};
+	color = (t_color){32, 32, 32}; // Backgrounf color: PROBLEM here: should be dark grey but somehow it's white. Checked with the debugger, the problem should be in the function RGB
 	intersections(data, ray);
 	hit_inter = hit(data->xs);
 	if (hit_inter.shape != NULL)
@@ -60,7 +60,7 @@ void render_scene(t_minirt *data)
 	t_color	color;
 
 	print_instruction(data);
-	color_background(data, BACKGROUND_COLOR);
+	//color_background(data, BACKGROUND_COLOR);
 	y = -1.0;
 	printf("Start rendering...\n");
 
