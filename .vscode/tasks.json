@@ -12,6 +12,7 @@
                 "${fileDirname}/cleaning.c",
                 "${fileDirname}/intersect.c",
                 "${fileDirname}/ray.c",
+                "${fileDirname}/transform.c",
                 "${fileDirname}/render.c",
                 "${fileDirname}/lighting.c",
                 "${fileDirname}/window.c",
