@@ -1,11 +1,10 @@
 #include "../include/minirt.h"
 
-t_color	lighting(t_comps comps, t_amblight *ambient_light, t_pntlight *plight)
+t_color	lighting(t_comps comps, t_color ambient, t_pntlight *plight)
 {
 	t_color	effective_color;
 	t_vec3	lightv;
 	t_vec3	reflectv;
-	t_color	ambient;
 	double	light_dot_normal;
 	t_color	diffuse;
 	t_color	specular;
@@ -18,7 +17,7 @@ t_color	lighting(t_comps comps, t_amblight *ambient_light, t_pntlight *plight)
 	print_vec3(comps.point, "Point");
 	lightv = vec_norm(vec_sub(plight->center, comps.point));
 	print_vec3(lightv, "Light Vec");
-	ambient = mult_colors(effective_color, ambient_light->light);
+	// ambient = mult_colors(effective_color, ambient_light->light);
 	light_dot_normal = vec_dot(lightv, comps.normalv);
 	printf("Light Dot normal: %f\n", light_dot_normal);
 	if (light_dot_normal < 0)

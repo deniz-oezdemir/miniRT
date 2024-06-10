@@ -7,6 +7,6 @@ t_material default_material()
 	t_material m = {
 		.diffuse = 0.9,
 		.specular = 0.9, // added from book, not provided by subject
-		.shininess = 10.0};
+		.shininess = 200.0};
 	return (m);
 }

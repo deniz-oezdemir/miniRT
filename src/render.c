@@ -20,10 +20,12 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 t_color	shade_hit(t_world *world, t_comps comps)
 {
 	t_color		color;
+	t_color		ambient;
 	t_list		*lights;
 	t_pntlight	*light;
 
-	color =  mult_colors(comps.shape->color, world->ambient_light->light);
+	ambient =  mult_colors(comps.shape->color, world->ambient_light->light); // check if we need a material ambient ligh like in the other project
+	color = (t_color){0, 0, 0};
 	lights = world->lights;
 	while (lights != NULL)
 	{
@@ -32,7 +34,7 @@ t_color	shade_hit(t_world *world, t_comps comps)
 		light = &((t_light *)lights->content)->pnt_light;
 		printf("OOOK 4\n");
 		print_light(light);
-		color = color_add(color, lighting(comps, world->ambient_light, light));
+		color = color_add(color, lighting(comps, ambient, light));
 		lights = lights->next;
 	}
 	return (color);

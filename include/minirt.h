@@ -218,7 +218,7 @@ void	render_scene(t_minirt *data);
 
 /* Lighting */
 t_material		default_material(void);
-t_color			lighting(t_comps comps, t_amblight *ambient_light, t_pntlight *plight);
+t_color			lighting(t_comps comps, t_color ambient, t_pntlight *plight);
 
 /* Color operations */
 t_color	color_add(t_color a, t_color b);
