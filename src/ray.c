@@ -31,6 +31,9 @@ t_ray	cast_ray(t_camera *camera, int px, int py)
 	pixel = mult_pnt_mtx(point(world_x, world_y, -1), camera->inverse); // change with camera inverse
 	origin = mult_pnt_mtx(point(0,0,0),  camera->inverse);
 	direction = vec_norm(vec_sub(pixel, origin));
+	print_vec3(pixel,"Pixel");
+	print_vec3(origin,"Origin");
+	print_vec3(direction,"Direction");
 	return ((t_ray){origin, direction});
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/03 15:00:49 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:30:41 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void scene_list_to_structs_list(t_minirt *data, t_list **list)
 		parse_plane(data, list);
 	else if (!ft_strncmp((*list)->content, "cy", 2))
 		parse_cylinder(data, list);
+	// t_light *plight = (&(t_light *)data->world->lights->content)->pnt_light;
 }
 
 void parse(t_minirt *data, char *file_name)
@@ -88,4 +89,6 @@ void parse(t_minirt *data, char *file_name)
 		data->scene = data->scene->next;
 	}
 	t_light *light = ((t_light *)data->world->lights->content);
+	printf("OOOK 1\n");
+	print_light(&((t_light *)data->world->lights->content)->pnt_light);
 }

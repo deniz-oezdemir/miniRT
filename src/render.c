@@ -13,6 +13,7 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 	comps.inside = false;
 	if (vec_dot(comps.normalv, comps.eyev) < 0)
 		comps.inside = true;
+		// Add negation normalv
 	return (comps);
 }
 
@@ -26,7 +27,11 @@ t_color	shade_hit(t_world *world, t_comps comps)
 	lights = world->lights;
 	while (lights != NULL)
 	{
-		light = (t_pntlight *)lights->content;
+		printf("OOOK 3\n");
+		print_light(&((t_light *)lights->content)->pnt_light);
+		light = &((t_light *)lights->content)->pnt_light;
+		printf("OOOK 4\n");
+		print_light(light);
 		color = color_add(color, lighting(comps, world->ambient_light, light));
 		lights = lights->next;
 	}
@@ -39,7 +44,7 @@ t_color	color_at(t_minirt *data, t_ray ray)
 	t_comps	comps;
 	t_color	color;
 
-	color = (t_color){32, 32, 32}; // Backgrounf color: PROBLEM here: should be dark grey but somehow it's white. Checked with the debugger, the problem should be in the function RGB
+	color = (t_color){0, 0, 0}; // Backgrounf color: PROBLEM here: should be dark grey but somehow it's white. Checked with the debugger, the problem should be in the function RGB
 	intersections(data, ray);
 	hit_inter = hit(data->xs);
 	if (hit_inter.shape != NULL)
@@ -60,6 +65,8 @@ void render_scene(t_minirt *data)
 	t_color	color;
 
 	print_instruction(data);
+	printf("OOOK render scene\n");
+	print_light(&((t_light *)data->world->lights->content)->pnt_light);
 	//color_background(data, BACKGROUND_COLOR);
 	y = -1.0;
 	printf("Start rendering...\n");
@@ -75,6 +82,8 @@ void render_scene(t_minirt *data)
 			// print_vec3(ray.origin, "vec origin");
 			// print_vec3(ray.dir, "vec dir");
 			color = color_at(data, ray);
+			print_color(color, "Color BG");
+			printf("Color 01: %d", rgb(color));
 			color_pixel(data, x, y, rgb(color));
 		}
 	}

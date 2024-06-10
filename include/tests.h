@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:42 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/03 16:30:26 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:54:25 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	test_rays();
 void	test_inter(t_minirt *data);
 void	test_inter_2(t_minirt *data);
 void    test_transform_view(t_minirt *data);
+void    test_light(t_minirt *data);
 
 
 /* Utils */

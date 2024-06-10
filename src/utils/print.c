@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/03 14:34:30 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:46:23 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,9 @@ void	print_mtx(t_mtx mtx)
 		printf("\n");
 		row++;
 	}
+}
+
+void print_color(t_color color, char *description)
+{
+	printf("%s: (%f, %f, %f)\n", description, color.r, color.g, color.b);
 }

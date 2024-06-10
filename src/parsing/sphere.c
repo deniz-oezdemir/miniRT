@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:35 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/06 11:34:36 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:29:19 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,28 @@ static bool validate_sphere(t_sphere *sphere)
 	return (true);
 }
 
+void    set_transform(t_shape *shape, t_mtx transform)
+{
+    shape->transform = transform;
+    shape->inverse = invert_mtx(transform);
+    shape->transpose = transp_mtx(shape->inverse);
+}
+
 void parse_sphere(t_minirt *data, t_list **input_lst)
 {
 	t_shape *sh;
+	t_mtx	scale;
+	t_mtx	transform;
+	double	radius;
 
 	sh = gc_get(data, 1, sizeof(t_shape));
 	if (!sh)
 		printf("Error: allocation failed\n");
+	
+	sh->transform = identity_mtx(4);
+	sh->inverse = identity_mtx(4);
+	sh->transpose = identity_mtx(4);
+
 	sh->name = SPHERE;
 	sh->sphere.center.x = check_coordinate(get_nth_content(*input_lst, 1));
 	sh->sphere.center.y = check_coordinate(get_nth_content(*input_lst, 2));
@@ -38,6 +53,13 @@ void parse_sphere(t_minirt *data, t_list **input_lst)
 	if (!validate_sphere(&(sh->sphere)))
 		return (pars_error(data, SPHERE_ERR));
 	sh->material = default_material(); // for lighting
+
+	// NEW!!
+	radius = sh->sphere.diameter / 2;
+	scale = scaling(radius, radius, radius);
+	transform = translation_mtx(sh->sphere.center.x, sh->sphere.center.y, sh->sphere.center.z);
+	set_transform(sh, mult_mtx_mtx(transform, scale));
+
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	data->world->object_nbr++;
 	move_to_nth_node(input_lst, 7);

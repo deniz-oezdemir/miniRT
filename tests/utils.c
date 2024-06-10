@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:43:45 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/06 09:51:13 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:46:12 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,6 @@ void free_world(t_world *world)
 	}
 	// Free the world struct itself
 	// free(world);
-}
-
-void print_color(t_color color, char *description)
-{
-	printf("%s: (%f, %f, %f)\n", description, color.r, color.g, color.b);
 }
 
 void print_material(t_material material)

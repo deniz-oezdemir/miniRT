@@ -18,8 +18,8 @@
 # define WIN_WIDTH	1000
 # define WIN_HEIGHT	800
 
-# define IMG_WIDTH	300
-# define IMG_HEIGHT	300
+# define IMG_WIDTH	500
+# define IMG_HEIGHT	500
 
 # define BACKGROUND_COLOR	0x202020
 # define TEXT_COLOR			0xffffff
@@ -88,7 +88,7 @@ typedef struct s_discr
 	double	discr;
 }	t_discr;
 
-typedef struct s_comps
+typedef struct s_compsinter
 {
 	double	t;
 	t_shape	*shape;
@@ -148,6 +148,7 @@ double	deg_to_rad(double degrees);
 void	free_inter(void *content);
 int		rgb(t_color color);
 t_vec3	point(double x, double y, double z);
+t_vec3	vector(double x, double y, double z);
 
 /* Garbage collector */
 void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
@@ -234,5 +235,6 @@ void	print_vec3(t_vec3 v, char* label);
 void	print_mtx(t_mtx mtx);
 void	print_material(t_material material);
 void	print_color(t_color color, char *description);
+void print_light(t_pntlight *obj);
 
 #endif

@@ -78,13 +78,20 @@ void	intersections(t_minirt *data, t_ray ray)
 {
 	t_list	*shapes; //objects might become world
 	t_shape	*shape;
+	t_ray	trans_ray;
 
 	shapes = data->world->objects;
 	while (shapes != NULL)
 	{
 		shape = (t_shape *)shapes->content;
 		if (shape->name == SPHERE)
-			inter_sphere(data, shape, ray);
+		{
+			t_vec3	origin = mult_pnt_mtx(ray.origin, shape->inverse);
+			t_vec3	direction = mult_pnt_mtx(ray.dir, shape->inverse);
+			trans_ray = (t_ray){origin, 
+								direction};
+			inter_sphere(data, shape, trans_ray);				
+		}
 		shapes = shapes->next;
 	}
 }
