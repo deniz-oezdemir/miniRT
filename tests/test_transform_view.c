@@ -1,13 +1,13 @@
 # include "../include/minirt.h"
 # include "../include/tests.h"
 
-t_vec3 point(double x, double y, double z) {
+/* t_vec3 point(double x, double y, double z) {
     return (t_vec3){x, y, z, 1.0};
 }
 
 t_vec3 vector(double x, double y, double z) {
     return (t_vec3){x, y, z, 0.0};
-}
+} */
 
 bool matrices_are_equal(t_mtx a, t_mtx b) {
     for (int i = 0; i < 4; i++) {
