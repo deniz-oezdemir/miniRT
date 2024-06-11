@@ -37,7 +37,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/src/main",
 			"args": [
-				"../scene_subject.rt"
+				"../scene_3_sphere_plane.rt"
 			],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
