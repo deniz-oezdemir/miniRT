@@ -4,11 +4,15 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 {
 	t_comps	comps;
 
+	int test;
+	if (inter.shape->name == PLANE)
+		test = 10;
+
 	comps.t = inter.inter;
 	comps.shape = inter.shape;
 	comps.point = position(ray, inter.inter);
 	comps.eyev = vec_neg(ray.dir);
-	comps.normalv = normal_at(&(inter.shape->sphere), comps.point);
+	comps.normalv = normal_at(inter.shape, comps.point);
 	comps.inside = false;
 	if (vec_dot(comps.normalv, comps.eyev) < 0)
 		comps.inside = true;
@@ -22,6 +26,10 @@ t_color	shade_hit(t_world *world, t_comps comps)
 	t_color		ambient;
 	t_list		*lights;
 	t_pntlight	*light;
+
+	int test;
+	if (comps.shape->name == PLANE)
+		test = 10;
 
 	ambient =  mult_colors(comps.shape->color, world->ambient_light->light); // check if we need a material ambient ligh like in the other project
 	color = (t_color){0, 0, 0};
