@@ -59,15 +59,8 @@ bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray)
 bool	inter_plane(t_minirt *data, t_shape *shape, t_ray ray)
 {
 	double	t;
-	double	tmp;
 
-	if (ray.dir.y < 0)
-	{
-		tmp = -ray.dir.y;
-		if (tmp < EPSILON)
-			return (false);
-	}
-	if (ray.dir.y < EPSILON)
+	if (fabs(ray.dir.y) < EPSILON)
 		return (false);
 	t = -ray.origin.y / ray.dir.y; //only works for planes parallel to the xz plane
 	ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, t)));
@@ -93,7 +86,7 @@ t_inter	hit(t_list *xs)
 /* wrapper function for different shapes intersection: takes minirt struct as input*/
 void	intersections(t_minirt *data, t_ray ray)
 {
-	t_list	*shapes; //objects might become world
+	t_list	*shapes;
 	t_shape	*shape;
 	t_ray	trans_ray;
 
@@ -101,16 +94,11 @@ void	intersections(t_minirt *data, t_ray ray)
 	while (shapes != NULL)
 	{
 		shape = (t_shape *)shapes->content;
+		trans_ray = transform_ray(ray, shape);
 		if (shape->name == SPHERE)
-		{
-			t_vec3	origin = mult_pnt_mtx(ray.origin, shape->inverse);
-			t_vec3	direction = mult_pnt_mtx(ray.dir, shape->inverse);
-			trans_ray = (t_ray){origin, 
-								direction};
 			inter_sphere(data, shape, trans_ray);				
-		}
 		if (shape->name == PLANE)
-			inter_plane(data, shape, ray);
+			inter_plane(data, shape, trans_ray);
 		shapes = shapes->next;
 	}
 }
