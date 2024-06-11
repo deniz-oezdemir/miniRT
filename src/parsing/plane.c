@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/06 15:18:18 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:40:50 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 	if (!validate_plane(&(sh->plane)))
 		return (pars_error(data, PLANE_ERR));
 	sh->material = default_material(); // for lighting
-	sh->normal = (t_vec3){sh->plane.dir.x, sh->plane.dir.y, sh->plane.dir.z, 0};
-	t_mtx translate = translation_mtx(sh->plane.center.x, sh->plane.center.y, sh->plane.center.z);
-	t_mtx rotate = rotation_mtx(direction); //deniz continue here
 
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	data->world->object_nbr++;
