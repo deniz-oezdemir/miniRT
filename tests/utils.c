@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:43:45 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/03 16:32:02 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:46:12 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void print_test_result(char *test_case, bool expected, bool actual)
 }
 
 /* Clear the intersection list "xs" and free each node. */
-void free_inter(void *content)
+/* void free_inter(void *content)
 {
 	t_inter *inter_content = (t_inter *)content;
 	// Set the shape pointer to NULL but don't free the shape
 	inter_content->shape = NULL;
-}
+} */
 
 void del_object(void *content)
 {
@@ -78,11 +78,6 @@ void free_world(t_world *world)
 	}
 	// Free the world struct itself
 	// free(world);
-}
-
-void print_color(t_color color, char *description)
-{
-	printf("%s: (%f, %f, %f)\n", description, color.r, color.g, color.b);
 }
 
 void print_material(t_material material)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/06 12:02:12 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:42:46 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,19 @@ typedef struct s_amblight
 	t_color light; // color * intensity - maybe get rid of intensity and color if not needed
 } t_amblight;
 
-typedef struct s_camera
-{
-	t_obj_type name;
-	t_vec3 center;
-	t_vec3 dir;
-	int fov;
-} t_camera;
+typedef struct s_camera{
+	t_obj_type	name;
+	t_vec3	center;
+	t_vec3	dir;
+	int		fov;
+	int		hsize;
+	int		vsize;
+	double	half_width;
+	double	half_height;
+	double	pixel_size;
+	t_mtx	transform;
+	t_mtx	inverse;
+}	t_camera;
 
 typedef struct s_pntlight
 {
@@ -77,15 +83,18 @@ typedef struct s_material
 
 typedef struct s_shape
 {
-	t_obj_type name;
+	t_obj_type	name;
 	union
 	{
-		t_sphere sphere;
-		t_plane plane;
-		t_cylinder cylinder;
+		t_sphere	sphere;
+		t_plane		plane;
+		t_cylinder	cylinder;
 	};
-	t_material material;
-	t_vec3 normal; //use also for sphere
+	t_material	material;
+	t_color		color;
+	t_mtx		transform;
+	t_mtx		inverse;
+	t_mtx		transpose;
 } t_shape;
 
 typedef struct s_light

@@ -1,6 +1,6 @@
 # include "../include/tests.h"
 
-void test_rays()
+/* void test_rays()
 {
 	t_vec3 o = {1.0, 2.0, 3.0, 1.0};
 	t_vec3 d = {4, 5, 6, 0};
@@ -24,4 +24,4 @@ void test_rays()
 	print_vec3(position(r, 1.0), "expected point 3, 3, 4");
 	print_vec3(position(r, -1.0), "expected point 1, 3, 4");
 	print_vec3(position(r, 2.5), "expected point 4.5, 3, 4");
-}
+} */

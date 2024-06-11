@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/29 09:02:51 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/11 11:11:56 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,25 @@ void	init_window(t_minirt *data)
 	mlx_mouse_hook(data->mlx_win, handle_mouse_input, data);
 }
 
-/* void	init_camera(t_minirt *data)
+void	init_camera_view(t_camera *camera)
 {
-	data->view.rot_x = -45;
-	data->view.rot_y = -20;
-	data->view.rot_z = 20;
-	data->view.zoom = calculate_zoom_factor(data);
-	data->origin.x0 = 100;
-	data->origin.y0 = 100;
-	data->view.z_factor = 1;
-	print_instruction(data);
-	transform_nodes(data->map, data->view, data->origin);
-	draw_grid(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
-		data->mlx_img->img_ptr, 200, 0);
-} */
+	double	half_view;
+	double	aspect;
+
+	camera->hsize = IMG_WIDTH;
+	camera->vsize = IMG_HEIGHT;
+	aspect = camera->hsize / camera->vsize;
+	half_view = tan((deg_to_rad(camera->fov / 2)));
+	//printf("\nhalf_view: %f\n", half_view);
+	if (aspect >= 1)
+	{
+		camera->half_width = half_view;
+		camera->half_height = half_view / aspect;
+	}
+	else
+	{
+		camera->half_width = half_view * aspect;
+		camera->half_height = half_view;
+	}
+	camera->pixel_size = (camera->half_width * 2) / (double)camera->hsize;
+}

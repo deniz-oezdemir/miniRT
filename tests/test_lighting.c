@@ -1,12 +1,27 @@
-/* move/delete tests as they won't work after refactoring
+//  move - delete tests as they won't work after refactoring
+# include "../include/minirt.h"
+# include "../include/tests.h"
+
 void test_light(t_minirt *data)
 {
-	t_sphere *s = malloc(sizeof(t_sphere));
-	s->center = (t_vec3){0, 0, 0, 1};
-	s->diameter = 1;
-	s->color = (t_color){255, 0, 0};
+	t_vec3 p = point(99,99,99);
+	printf ("\n*** Test normal ch.6 (with camera) ***\n\n");
+	free_world(data->world);
+	parse(data, "scene_2_sphere_first_render.rt");
 
-	t_vec3 p = {1, 0, 0, 1};
+	t_ray ray = cast_ray(data->world->camera, 150, 150);
+	intersections(data, ray);
+	t_inter hit_inter = hit(data->xs);
+	printf("hit: %f\n", hit_inter.inter);
+	if (hit_inter.shape != NULL)
+	{
+		printf("hit: %f\n", hit_inter.inter);
+		t_vec3 p = position(ray, hit_inter.inter);
+		print_vec3(p, "Position");
+	}
+
+	// t_vec3 p = {1, 0, 0, 1};
+	t_sphere *s = &((t_shape *)data->world->objects->content)->sphere;
 
 	print_vec3(normal_at(s, p), "The normal on a sphere at a point on the x axis");
 
@@ -37,19 +52,13 @@ void test_light(t_minirt *data)
 	r = reflect(v, n);
 	print_vec3(r, "Reflecting a vector off a slanted surface");
 
-	t_color intensity = {1, 1, 1};
+	/* t_color intensity = {1, 1, 1};
 	t_vec3 position = {0, 0, 0, 1};
 	t_pntlight light = pointlight(position, intensity);
 	print_vec3(light.position, "Light position");
 	print_color(light.intensity, "Light intensity");
 
-	t_material m = {
-	.color = {1, 1, 1},
-	.ambient = {0.1, 0.1, 0.1},
-	.diffuse = 0.9,
-	.specular = 0.9,
-	.shininess = 200.0
-	};
+
 	print_color(m.color, "Material color");
 	print_color(m.ambient, "Material ambient");
 	printf("Material diffuse: %f\n", m.diffuse);
@@ -62,13 +71,6 @@ void test_light(t_minirt *data)
 	intensity = (t_color){1, 1, 1};
 	light = pointlight((t_vec3){0, 0, -10, 1}, intensity);
 
-	m = (t_material){
-		.color = {1, 1, 1},
-		.ambient = {0.1, 0.1, 0.1},
-		.diffuse = 0.9,
-		.specular = 0.9,
-		.shininess = 200.0
-	};
 
 	t_color result = lighting(m, light, position, eyev, normalv);
 
@@ -101,6 +103,6 @@ void test_light(t_minirt *data)
 	light = pointlight((t_vec3){0, 0, 10, 1}, intensity);
 	result = lighting(m, light, position, eyev, normalv);
 	printf("\nTest: Lighting with the light behind the surface\n");
-	print_color(result, "Result color");
+	print_color(result, "Result color"); */
 }
-*/
+
