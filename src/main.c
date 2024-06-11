@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/10 16:31:00 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/11 09:40:22 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,15 @@ int main(int argc, char **argv)
 	}
 	data = init_mlx();
 	parse(data, argv[1]);
-	// t_pntlight *light = ((t_pntlight *)data->world->lights->content);
 
 	// Print scene objects attributes
 	// print_scene_objects(data->world);
-	printf("OOOK 2\n");
-	print_light(&((t_light *)data->world->lights->content)->pnt_light);
 	
 	// Start MLX window
 	init_window(data);
 	render_scene(data);
 	mlx_loop(data->mlx_ptr);
 
-	printf("OOOK END\n");
-	print_light(&((t_light *)data->world->lights->content)->pnt_light);
-
-	// test_light(data);
-	exit_program(data); //clean and exit
+	exit_program(data);
 	return (EXIT_SUCCESS);
 }

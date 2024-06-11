@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/10 16:30:41 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/11 09:41:51 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,4 @@ void parse(t_minirt *data, char *file_name)
 		}
 		data->scene = data->scene->next;
 	}
-	t_light *light = ((t_light *)data->world->lights->content);
-	printf("OOOK 1\n");
-	print_light(&((t_light *)data->world->lights->content)->pnt_light);
 }
