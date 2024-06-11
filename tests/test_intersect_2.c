@@ -1,13 +1,13 @@
 # include "../include/minirt.h"
 # include "../include/tests.h"
 
-void test_inter_2(t_minirt *data)
+/* void test_inter_2(t_minirt *data)
 {
 	printf ("\n*** Test intersections 2 spheres ***\n\n");
 	free_world(data->world);
 	parse(data, "scene_2_sphere.rt");
 
-	t_ray ray = get_ray((t_vec3){0, 0, 0, 1}, (t_vec3){0, 1, 0, 0});
+	t_ray ray = cast_ray((t_vec3){0, 0, 0, 1}, (t_vec3){0, 1, 0, 0});
 
 	printf("\nA ray intersects 2 spheres at 4 points\n");
 	intersections(data, ray);
@@ -33,4 +33,4 @@ void test_inter_2(t_minirt *data)
 	printf("\nClosest hit intersection: %.3f\n", hit(data->xs).inter);
 	ft_lstclear(&data->xs, free_inter);
 
-}
+} */

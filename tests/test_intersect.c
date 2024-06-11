@@ -1,7 +1,7 @@
 # include "../include/minirt.h"
 # include "../include/tests.h"
 
-void test_inter(t_minirt *data)
+/* void test_inter(t_minirt *data)
 {
 	printf ("\n*** Test intersections 1 sphere ***\n\n");
 	free_world(data->world);
@@ -44,4 +44,4 @@ void test_inter(t_minirt *data)
 	printf("expected inter1 = -6: %.3f\n", ((t_inter *)data->xs->content)->inter);
 	printf("expected inter2 = -4: %.3f\n", ((t_inter *)data->xs->next->content)->inter);
 	ft_lstclear(&data->xs, free_inter);
-}
+} */

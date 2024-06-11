@@ -1,13 +1,5 @@
 # include "../include/minirt.h"
 
-/* OLD implementation */
-/* t_ray	cast_ray(t_vec3 origin, t_vec3 dir)
-{
-	return ((t_ray){
-		origin, dir
-	});
-} */
-
 t_vec3 point(double x, double y, double z) // Implement also in other functions
 {
 	return (t_vec3){x, y, z, 1.0};

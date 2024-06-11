@@ -18,8 +18,8 @@
 # define WIN_WIDTH	1000
 # define WIN_HEIGHT	800
 
-# define IMG_WIDTH	300
-# define IMG_HEIGHT	300
+# define IMG_WIDTH	500
+# define IMG_HEIGHT	500
 
 # define BACKGROUND_COLOR	0x202020
 # define TEXT_COLOR			0xffffff
@@ -88,7 +88,7 @@ typedef struct s_discr
 	double	discr;
 }	t_discr;
 
-typedef struct s_comps
+typedef struct s_compsinter
 {
 	double	t;
 	t_shape	*shape;
@@ -139,7 +139,7 @@ int		check_fov(char *arg);
 /* Handlers */
 void	pars_error(t_minirt *data, int err_code);
 
-/* utils */
+/* Utils */
 double	atof(const char *str);
 void	remove_newline(char **str);
 void	*get_nth_content(t_list *list, int n);
@@ -147,7 +147,9 @@ void	move_to_nth_node(t_list **list, int n);
 double	deg_to_rad(double degrees);
 void	free_inter(void *content);
 int		rgb(t_color color);
+void	set_transform(t_shape *shape, t_mtx transform);
 t_vec3	point(double x, double y, double z);
+t_vec3	vector(double x, double y, double z);
 
 /* Garbage collector */
 void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
@@ -164,13 +166,13 @@ t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
 t_mtx	transp_mtx(t_mtx m);
 t_mtx	invert_mtx(t_mtx m);
 
-
 /* Matrix transformations */
 t_mtx	scaling(double x, double y, double z);
 t_mtx	rot_x(double radians);
 t_mtx	rot_y(double radians);
 t_mtx	rot_z(double radians);
 t_mtx	translation_mtx(double x, double y, double z);
+t_mtx	rotation_mtx(t_vec3 vector);
 
 double	determinant_2x2(t_mtx m);
 t_mtx	sub_mtx(t_mtx m, int x_row, int x_col);
@@ -217,7 +219,7 @@ void	render_scene(t_minirt *data);
 
 /* Lighting */
 t_material		default_material(void);
-t_color			lighting(t_comps comps, t_amblight *ambient_light, t_pntlight *plight);
+t_color			lighting(t_comps comps, t_color ambient, t_pntlight *plight);
 
 /* Color operations */
 t_color	color_add(t_color a, t_color b);
@@ -234,5 +236,6 @@ void	print_vec3(t_vec3 v, char* label);
 void	print_mtx(t_mtx mtx);
 void	print_material(t_material material);
 void	print_color(t_color color, char *description);
+void print_light(t_pntlight *obj);
 
 #endif
