@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:35 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/11 10:55:28 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:47:53 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static t_shape	*new_sphere(t_minirt *data)
 	sh->inverse = identity_mtx(4);
 	sh->transpose = identity_mtx(4);
 	sh->material = default_material();
+	sh->sphere.color = (t_color){0.0, 0.0, 0.0};
 	return (sh);
 }
 

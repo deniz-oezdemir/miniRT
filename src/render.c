@@ -71,11 +71,11 @@ void render_scene(t_minirt *data)
 	print_instruction(data);
 	//color_background(data, BACKGROUND_COLOR);
 	y = -1.0;
-	printf("Start rendering...\n");
+	ft_printf("Start rendering...\n");
 
 	while (++y < data->world->camera->vsize)
 	{
-		printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
+		ft_printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
 		x = -1.0;
 		while (++x < data->world->camera->hsize)
 		{
@@ -85,7 +85,7 @@ void render_scene(t_minirt *data)
 			color_pixel(data, x, y, rgb(color));
 		}
 	}
-	printf("\rRendering: 100%%\n");
+	ft_printf("\rRendering: 100%%\n");
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 							data->mlx_img->img_ptr, 200, 0);
 }
