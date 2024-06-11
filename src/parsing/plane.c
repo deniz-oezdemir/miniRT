@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/11 12:45:38 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:00:50 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 	sh->plane.dir.x = check_vec3(get_nth_content(*input_lst, 4));
 	sh->plane.dir.y = check_vec3(get_nth_content(*input_lst, 5));
 	sh->plane.dir.z = check_vec3(get_nth_content(*input_lst, 6));
-	sh->plane.color.r = check_rgb(get_nth_content(*input_lst, 7));
-	sh->plane.color.g = check_rgb(get_nth_content(*input_lst, 8));
-	sh->plane.color.b = check_rgb(get_nth_content(*input_lst, 9));
+	sh->plane.color.r = check_rgb(get_nth_content(*input_lst, 7)) / 255.0;
+	sh->plane.color.g = check_rgb(get_nth_content(*input_lst, 8)) / 255.0;
+	sh->plane.color.b = check_rgb(get_nth_content(*input_lst, 9)) / 255.0;
 	if (!validate_plane(&(sh->plane)))
 		return (pars_error(data, PLANE_ERR));
 	set_plane_transform(sh);
