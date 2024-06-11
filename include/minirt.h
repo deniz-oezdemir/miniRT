@@ -139,7 +139,7 @@ int		check_fov(char *arg);
 /* Handlers */
 void	pars_error(t_minirt *data, int err_code);
 
-/* utils */
+/* Utils */
 double	atof(const char *str);
 void	remove_newline(char **str);
 void	*get_nth_content(t_list *list, int n);
@@ -147,6 +147,7 @@ void	move_to_nth_node(t_list **list, int n);
 double	deg_to_rad(double degrees);
 void	free_inter(void *content);
 int		rgb(t_color color);
+void	set_transform(t_shape *shape, t_mtx transform);
 t_vec3	point(double x, double y, double z);
 t_vec3	vector(double x, double y, double z);
 
@@ -165,13 +166,13 @@ t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
 t_mtx	transp_mtx(t_mtx m);
 t_mtx	invert_mtx(t_mtx m);
 
-
 /* Matrix transformations */
 t_mtx	scaling(double x, double y, double z);
 t_mtx	rot_x(double radians);
 t_mtx	rot_y(double radians);
 t_mtx	rot_z(double radians);
 t_mtx	translation_mtx(double x, double y, double z);
+t_mtx	rotation_mtx(t_vec3 vector);
 
 double	determinant_2x2(t_mtx m);
 t_mtx	sub_mtx(t_mtx m, int x_row, int x_col);
