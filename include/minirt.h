@@ -209,6 +209,7 @@ double	magnitude(t_vec3 v);
 /* Ray casting */
 // input = ray, distance (double) || output Position = Point(vec3)
 t_ray	cast_ray(t_camera *camera, int px, int py);
+t_ray	transform_ray(t_ray ray, t_shape *shape);
 t_vec3	position(t_ray ray, double dist);
 
 /* Ray intersects sphere */
