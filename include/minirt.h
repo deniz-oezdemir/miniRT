@@ -101,6 +101,17 @@ typedef struct s_compsinter
 	// t_vec3	over_point;
 }	t_comps;
 
+typedef struct s_exposure
+{
+	t_color	effective_color;
+	t_vec3	lightv;
+	t_vec3	reflectv;
+	double	light_dot_normal;
+	double	reflect_dot_eye;
+	double	factor;
+}	t_exposure;
+
+
 /* Init and exit functions */
 t_minirt	*init_mlx(void);
 t_mtx	create_mtx(const double *m, size_t dim);
@@ -200,7 +211,7 @@ t_vec3	vec_neg(t_vec3 v);
 t_vec3	vec_norm(t_vec3 a);
 t_vec3	vec_cross(t_vec3 a, t_vec3 b);
 t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m);
-t_vec3	normal_at(t_sphere *sphere, t_vec3 p);
+t_vec3	normal_at(t_shape *shape, t_vec3 p);
 t_vec3	reflect(t_vec3 in, t_vec3 normal);
 
 double	vec_dot(t_vec3 a, t_vec3 b);
