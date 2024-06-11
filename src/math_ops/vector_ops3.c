@@ -12,9 +12,8 @@ t_vec3 normal_at_sphere(t_shape *shape, t_vec3 p)
 
 t_vec3	normal_at_plane(t_shape *shape, t_vec3 world_point)
 {
-	(void) shape;
 	(void) world_point;
-	return (vector(0, 1, 0));
+	return (shape->plane.dir);
 }
 
 t_vec3	normal_at(t_shape *shape, t_vec3 p)
