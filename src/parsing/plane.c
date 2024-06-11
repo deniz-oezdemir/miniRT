@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/28 09:07:17 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/11 11:01:20 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool	validate_plane(t_plane *plane)
 	return (true);
 }
 
-void	parse_plane(t_minirt *data, t_list **input_lst)
+static t_shape	*new_plane(t_minirt *data)
 {
 	t_shape	*sh;
 
@@ -35,21 +35,45 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 	if (!sh)
 		printf("Error: allocation failed\n");
 	sh->name = PLANE;
+	sh->plane.center.w = 1;
+	sh->plane.dir.w = 0;
+	sh->transform = identity_mtx(4);
+	sh->inverse = identity_mtx(4);
+	sh->transpose = identity_mtx(4);
+	sh->material = default_material();
+	return (sh);
+}
+
+static void	set_plane_transform(t_shape *sh)
+{
+	t_mtx	rotate;
+	t_mtx	translate;
+
+	translate = translation_mtx(sh->plane.center.x,
+		sh->plane.center.y,
+		sh->plane.center.z);
+	rotate = rotation_mtx(sh->plane.dir);
+	set_transform(sh, mult_mtx_mtx(translate, rotate));
+}
+
+void	parse_plane(t_minirt *data, t_list **input_lst)
+{
+	t_shape	*sh;
+
+	sh = new_plane(data);
 	sh->plane.center.x = check_coordinate(get_nth_content(*input_lst, 1));
 	sh->plane.center.y = check_coordinate(get_nth_content(*input_lst, 2));
 	sh->plane.center.z = check_coordinate(get_nth_content(*input_lst, 3));
-	sh->plane.center.w = 1;
 	sh->plane.dir.x = check_vec3(get_nth_content(*input_lst, 4));
 	sh->plane.dir.y = check_vec3(get_nth_content(*input_lst, 5));
 	sh->plane.dir.z = check_vec3(get_nth_content(*input_lst, 6));
-	sh->plane.dir.w = 0;
 	sh->plane.color.r = check_rgb(get_nth_content(*input_lst, 7));
 	sh->plane.color.g = check_rgb(get_nth_content(*input_lst, 8));
 	sh->plane.color.b = check_rgb(get_nth_content(*input_lst, 9));
 	if (!validate_plane(&(sh->plane)))
 		return (pars_error(data, PLANE_ERR));
+	set_plane_transform(sh);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
-	data->world->object_nbr++;
 	move_to_nth_node(input_lst, 9);
 	printf("Plane OK\n");
 }

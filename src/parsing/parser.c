@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/11 09:41:51 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/11 09:48:12 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static void scene_list_to_structs_list(t_minirt *data, t_list **list)
 		parse_plane(data, list);
 	else if (!ft_strncmp((*list)->content, "cy", 2))
 		parse_cylinder(data, list);
-	// t_light *plight = (&(t_light *)data->world->lights->content)->pnt_light;
 }
 
 void parse(t_minirt *data, char *file_name)

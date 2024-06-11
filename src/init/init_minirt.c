@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/10 11:40:53 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/11 11:11:56 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	init_camera_view(t_camera *camera)
 	double	half_view;
 	double	aspect;
 
-	camera->transform = transform_view(camera->center, point(0, 1, 0), camera->dir);
-	camera->inverse = invert_mtx(camera->transform);
 	camera->hsize = IMG_WIDTH;
 	camera->vsize = IMG_HEIGHT;
 	aspect = camera->hsize / camera->vsize;
