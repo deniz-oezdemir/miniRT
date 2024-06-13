@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:35 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/13 14:07:23 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:48:56 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,9 @@ static void	set_sphere_transform(t_shape *sh)
 
 	radius = sh->sphere.diameter / 2;
 	scale = scaling(radius, radius, radius);
-	printf("Sphere scale:\n");
-	print_mtx(scale);
 	transform = translation_mtx(sh->sphere.center.x,
 		sh->sphere.center.y,
 		sh->sphere.center.z);
-	printf("Sphere transform 0:\n");
-	print_mtx(transform);
 	set_transform(sh, mult_mtx_mtx(transform, scale));
 }
 
@@ -75,11 +71,6 @@ void parse_sphere(t_minirt *data, t_list **input_lst)
 	if (!validate_sphere(&(sh->sphere)))
 		return (pars_error(data, SPHERE_ERR));
 	set_sphere_transform(sh);
-	printf("Sphere transform:\n");
-	print_mtx(sh->transform);
-	printf("Sphere inverse:\n");
-	print_mtx(sh->inverse);
-	printf("Sphere transpose:\n");
 	print_mtx(sh->transpose);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	move_to_nth_node(input_lst, 7);

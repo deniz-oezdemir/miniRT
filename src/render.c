@@ -1,14 +1,5 @@
 #include "../include/minirt.h"
 
-void print_comps(t_comps comps) {
-    printf("t: %f\n", comps.t);
-    printf("shape: %u\n", comps.shape->name);
-    printf("point: (%f, %f, %f)\n", comps.point.x, comps.point.y, comps.point.z);
-    printf("eyev: (%f, %f, %f)\n", comps.eyev.x, comps.eyev.y, comps.eyev.z);
-    printf("normalv: (%f, %f, %f)\n", comps.normalv.x, comps.normalv.y, comps.normalv.z);
-    printf("inside: %s\n", comps.inside ? "true" : "false");
-}
-
 t_comps	prepare_computations(t_inter inter, t_ray ray)
 {
 	t_comps	comps;
@@ -23,15 +14,11 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 	comps.eyev = vec_neg(ray.dir);
 	comps.normalv = normal_at(inter.shape, comps.point);
 	comps.inside = false;
-	// if (vec_dot(comps.normalv, comps.eyev) < 0)
-	// {
-	// 	printf("	TEST\n");
-	// 	comps.inside = true;
-	// 	comps.normalv = vec_neg(comps.normalv);
-	// }
-	print_vec3(ray.origin, " ray origin");
-	print_vec3(ray.dir, " ray direction");
-	print_comps(comps);
+	if (vec_dot(comps.normalv, comps.eyev) < 0)
+	{
+		comps.inside = true;
+		comps.normalv = vec_neg(comps.normalv);
+	}
 	return (comps);
 }
 
