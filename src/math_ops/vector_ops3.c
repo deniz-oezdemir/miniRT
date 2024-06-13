@@ -13,7 +13,7 @@ t_vec3	normal_at_sphere(t_shape *shape, t_vec3 world_point)
 t_vec3	normal_at_plane(t_shape *shape, t_vec3 world_point)
 {
 	(void) world_point;
-	return (shape->plane.dir);
+	return (shape->plane.dir); // Check if we need to normalize 
 }
 
 t_vec3	normal_at_cylinder(t_shape *shape, t_vec3 world_point)
@@ -25,7 +25,7 @@ t_vec3	normal_at_cylinder(t_shape *shape, t_vec3 world_point)
 		return (vector(0, 1, 0));
 	if (dist < 1.0 && world_point.y <= shape->cylinder.minimum + EPSILON)
 		return (vector(0, -1, 0));
-	return (vector(world_point.x, 0.0, world_point.z));
+	return (vector(world_point.x, 0.0, world_point.z)); // Check if we need to normalize 
 }
 
 t_vec3	normal_at(t_shape *shape, t_vec3 world_point)

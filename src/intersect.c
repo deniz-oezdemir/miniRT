@@ -111,7 +111,7 @@ void	intersections(t_minirt *data, t_ray ray)
 	while (shapes != NULL)
 	{
 		shape = (t_shape *)shapes->content;
-		local_ray = transform_ray(ray, shape);
+		local_ray = transform_ray(ray, shape); // Try to implement optimization from scratchapixel
 		if (shape->name == SPHERE)
 			inter_sphere(data, shape, local_ray);				
 		else if (shape->name == PLANE)

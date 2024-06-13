@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 12:58:44 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/12 11:24:59 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/13 11:36:53 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	calculate_rotation_angles(t_vec3 vec, double *x, double *y, double *z)
 	double	ratio;
 
 	ratio = sqrt((vec.x * vec.x) + (vec.y * vec.y));
-	if (0.0 == ratio)
+	if (0.0 == ratio) // Use a function with a delta something
 		*z = M_PI_2;
 	else
 		*z = acos(vec.y / ratio);
