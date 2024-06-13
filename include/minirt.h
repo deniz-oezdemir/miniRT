@@ -154,6 +154,7 @@ void	pars_error(t_minirt *data, int err_code);
 
 /* Utils */
 double	atof(const char *str);
+void	swap(double *nbr1, double *nbr2);
 void	remove_newline(char **str);
 void	*get_nth_content(t_list *list, int n);
 void	move_to_nth_node(t_list **list, int n);

@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/11 12:42:46 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/12 10:17:18 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_cylinder
 	t_vec3 dir;
 	double diameter;
 	double height;
+	double minimum;
+	double maximum;
 	t_color color;
 } t_cylinder;
 
