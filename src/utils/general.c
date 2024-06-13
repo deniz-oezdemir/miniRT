@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 12:58:44 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/11 18:23:01 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:24:59 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,13 @@ void	calculate_rotation_angles(t_vec3 vec, double *x, double *y, double *z)
 		*z = acos(vec.y / ratio);
 	*x = acos(ratio);
 	*y = atan2(vec.x, vec.z);
+}
+
+void	swap(double *nbr1, double *nbr2)
+{
+	double	tmp;
+
+	tmp = *nbr1;
+	*nbr1 = *nbr2;
+	*nbr2 = tmp;
 }

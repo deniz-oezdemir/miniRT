@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:46:53 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/11 10:55:20 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:53:59 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static t_shape	*new_cylinder(t_minirt *data)
 	sh->name = CYLINDER;
 	sh->cylinder.center.w = 1;
 	sh->cylinder.dir.w = 0;
+	sh->cylinder.minimum = -INFINITY;
+	sh->cylinder.maximum = INFINITY;
 	sh->transform = identity_mtx(4);
 	sh->inverse = identity_mtx(4);
 	sh->transpose = identity_mtx(4);
@@ -75,9 +77,11 @@ void	parse_cylinder(t_minirt *data, t_list **input_lst)
 	sh->cylinder.dir.z = check_vec3(get_nth_content(*input_lst, 6));
 	sh->cylinder.diameter = check_coordinate(get_nth_content(*input_lst, 7));
 	sh->cylinder.height = check_coordinate(get_nth_content(*input_lst, 8));
-	sh->cylinder.color.r = check_rgb(get_nth_content(*input_lst, 9));
-	sh->cylinder.color.g = check_rgb(get_nth_content(*input_lst, 10));
-	sh->cylinder.color.b = check_rgb(get_nth_content(*input_lst, 11));
+	sh->cylinder.minimum = -sh->cylinder.height / 2;
+	sh->cylinder.maximum = sh->cylinder.height / 2;
+	sh->color.r = check_rgb(get_nth_content(*input_lst, 9)) / 255.0;
+	sh->color.g = check_rgb(get_nth_content(*input_lst, 10)) / 255.0;
+	sh->color.b = check_rgb(get_nth_content(*input_lst, 11)) / 255.0;
 	if (!validate_cylinder(&(sh->cylinder)))
 		return (pars_error(data, CYLINDER_ERR));
 	set_cylinder_transform(sh);

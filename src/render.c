@@ -15,8 +15,10 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 	comps.normalv = normal_at(inter.shape, comps.point);
 	comps.inside = false;
 	if (vec_dot(comps.normalv, comps.eyev) < 0)
+	{
 		comps.inside = true;
-		// Add negation normalv
+		comps.normalv = vec_neg(comps.normalv);
+	}
 	return (comps);
 }
 
@@ -30,10 +32,11 @@ t_color	shade_hit(t_world *world, t_comps comps)
 	int test;
 	if (comps.shape->name == PLANE)
 		test = 10;
-
-	ambient =  mult_colors(comps.shape->color, world->ambient_light->light); // check if we need a material ambient ligh like in the other project
-	color = (t_color){0, 0, 0};
 	lights = world->lights;
+	ambient =  mult_colors(comps.shape->color, world->ambient_light->light); // check if we need a material ambient ligh like in the other project
+	if (lights == NULL)
+		return (ambient);
+	color = (t_color){0, 0, 0};
 	while (lights != NULL)
 	{
 		light = &((t_light *)lights->content)->pnt_light;
@@ -49,7 +52,7 @@ t_color	color_at(t_minirt *data, t_ray ray)
 	t_comps	comps;
 	t_color	color;
 
-	color = (t_color){0, 0, 0}; // Backgrounf color: PROBLEM here: should be dark grey but somehow it's white. Checked with the debugger, the problem should be in the function RGB
+	color = (t_color){0.125, 0.125, 0.125}; // Background color
 	intersections(data, ray);
 	hit_inter = hit(data->xs);
 	if (hit_inter.shape != NULL)
