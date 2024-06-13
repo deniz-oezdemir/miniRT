@@ -30,5 +30,6 @@ t_ray	transform_ray(t_ray ray, t_shape *shape)
 
 t_vec3	position(t_ray ray, double dist)
 {
+	print_vec3(ray.origin, "	ray origin1");
 	return (vec_add(ray.origin, vec_mul(dist, ray.dir)));
 }

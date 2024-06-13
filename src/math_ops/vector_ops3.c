@@ -30,13 +30,19 @@ t_vec3	normal_at_cylinder(t_shape *shape, t_vec3 world_point)
 
 t_vec3	normal_at(t_shape *shape, t_vec3 world_point)
 {
-	t_vec3	normal;
+	t_vec3	world_normal;
+	t_vec3	object_point;
+	t_vec3	object_normal;
 
+	//Something to be added here
+	object_point = mult_pnt_mtx(world_point, shape->inverse);
 	if (shape->name == SPHERE)
-		normal = normal_at_sphere(shape, world_point);				
+		object_normal = normal_at_sphere(shape, object_point);				
 	else if (shape->name == PLANE)
-		normal = normal_at_plane(shape, world_point);
+		object_normal = normal_at_plane(shape, object_point);
 	else if (shape->name == CYLINDER)
-		normal = normal_at_cylinder(shape, world_point);
-	return (normal);
+		object_normal = normal_at_cylinder(shape, object_point);
+	world_normal = mult_pnt_mtx(object_normal, shape->transpose);
+	world_normal.w = 0.0;
+	return (vec_norm(world_normal));
 }

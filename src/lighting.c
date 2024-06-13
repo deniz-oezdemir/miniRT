@@ -11,6 +11,7 @@ static t_color	dark_exposure(t_color ambient, t_exposure e)
 	t_color	diffuse;
 	t_color	specular;
 
+	printf("Dark exposure\n");
 	// ambient = mult_colors(e.effective_color, m.ambient);
 	diffuse = (t_color){0, 0, 0};
 	specular = (t_color){0, 0, 0};
@@ -24,12 +25,22 @@ static t_color	light_exposure(t_color ambient, t_pntlight *plight,
 	t_color	diffuse;
 	t_color	specular;
 
+	printf("Light exposure\n");
 	// ambient = mult_colors(e.effective_color, m.ambient);
 	diffuse = mult_color_scalar(e.effective_color, comps.shape->material.diffuse * e.light_dot_normal);
 	e.reflectv = reflect(vec_neg(e.lightv), comps.normalv);
 	e.reflect_dot_eye = vec_dot(e.reflectv, comps.eyev);
+	print_vec3(comps.normalv, "		comps.normalv");
+	print_vec3(comps.eyev, "		comps.eyev");
+	print_vec3(e.lightv, "		e.lightv");
+	print_vec3(e.reflectv, " 	e.reflectv");
 	if (e.reflect_dot_eye <= 0)
+	{
+		printf("	REFLECT WRONG\n");
+		printf("	reflect_dot_eye: %f\n", e.reflect_dot_eye);
 		specular = (t_color){0, 0, 0};
+	}
+		
 	else
 	{
 		e.factor = pow(e.reflect_dot_eye, comps.shape->material.shininess);
@@ -49,6 +60,7 @@ t_color	lighting(t_comps comps, t_color ambient, t_pntlight *plight)
 	e.lightv = vec_norm(vec_sub(plight->center, comps.point));
 	// ambient = mult_colors(effective_color, ambient_light->light);
 	e.light_dot_normal = vec_dot(e.lightv, comps.normalv);
+	printf(" Light dot normal: %f\n", e.light_dot_normal);
 	if (e.light_dot_normal <= 0)
 		return (dark_exposure(ambient, e));
 	else

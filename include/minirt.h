@@ -90,7 +90,7 @@ typedef struct s_discr
 	double	discr;
 }	t_discr;
 
-typedef struct s_compsinter
+typedef struct s_comps
 {
 	double	t;
 	t_shape	*shape;
