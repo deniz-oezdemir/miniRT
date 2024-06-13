@@ -19,10 +19,36 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 		comps.inside = true;
 		comps.normalv = vec_neg(comps.normalv);
 	}
+	comps.over_point = vec_add(comps.point, vec_mul(EPSILON, comps.normalv));
 	return (comps);
 }
 
-t_color	shade_hit(t_world *world, t_comps comps)
+int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
+{
+	t_vec3	v;
+	t_ray	ray;
+	t_inter	inter;
+	t_inter	hit_inter;
+
+	v = vec_sub(light_position, over_point);
+	ray = (t_ray){over_point, vec_norm(v)};
+	intersections(data, ray);
+	hit_inter = hit(data->xs);
+	if ((hit_inter.shape != NULL /*this does not work*/) && (hit_inter.inter < magnitude(v)))
+	{
+		printf("hit_inter.shape->name = %u\n", hit_inter.shape->name);
+		printf("hit_inter.inter = %f\n", hit_inter.inter);
+		ft_lstclear(&data->xs, free_inter);
+		return (1);
+	}
+	else
+	{
+		ft_lstclear(&data->xs, free_inter);
+		return (0);
+	}
+}
+
+t_color	shade_hit(t_minirt *data, t_world *world, t_comps comps)
 {
 	t_color		color;
 	t_color		ambient;
@@ -40,6 +66,7 @@ t_color	shade_hit(t_world *world, t_comps comps)
 	while (lights != NULL)
 	{
 		light = &((t_light *)lights->content)->pnt_light;
+		light->shadow = is_shadow(data, light->center, comps.over_point);
 		color = color_add(color, lighting(comps, ambient, light));
 		lights = lights->next;
 	}
@@ -58,7 +85,7 @@ t_color	color_at(t_minirt *data, t_ray ray)
 	if (hit_inter.shape != NULL)
 	{
 		comps = prepare_computations(hit_inter, ray);
-		color = shade_hit(data->world, comps);
+		color = shade_hit(data, data->world, comps);
 	}
 	ft_lstclear(&data->xs, free_inter);
 	return (color);
@@ -78,12 +105,12 @@ void render_scene(t_minirt *data)
 
 	while (++y < data->world->camera->vsize)
 	{
-		++y; //dirty optimization
+		//++y; //dirty optimization
 		ft_printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
 		x = -1.0;
 		while (++x < data->world->camera->hsize)
 		{
-			++x; //dirty optimization
+			//++x; //dirty optimization
 			// printf("x = %f | y = %f \n", x, y);
 			ray = cast_ray(data->world->camera, x, y);
 			color = color_at(data, ray);

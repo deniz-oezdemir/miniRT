@@ -98,7 +98,7 @@ typedef struct s_comps
 	t_vec3	eyev;
 	t_vec3	normalv;
 	bool	inside;
-	// t_vec3	over_point;
+	t_vec3	over_point;
 }	t_comps;
 
 typedef struct s_exposure

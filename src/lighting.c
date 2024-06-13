@@ -49,7 +49,7 @@ t_color	lighting(t_comps comps, t_color ambient, t_pntlight *plight)
 	e.lightv = vec_norm(vec_sub(plight->center, comps.point));
 	// ambient = mult_colors(effective_color, ambient_light->light);
 	e.light_dot_normal = vec_dot(e.lightv, comps.normalv);
-	if (e.light_dot_normal <= 0)
+	if (e.light_dot_normal <= 0 || plight->shadow == 1)
 		return (dark_exposure(ambient, e));
 	else
 		return (light_exposure(ambient, plight, e, comps));

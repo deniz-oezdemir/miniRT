@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:08 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/03 14:57:41 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:40:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void parse_pnt_light(t_minirt *data, t_list **input_lst)
 	light->pnt_light.color.r = check_rgb(get_nth_content(*input_lst, 5)) / 255.0;
 	light->pnt_light.color.g = check_rgb(get_nth_content(*input_lst, 6)) / 255.0;
 	light->pnt_light.color.b = check_rgb(get_nth_content(*input_lst, 7)) / 255.0;
+	light->pnt_light.shadow = 0; //make bool?
 	if (!validate_light(&(light->pnt_light)))
 		return (pars_error(data, LIGHT_ERR));
 	light->pnt_light.light = mult_color_scalar(light->pnt_light.color, light->pnt_light.intensity);
