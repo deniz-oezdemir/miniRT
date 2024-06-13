@@ -78,10 +78,12 @@ void render_scene(t_minirt *data)
 
 	while (++y < data->world->camera->vsize)
 	{
+		++y; //dirty optimization
 		ft_printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
 		x = -1.0;
 		while (++x < data->world->camera->hsize)
 		{
+			++x; //dirty optimization
 			// printf("x = %f | y = %f \n", x, y);
 			ray = cast_ray(data->world->camera, x, y);
 			color = color_at(data, ray);
