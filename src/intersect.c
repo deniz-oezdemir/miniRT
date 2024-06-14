@@ -89,7 +89,7 @@ t_inter	hit(t_list *xs)
 	t_inter	min_inter;
 	t_inter	*inter;
 
-	min_inter = (t_inter){NULL, (double)INT_MAX}; //TODO: probably we don't need this, to be optimezed
+	min_inter = (t_inter){NULL, (double)INT_MAX}; //TODO: probably we don't need this, to be optimezed //initlaization to INT_MAX needed for is_shadow to work
 	while (xs != NULL)
 	{
 		inter = (t_inter *)xs->content;
@@ -113,7 +113,7 @@ void	intersections(t_minirt *data, t_ray ray)
 		shape = (t_shape *)shapes->content;
 		local_ray = transform_ray(ray, shape); // Try to implement optimization from scratchapixel
 		if (shape->name == SPHERE)
-			inter_sphere(data, shape, local_ray);				
+			inter_sphere(data, shape, local_ray);
 		else if (shape->name == PLANE)
 			inter_plane(data, shape, local_ray);
 		else if (shape->name == CYLINDER)

@@ -34,19 +34,10 @@ int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
 	ray = (t_ray){over_point, vec_norm(v)};
 	intersections(data, ray);
 	hit_inter = hit(data->xs);
-	if ((hit_inter.shape != NULL /*this does not work*/) && (hit_inter.inter < magnitude(v)))
-	{
-		//use flag, but anyways always a hit
-		printf("hit_inter.shape->name = %u\n", hit_inter.shape->name);
-		printf("hit_inter.inter = %f\n", hit_inter.inter);
-		ft_lstclear(&data->xs, free_inter);
+	ft_lstclear(&data->xs, free_inter);
+	if (hit_inter.inter < magnitude(v)) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
 		return (1);
-	}
-	else
-	{
-		ft_lstclear(&data->xs, free_inter);
-		return (0);
-	}
+	return (0);
 }
 
 t_color	shade_hit(t_minirt *data, t_world *world, t_comps comps)
@@ -67,7 +58,7 @@ t_color	shade_hit(t_minirt *data, t_world *world, t_comps comps)
 	while (lights != NULL)
 	{
 		light = &((t_light *)lights->content)->pnt_light;
-		//light->shadow = is_shadow(data, light->center, comps.over_point);
+		light->shadow = is_shadow(data, light->center, comps.over_point);
 		color = color_add(color, lighting(comps, ambient, light));
 		lights = lights->next;
 	}
@@ -83,12 +74,13 @@ t_color	color_at(t_minirt *data, t_ray ray)
 	color = (t_color){0.125, 0.125, 0.125}; // Background color
 	intersections(data, ray);
 	hit_inter = hit(data->xs);
+	ft_lstclear(&data->xs, free_inter); //free before needed for shadow to work
 	if (hit_inter.shape != NULL)
 	{
 		comps = prepare_computations(hit_inter, ray);
 		color = shade_hit(data, data->world, comps);
 	}
-	ft_lstclear(&data->xs, free_inter);
+	//ft_lstclear(&data->xs, free_inter); //free after not needed?
 	return (color);
 }
 
