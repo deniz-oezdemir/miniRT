@@ -36,6 +36,7 @@ int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
 	hit_inter = hit(data->xs);
 	if ((hit_inter.shape != NULL /*this does not work*/) && (hit_inter.inter < magnitude(v)))
 	{
+		//use flag, but anyways always a hit
 		printf("hit_inter.shape->name = %u\n", hit_inter.shape->name);
 		printf("hit_inter.inter = %f\n", hit_inter.inter);
 		ft_lstclear(&data->xs, free_inter);
@@ -66,7 +67,7 @@ t_color	shade_hit(t_minirt *data, t_world *world, t_comps comps)
 	while (lights != NULL)
 	{
 		light = &((t_light *)lights->content)->pnt_light;
-		light->shadow = is_shadow(data, light->center, comps.over_point);
+		//light->shadow = is_shadow(data, light->center, comps.over_point);
 		color = color_add(color, lighting(comps, ambient, light));
 		lights = lights->next;
 	}
