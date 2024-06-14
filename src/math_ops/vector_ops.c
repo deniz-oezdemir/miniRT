@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 10:46:45 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/20 10:13:16 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:37:34 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,30 @@
 
 t_vec3	vec_add(t_vec3 a, t_vec3 b)
 {
-	t_vec3 r;
-
-	r.x = a.x + b.x;
-	r.y = a.y + b.y;
-	r.z = a.z + b.z;
-	r.w = a.w + b.w;
-	return (r);
+	return ((t_vec3){
+		a.x + b.x,
+		a.y + b.y,
+		a.z + b.z,
+		a.w + b.w,
+	});
 }
 
 t_vec3	vec_neg(t_vec3 v)
 {
-	t_vec3 r;
-
-	r.x = v.x * -1;
-	r.y = v.y * -1;
-	r.z = v.z * -1;
-	r.w = v.w * -1;
-	return (r);
+	return ((t_vec3){
+		v.x * -1,
+		v.y * -1,
+		v.z * -1,
+		v.w * -1,
+	});
 }
 
 double	magnitude(t_vec3 v)
 {
-	double m;
-
-	m = sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2) + pow(v.w, 2));
-	return (m);
+	return (sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2) + pow(v.w, 2)));
 }
 
 double	vec_dot(t_vec3 a, t_vec3 b)
 {
-	double r;
-
-	r = a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
-	return (r);
+	return (a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
 }
