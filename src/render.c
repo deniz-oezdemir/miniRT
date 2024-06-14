@@ -33,9 +33,9 @@ int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
 	v = vec_sub(light_position, over_point);
 	ray = (t_ray){over_point, vec_norm(v)};
 	intersections(data, ray);
-	hit_inter = hit(data->xs);
-	ft_lstclear(&data->xs, free_inter);
-	if (hit_inter.inter < magnitude(v)) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
+	//hit_inter = hit(data->xs);
+	//ft_lstclear(&data->xs, free_inter);
+	if (data->min.inter < magnitude(v)) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
 		return (1);
 	return (0);
 }
@@ -58,7 +58,7 @@ t_color	shade_hit(t_minirt *data, t_world *world, t_comps comps)
 	while (lights != NULL)
 	{
 		light = &((t_light *)lights->content)->pnt_light;
-		//light->shadow = is_shadow(data, light->center, comps.over_point);
+		light->shadow = is_shadow(data, light->center, comps.over_point);
 		color = color_add(color, lighting(comps, ambient, light));
 		lights = lights->next;
 	}

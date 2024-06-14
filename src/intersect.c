@@ -89,11 +89,12 @@ bool	inter_plane(t_minirt *data, t_shape *shape, t_ray ray)
 	if (fabs(ray.dir.y) < EPSILON)
 		return (false);
 	t = -ray.origin.y / ray.dir.y; //only works for planes parallel to the xz plane
+	if (t < EPSILON)
+		return (false);
 	add_inter(data, shape, t);
 	//ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, t)));
 	return (true);
 }
-
 
 t_inter	hit(t_list *xs)
 {
