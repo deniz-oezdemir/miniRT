@@ -89,7 +89,7 @@ t_inter	hit(t_list *xs)
 	t_inter	min_inter;
 	t_inter	*inter;
 
-	min_inter = (t_inter){NULL, (double)INT_MAX}; //TODO: probably we don't need this, to be optimezed //initlaization to INT_MAX needed for is_shadow to work
+	min_inter = (t_inter){NULL, (double)DBL_MAX}; //TODO: probably we don't need this, to be optimezed //initlaization to INT_MAX needed for is_shadow to work
 	while (xs != NULL)
 	{
 		inter = (t_inter *)xs->content;

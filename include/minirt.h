@@ -13,6 +13,7 @@
 # include "errors.h"
 # include "math.h"
 # include "tuples.h"
+# include <float.h>
 
 # define WIN_NAME	"MiniRT"
 # define WIN_WIDTH	1000
