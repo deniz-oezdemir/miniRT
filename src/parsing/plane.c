@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/11 11:01:20 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:50:21 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static t_shape	*new_plane(t_minirt *data)
 	sh->inverse = identity_mtx(4);
 	sh->transpose = identity_mtx(4);
 	sh->material = default_material();
+	sh->sphere.color = (t_color){0.0, 0.0, 0.0};
 	return (sh);
 }
 
@@ -67,9 +68,9 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 	sh->plane.dir.x = check_vec3(get_nth_content(*input_lst, 4));
 	sh->plane.dir.y = check_vec3(get_nth_content(*input_lst, 5));
 	sh->plane.dir.z = check_vec3(get_nth_content(*input_lst, 6));
-	sh->plane.color.r = check_rgb(get_nth_content(*input_lst, 7));
-	sh->plane.color.g = check_rgb(get_nth_content(*input_lst, 8));
-	sh->plane.color.b = check_rgb(get_nth_content(*input_lst, 9));
+	sh->color.r = check_rgb(get_nth_content(*input_lst, 7)) / 255.0;
+	sh->color.g = check_rgb(get_nth_content(*input_lst, 8)) / 255.0;
+	sh->color.b = check_rgb(get_nth_content(*input_lst, 9)) / 255.0;
 	if (!validate_plane(&(sh->plane)))
 		return (pars_error(data, PLANE_ERR));
 	set_plane_transform(sh);

@@ -6,37 +6,35 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 16:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/11 10:49:12 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:49:19 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
 /* Calculates the rotation angles for a given vector. */
-static void	calculate_rotation_angles(t_vec3 vec, double *x, double *z)
+static t_mtx	calculate_rotation_matrix(double x_angle, double y_angle,
+	double z_angle)
 {
-	double	ratio;
+	t_mtx	rotate_x;
+	t_mtx	rotate_y;
+	t_mtx	rotate_z;
 
-	ratio = sqrt((vec.x * vec.x) + (vec.y * vec.y));
-	if (0.0 == ratio)
-		*z = M_PI_2;
-	else
-		*z = acos(vec.y / ratio);
-	*x = acos(ratio);
+	rotate_x = rot_x(x_angle);
+	rotate_y = rot_y(y_angle);
+	rotate_z = rot_z(z_angle);
+	return (mult_mtx_mtx(rotate_y, mult_mtx_mtx(rotate_x, rotate_z)));
 }
 
 t_mtx	rotation_mtx(t_vec3 vector)
 {
 	double	x_angle;
+	double	y_angle;
 	double	z_angle;
-	t_mtx	rotate_z;
-	t_mtx	rotate_x;
 	t_mtx	rotation_mtx;
 
-	calculate_rotation_angles(vector, &x_angle, &z_angle);
-	rotate_z = rot_z(z_angle);
-	rotate_x = rot_x(x_angle);
-	rotation_mtx = mult_mtx_mtx(rotate_z, rotate_x);
+	calculate_rotation_angles(vector, &x_angle, &y_angle, &z_angle);
+	rotation_mtx = calculate_rotation_matrix(x_angle, y_angle, z_angle);
 	return (rotation_mtx);
 }
 

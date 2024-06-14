@@ -5,56 +5,84 @@ t_inter	*init_inter(t_minirt *data, t_shape *shape, double inter)
 {
 	t_inter	*new_inter;
 
-	new_inter = (t_inter *)gc_get(data, 1, sizeof(t_inter)); //Maybe we dont need to store the nters in the gc if we use lstclear
-	if (!new_inter)
-	{ 
-		perror("Failed to allocate t_inter");
-		return (NULL); // Probably not needed when using the gc
-	}
+	//CHECK: Maybe we dont need to store the iters in the gc if we use lstclear
+	new_inter = (t_inter *)gc_get(data, 1, sizeof(t_inter));
 	new_inter->shape = shape;
 	new_inter->inter = inter;
 	return (new_inter);
 }
 
-t_discr	discriminant(t_sphere *sphere, t_ray ray)
+t_discr	sphere_discriminant(t_sphere *sphere, t_ray ray)
 {
-	t_discr	r;
+	t_discr	d;
 	t_vec3	sphere_to_ray;
 
 	sphere_to_ray = vec_sub(ray.origin, sphere->center);
-	r.a = vec_dot(ray.dir, ray.dir);
-	r.b = 2.0 * vec_dot(ray.dir, sphere_to_ray);
-	r.c = vec_dot(sphere_to_ray, sphere_to_ray) - 1;
-	r.discr = (r.b * r.b) - 4 * r.a * r.c;
-	if (r.discr < 0) //small optimization
-	{
-		r.t1 = 0;
-		r.t2 = 0;
-	}
-	else
-	{
-		r.t1 = (-r.b - sqrt(r.discr)) / (2 * r.a);
-		r.t2 = (-r.b + sqrt(r.discr)) / (2 * r.a);
-	}
-	return (r);
+	d.a = vec_dot(ray.dir, ray.dir);
+	d.b = 2.0 * vec_dot(ray.dir, sphere_to_ray);
+	d.c = vec_dot(sphere_to_ray, sphere_to_ray) - 1;
+	d.discr = (d.b * d.b) - 4 * d.a * d.c;
+	d.t1 = (-d.b - sqrt(d.discr)) / (2 * d.a);
+	d.t2 = (-d.b + sqrt(d.discr)) / (2 * d.a);
+	return (d);
+}
+
+t_discr	cylinder_discriminant(t_ray ray)
+{
+	t_discr	d;
+
+	d.a = pow(ray.dir.x, 2) + pow(ray.dir.z, 2);
+	d.b = (2.0 * ray.origin.x * ray.dir.x) + (2.0 * ray.origin.z * ray.dir.z);
+	d.c = pow(ray.origin.x, 2) + pow(ray.origin.z, 2) - 1.0;
+	d.discr = pow(d.b, 2) - 4.0 * d.a * d.c;
+	d.t1 = (-d.b - sqrt(d.discr)) / (2 * d.a);
+	d.t2 = (-d.b + sqrt(d.discr)) / (2 * d.a);
+	return (d);
 }
 
 bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray)
 {
 	t_discr	d;
 
-	d = discriminant(&shape->sphere, ray);
-	if (d.discr < 0) //no valid intersections
+	d = sphere_discriminant(&shape->sphere, ray);
+	if (d.discr < 0)
 		return (false);
-	else if (d.discr == 0) //tangent: both intersections are equal
-		ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t1)));
-	else
-	{
-		ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t1)));
-		ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t2)));
-	}
+	ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t1)));
+	ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t2)));
 	return (true);
 }
+
+bool	inter_cylinder(t_minirt *data, t_shape *shape, t_ray ray)
+{
+	t_discr	d;
+	double	y0;
+	double	y1;
+
+	d = cylinder_discriminant(ray);
+	if (fabs(d.a) < EPSILON || d.discr < 0.0)
+		return (false);
+	if (d.t1 > d.t2)
+		swap(&d.t1, &d.t2);
+	y0 = ray.origin.y + d.t1 * ray.dir.y;
+	y1 = ray.origin.y + d.t2 * ray.dir.y;
+	if (shape->cylinder.minimum < y0 && y0 < shape->cylinder.maximum)
+		ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t1)));
+	if (shape->cylinder.minimum < y1 && y1 < shape->cylinder.maximum)
+		ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t2)));
+	return (true);
+}
+
+bool	inter_plane(t_minirt *data, t_shape *shape, t_ray ray)
+{
+	double	t;
+
+	if (fabs(ray.dir.y) < EPSILON)
+		return (false);
+	t = -ray.origin.y / ray.dir.y; //only works for planes parallel to the xz plane
+	ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, t)));
+	return (true);
+}
+
 
 t_inter	hit(t_list *xs)
 {
@@ -75,22 +103,21 @@ t_inter	hit(t_list *xs)
 /* wrapper function for different shapes intersection: takes minirt struct as input*/
 void	intersections(t_minirt *data, t_ray ray)
 {
-	t_list	*shapes; //objects might become world
+	t_list	*shapes;
 	t_shape	*shape;
-	t_ray	trans_ray;
+	t_ray	local_ray;
 
 	shapes = data->world->objects;
 	while (shapes != NULL)
 	{
 		shape = (t_shape *)shapes->content;
+		local_ray = transform_ray(ray, shape); // Try to implement optimization from scratchapixel
 		if (shape->name == SPHERE)
-		{
-			t_vec3	origin = mult_pnt_mtx(ray.origin, shape->inverse);
-			t_vec3	direction = mult_pnt_mtx(ray.dir, shape->inverse);
-			trans_ray = (t_ray){origin, 
-								direction};
-			inter_sphere(data, shape, trans_ray);				
-		}
+			inter_sphere(data, shape, local_ray);				
+		else if (shape->name == PLANE)
+			inter_plane(data, shape, local_ray);
+		else if (shape->name == CYLINDER)
+			inter_cylinder(data, shape, local_ray);
 		shapes = shapes->next;
 	}
 }

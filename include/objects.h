@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/10 14:17:17 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:44:31 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_pntlight
 	double intensity;
 	t_color color;
 	t_color light; // color * intensity - maybe get rid of intensity and color if not needed
+	int	shadow;
 } t_pntlight;
 
 typedef struct s_sphere
@@ -71,6 +72,8 @@ typedef struct s_cylinder
 	t_vec3 dir;
 	double diameter;
 	double height;
+	double minimum;
+	double maximum;
 	t_color color;
 } t_cylinder;
 
