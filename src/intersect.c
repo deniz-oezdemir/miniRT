@@ -40,6 +40,12 @@ t_discr	cylinder_discriminant(t_ray ray)
 	return (d);
 }
 
+static void	add_inter(t_minirt *data, t_shape *shape, double t)
+{
+	if(t < data->min.inter)
+		data->min = (t_inter){shape, t};
+}
+
 bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray)
 {
 	t_discr	d;
@@ -47,8 +53,10 @@ bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray)
 	d = sphere_discriminant(&shape->sphere, ray);
 	if (d.discr < 0)
 		return (false);
-	ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t1)));
-	ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t2)));
+	add_inter(data, shape, d.t1);
+	add_inter(data, shape, d.t2);
+	//ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t1)));
+	//ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t2)));
 	return (true);
 }
 
@@ -66,9 +74,11 @@ bool	inter_cylinder(t_minirt *data, t_shape *shape, t_ray ray)
 	y0 = ray.origin.y + d.t1 * ray.dir.y;
 	y1 = ray.origin.y + d.t2 * ray.dir.y;
 	if (shape->cylinder.minimum < y0 && y0 < shape->cylinder.maximum)
-		ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t1)));
+		add_inter(data, shape, d.t1);
+		//ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t1)));
 	if (shape->cylinder.minimum < y1 && y1 < shape->cylinder.maximum)
-		ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t2)));
+		add_inter(data, shape, d.t2);
+		//ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t2)));
 	return (true);
 }
 
@@ -79,7 +89,8 @@ bool	inter_plane(t_minirt *data, t_shape *shape, t_ray ray)
 	if (fabs(ray.dir.y) < EPSILON)
 		return (false);
 	t = -ray.origin.y / ray.dir.y; //only works for planes parallel to the xz plane
-	ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, t)));
+	add_inter(data, shape, t);
+	//ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, t)));
 	return (true);
 }
 
@@ -108,6 +119,7 @@ void	intersections(t_minirt *data, t_ray ray)
 	t_ray	local_ray;
 
 	shapes = data->world->objects;
+	data->min = (t_inter){NULL, (double)DBL_MAX};
 	while (shapes != NULL)
 	{
 		shape = (t_shape *)shapes->content;

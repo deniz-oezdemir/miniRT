@@ -54,6 +54,12 @@ typedef struct s_world
 	int		light_nbr;
 }	t_world;
 
+typedef struct s_inter
+{
+	t_shape	*shape;
+	double	inter;
+}	t_inter;
+
 typedef struct s_minirt
 {
 	int			fd;
@@ -65,14 +71,9 @@ typedef struct s_minirt
 	void		*mlx_win;
 	t_img		*mlx_img;
 	t_list		*xs;
+	t_inter		min;
 	// t_scene	*scene;
 }	t_minirt;
-
-typedef struct s_inter
-{
-	t_shape	*shape;
-	double	inter;
-}	t_inter;
 
 typedef struct s_ray
 {

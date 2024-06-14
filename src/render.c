@@ -58,7 +58,7 @@ t_color	shade_hit(t_minirt *data, t_world *world, t_comps comps)
 	while (lights != NULL)
 	{
 		light = &((t_light *)lights->content)->pnt_light;
-		light->shadow = is_shadow(data, light->center, comps.over_point);
+		//light->shadow = is_shadow(data, light->center, comps.over_point);
 		color = color_add(color, lighting(comps, ambient, light));
 		lights = lights->next;
 	}
@@ -73,8 +73,8 @@ t_color	color_at(t_minirt *data, t_ray ray)
 
 	color = (t_color){0.125, 0.125, 0.125}; // Background color
 	intersections(data, ray);
-	hit_inter = hit(data->xs);
-	ft_lstclear(&data->xs, free_inter); //free before needed for shadow to work
+	hit_inter = data->min; //hit(data->xs);
+	//ft_lstclear(&data->xs, free_inter); //free before needed for shadow to work
 	if (hit_inter.shape != NULL)
 	{
 		comps = prepare_computations(hit_inter, ray);
@@ -98,12 +98,12 @@ void render_scene(t_minirt *data)
 
 	while (++y < data->world->camera->vsize)
 	{
-		++y; //dirty optimization
+		//++y; //dirty optimization
 		ft_printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
 		x = -1.0;
 		while (++x < data->world->camera->hsize)
 		{
-			++x; //dirty optimization
+			//++x; //dirty optimization
 			// printf("x = %f | y = %f \n", x, y);
 			ray = cast_ray(data->world->camera, x, y);
 			color = color_at(data, ray);
