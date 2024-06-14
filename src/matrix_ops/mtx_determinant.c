@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mtx_determinant.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:31:11 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/23 15:31:56 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:48:53 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	determinant_2x2(t_mtx m)
 
 /* Extrapolate the sub-matrix of a generic matrix by */
 /* deleting the x_row and x_col from the given matrix. */
-t_mtx	sub_mtx(t_mtx m, int x_row, int x_col)
+t_mtx	sub_mtx(t_minirt *data, t_mtx m, int x_row, int x_col)
 {
 	double	r[m.dim - 1][m.dim - 1];
 	int		row;
@@ -51,28 +51,28 @@ t_mtx	sub_mtx(t_mtx m, int x_row, int x_col)
 		}
 		new_row++;
 	}
-	return(create_mtx((const double *)r, m.dim - 1));
+	return(create_mtx(data, (const double *)r, (m.dim - 1)));
 }
 
 /* Calculate the determinant of the given submatrix. */
-double	mtx_minor(t_mtx m, int x_row, int x_col)
+double	mtx_minor(t_minirt *data, t_mtx m, int x_row, int x_col)
 {
 	t_mtx	sub ;
 	double	det;
 
-	sub = sub_mtx(m, x_row, x_col);
-	det = mtx_determinant(sub);
+	sub = sub_mtx(data, m, x_row, x_col);
+	det = mtx_determinant(data, sub);
 	return (det);
 }
 
 /* Calculate the cofactor of a matrix. The cofactor of this */
 /* function is equal to the determinant of a the sub-matrix */
 /* obtained by deleting the x_row and x_col from the given matrix */
-double	mtx_cofactor(t_mtx m, int row, int col)
+double	mtx_cofactor(t_minirt *data, t_mtx m, int row, int col)
 {
 	double	cofactor;
 
-	cofactor = mtx_minor(m, row, col);
+	cofactor = mtx_minor(data, m, row, col);
 	if ((row + col) % 2 != 0)
 		cofactor *= -1;
 	return (cofactor);
@@ -80,7 +80,7 @@ double	mtx_cofactor(t_mtx m, int row, int col)
 
 /* Calculate the determinat of the matrix recursively with the */
 /* cofactors expansion method. */
-double	mtx_determinant(t_mtx m)
+double	mtx_determinant(t_minirt *data, t_mtx m)
 {
 	int		col;
 	double	det;
@@ -90,6 +90,6 @@ double	mtx_determinant(t_mtx m)
 	det = 0;
 	col = -1;
 	while (++col < m.dim)
-		det+= mtx_cofactor(m, 0, col) * m.mtx[0][col];
+		det+= mtx_cofactor(data, m, 0, col) * m.mtx[0][col];
 	return (det);
 }

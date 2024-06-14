@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:46:53 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 10:49:52 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:39:33 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static t_shape	*new_cylinder(t_minirt *data)
 	sh->cylinder.dir.w = 0;
 	sh->cylinder.minimum = -INFINITY;
 	sh->cylinder.maximum = INFINITY;
-	sh->transform = identity_mtx(4);
-	sh->inverse = identity_mtx(4);
-	sh->transpose = identity_mtx(4);
+	sh->transform = identity_mtx(data, 4);
+	sh->inverse = identity_mtx(data, 4);
+	sh->transpose = identity_mtx(data, 4);
 	sh->material = default_material();
 	return (sh);
 }
 
-static void	set_cylinder_transform(t_shape *sh)
+static void	set_cylinder_transform(t_minirt *data, t_shape *sh)
 {
 	t_mtx	scale;
 	t_mtx	rotate;
@@ -56,12 +56,12 @@ static void	set_cylinder_transform(t_shape *sh)
 	double	radius;
 
 	radius = sh->cylinder.diameter / 2;
-	translate = translation_mtx(sh->cylinder.center.x,
+	translate = translation_mtx(data, sh->cylinder.center.x,
 		sh->cylinder.center.y,
 		sh->cylinder.center.z);
-	scale = scaling(radius, radius, radius);
-	rotate = rotation_mtx(sh->cylinder.dir);
-	set_transform(sh, mult_mtx_mtx(translate, mult_mtx_mtx(rotate, scale)));
+	scale = scaling(data, radius, radius, radius);
+	rotate = rotation_mtx(data, sh->cylinder.dir);
+	set_transform(data, sh, mult_mtx_mtx(data, translate, mult_mtx_mtx(data, rotate, scale)));
 }
 
 void	parse_cylinder(t_minirt *data, t_list **input_lst)
@@ -84,7 +84,7 @@ void	parse_cylinder(t_minirt *data, t_list **input_lst)
 	sh->color.b = check_rgb(get_nth_content(*input_lst, 11)) / 255.0;
 	if (!validate_cylinder(&(sh->cylinder)))
 		return (pars_error(data, CYLINDER_ERR));
-	set_cylinder_transform(sh);
+	set_cylinder_transform(data, sh);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	move_to_nth_node(input_lst, 11);
 	printf("Cylinder OK\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/11 11:12:56 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:14:04 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ static t_camera	*new_camera(t_minirt *data)
 	camera->name = CAMERA;
 	camera->center.w = 1;
 	camera->dir.w = 0;
-	camera->transform = identity_mtx(4);
-	camera->inverse = invert_mtx(camera->transform);
+	camera->transform = identity_mtx(data, 4);
+	camera->inverse = invert_mtx(data, camera->transform);
 	return (camera);
 }
 
-static void	set_camera_transform(t_camera *camera)
+static void	set_camera_transform(t_minirt *data, t_camera *camera)
 {
-	camera->transform = transform_view(camera->center,
+	camera->transform = transform_view(data, camera->center,
 		point(0, 1, 0), camera->dir);
-	camera->inverse = invert_mtx(camera->transform);
+	camera->inverse = invert_mtx(data, camera->transform);
 }
 
 void	parse_camera(t_minirt *data, t_list **input_lst)
@@ -61,7 +61,7 @@ void	parse_camera(t_minirt *data, t_list **input_lst)
 	camera->fov = check_fov(get_nth_content(*input_lst, 7));
 	if (!validate_camera(camera))
 		return (pars_error(data, CAMERA_ERR));
-	set_camera_transform(camera);
+	set_camera_transform(data, camera);
 	init_camera_view(camera);
 	data->world->camera = camera;
 	move_to_nth_node(input_lst, 7);

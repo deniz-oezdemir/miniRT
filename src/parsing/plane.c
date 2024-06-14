@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 10:50:21 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:19:57 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,24 @@ static t_shape	*new_plane(t_minirt *data)
 	sh->name = PLANE;
 	sh->plane.center.w = 1;
 	sh->plane.dir.w = 0;
-	sh->transform = identity_mtx(4);
-	sh->inverse = identity_mtx(4);
-	sh->transpose = identity_mtx(4);
+	sh->transform = identity_mtx(data, 4);
+	sh->inverse = identity_mtx(data, 4);
+	sh->transpose = identity_mtx(data, 4);
 	sh->material = default_material();
 	sh->sphere.color = (t_color){0.0, 0.0, 0.0};
 	return (sh);
 }
 
-static void	set_plane_transform(t_shape *sh)
+static void	set_plane_transform(t_minirt *data, t_shape *sh)
 {
 	t_mtx	rotate;
 	t_mtx	translate;
 
-	translate = translation_mtx(sh->plane.center.x,
+	translate = translation_mtx(data, sh->plane.center.x,
 		sh->plane.center.y,
 		sh->plane.center.z);
-	rotate = rotation_mtx(sh->plane.dir);
-	set_transform(sh, mult_mtx_mtx(translate, rotate));
+	rotate = rotation_mtx(data, sh->plane.dir);
+	set_transform(data, sh, mult_mtx_mtx(data, translate, rotate));
 }
 
 void	parse_plane(t_minirt *data, t_list **input_lst)
@@ -73,7 +73,7 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 	sh->color.b = check_rgb(get_nth_content(*input_lst, 9)) / 255.0;
 	if (!validate_plane(&(sh->plane)))
 		return (pars_error(data, PLANE_ERR));
-	set_plane_transform(sh);
+	set_plane_transform(data, sh);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	move_to_nth_node(input_lst, 9);
 	printf("Plane OK\n");

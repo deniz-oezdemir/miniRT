@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
+#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/29 08:39:19 by tiacovel         ###   ########.fr        #
+#    Updated: 2024/06/14 16:22:01 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ TEST_EXECUTABLE = test_minirt
 OS := $(shell uname)
 
 # Compilation options
-CC = cc
+CC = cc #change back to cc
 CFLAGS = -g -O0 ##-Wall -Wextra -Werror
 
 # Libft library
