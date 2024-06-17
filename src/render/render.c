@@ -14,12 +14,11 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 	comps.eyev = vec_neg(ray.dir);
 	comps.normalv = normal_at(inter.shape, comps.point);
 	comps.inside = false;
-	//test camera inside sphere with outcommented code below
-	/*if (vec_dot(comps.normalv, comps.eyev) < 0)
+	if (vec_dot(comps.normalv, comps.eyev) < 0)
 	{
 		comps.inside = true;
 		comps.normalv = vec_neg(comps.normalv);
-	}*/
+	}
 	comps.over_point = vec_add(comps.point, vec_mul(EPSILON, comps.normalv));
 	return (comps);
 }
@@ -36,8 +35,7 @@ int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
 	intersections(data, ray);
 	//hit_inter = hit(data->xs);
 	//ft_lstclear(&data->xs, free_inter);
-	//printf("min.inter: %f\n", data->min.inter);
-	if (data->min.inter < magnitude(v) && data->min.inter > EPSILON) // check why this EPSILON fix works (was just intuition) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
+	if (data->min.inter < magnitude(v) && data->min.inter > -EPSILON) // check why this EPSILON fix works (was just intuition) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
 		return (1);
 	return (0);
 }
@@ -106,7 +104,7 @@ void render_scene(t_minirt *data)
 		while (++x < data->world->camera->hsize)
 		{
 			//++x; //dirty optimization
-			// printf("x = %f | y = %f \n", x, y);
+			//printf("x = %f | y = %f \n", x, y);
 			ray = cast_ray(data->world->camera, x, y);
 			color = color_at(data, ray);
 			color_pixel(data, x, y, rgb(color));

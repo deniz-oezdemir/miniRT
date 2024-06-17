@@ -26,7 +26,6 @@ t_discr	sphere_discriminant(t_sphere *sphere, t_ray ray)
 	d.t2 = (-d.b + sqrt(d.discr)) / (2 * d.a);
 	return (d);
 }
-
 t_discr	cylinder_discriminant(t_ray ray)
 {
 	t_discr	d;
@@ -42,7 +41,7 @@ t_discr	cylinder_discriminant(t_ray ray)
 
 static void	add_inter(t_minirt *data, t_shape *shape, double t)
 {
-	if(t < data->min.inter)
+	if(t < data->min.inter && t > 0)
 		data->min = (t_inter){shape, t};
 }
 
