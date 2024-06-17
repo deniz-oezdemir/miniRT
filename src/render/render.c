@@ -1,4 +1,4 @@
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 t_comps	prepare_computations(t_inter inter, t_ray ray)
 {
@@ -14,11 +14,12 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 	comps.eyev = vec_neg(ray.dir);
 	comps.normalv = normal_at(inter.shape, comps.point);
 	comps.inside = false;
-	if (vec_dot(comps.normalv, comps.eyev) < 0)
+	//test camera inside sphere with outcommented code below
+	/*if (vec_dot(comps.normalv, comps.eyev) < 0)
 	{
 		comps.inside = true;
 		comps.normalv = vec_neg(comps.normalv);
-	}
+	}*/
 	comps.over_point = vec_add(comps.point, vec_mul(EPSILON, comps.normalv));
 	return (comps);
 }

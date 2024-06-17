@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_ops2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 10:57:19 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/20 11:31:23 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:26:36 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vec3	vec_sub(t_vec3 a, t_vec3 b)
 	r.x = a.x - b.x;
 	r.y = a.y - b.y;
 	r.z = a.z - b.z;
-	r.w = a.w - b.w;	// TODO: check this
+	r.w = a.w - b.w;
 	return (r);
 }
 
@@ -65,6 +65,6 @@ t_vec3	vec_cross(t_vec3 a, t_vec3 b)
 	r.x = a.y * b.z - a.z * b.y;
 	r.y = a.z * b.x - a.x * b.z;
 	r.z = a.x * b.y - a.y * b.x;
-	r.w = a.w;	// TODO: check this
+	r.w = a.w;
 	return (r);
 }

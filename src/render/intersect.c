@@ -1,4 +1,4 @@
-# include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 /* Initialize an intersection struct and allocate it in the memory */
 t_inter	*init_inter(t_minirt *data, t_shape *shape, double inter)

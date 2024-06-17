@@ -6,12 +6,12 @@
 #    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/06/14 16:22:01 by denizozd         ###   ########.fr        #
+#    Updated: 2024/06/17 11:38:19 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Main executable
-NAME = minirt
+NAME = miniRT
 # Test executable
 TEST_EXECUTABLE = test_minirt
 # Get the operative system name

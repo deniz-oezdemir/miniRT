@@ -1,4 +1,4 @@
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
 t_vec3	normal_at_sphere(t_shape *shape, t_vec3 world_point)
 {
