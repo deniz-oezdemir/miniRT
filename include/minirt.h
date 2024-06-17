@@ -166,7 +166,7 @@ int		rgb(t_color color);
 void	set_transform(t_minirt *data, t_shape *shape, t_mtx transform);
 t_vec3	point(double x, double y, double z);
 t_vec3	vector(double x, double y, double z);
-void	calculate_rotation_angles(t_vec3 vec, double *x, double *y, double *z);
+void	calculate_rotation_angles(t_vec3 vec, double *x, double *z);
 
 /* Garbage collector */
 void	*gc_get(t_minirt *data, size_t nmemb, size_t size);

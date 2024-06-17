@@ -13,7 +13,7 @@ t_vec3	normal_at_sphere(t_shape *shape, t_vec3 world_point)
 t_vec3	normal_at_plane(t_shape *shape, t_vec3 world_point)
 {
 	(void) world_point;
-	return (shape->plane.dir); // Check if we need to normalize
+	return (vector(0,1,0)); // Check if we need to normalize
 }
 
 t_vec3	normal_at_cylinder(t_shape *shape, t_vec3 world_point)

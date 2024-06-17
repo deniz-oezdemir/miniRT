@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 12:58:44 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/17 16:40:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:17:35 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_vec3 vector(double x, double y, double z)
 }
 
 /* Calculates the rotation angles for a given direction vector. */
-void	calculate_rotation_angles(t_vec3 vec, double *x, double *y, double *z)
+void	calculate_rotation_angles(t_vec3 vec, double *x, double *z)
 {
 	double	ratio;
 
