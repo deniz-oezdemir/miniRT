@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 12:58:44 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 10:51:07 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:40:35 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	calculate_rotation_angles(t_vec3 vec, double *x, double *y, double *z)
 	else
 		*z = acos(vec.y / ratio);
 	*x = acos(ratio);
-	*y = atan2(vec.x, vec.z);
+	// *y = atan2(vec.x, vec.z);
 }
 
 void	swap(double *nbr1, double *nbr2)

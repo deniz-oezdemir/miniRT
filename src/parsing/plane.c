@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/17 12:06:43 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:00:49 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 	set_plane_transform(data, sh);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	move_to_nth_node(input_lst, 9);
+	sh->plane.center = point(0, 0, 0);
 	printf("Plane OK\n");
 }
