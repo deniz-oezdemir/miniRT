@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 16:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/14 16:02:59 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:41:36 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static t_mtx	calculate_rotation_matrix(t_minirt *data, double x_angle, double y_
 	t_mtx	rotate_z;
 
 	rotate_x = rot_x(data, x_angle);
-	rotate_y = rot_y(data, y_angle);
+	//rotate_y = rot_y(data, y_angle);
 	rotate_z = rot_z(data, z_angle);
-	return (mult_mtx_mtx(data, rotate_y, mult_mtx_mtx(data, rotate_x, rotate_z)));
+	return ( mult_mtx_mtx(data, rotate_x, rotate_z));
 }
 
 t_mtx	rotation_mtx(t_minirt *data, t_vec3 vector)

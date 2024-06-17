@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:46:53 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 16:39:33 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:14:08 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	set_cylinder_transform(t_minirt *data, t_shape *sh)
 	translate = translation_mtx(data, sh->cylinder.center.x,
 		sh->cylinder.center.y,
 		sh->cylinder.center.z);
-	scale = scaling(data, radius, radius, radius);
+	scale = scaling(data, radius, 1, radius);
 	rotate = rotation_mtx(data, sh->cylinder.dir);
 	set_transform(data, sh, mult_mtx_mtx(data, translate, mult_mtx_mtx(data, rotate, scale)));
 }
@@ -87,5 +87,6 @@ void	parse_cylinder(t_minirt *data, t_list **input_lst)
 	set_cylinder_transform(data, sh);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	move_to_nth_node(input_lst, 11);
+	sh->cylinder.center = point(0, 0, 0);
 	printf("Cylinder OK\n");
 }

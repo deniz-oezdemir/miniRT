@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:35 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 16:20:09 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:06:05 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void parse_sphere(t_minirt *data, t_list **input_lst)
 	set_sphere_transform(data, sh);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	move_to_nth_node(input_lst, 7);
+	sh->sphere.center = point(0, 0, 0);
 	printf("Sphere OK\n");
 }
