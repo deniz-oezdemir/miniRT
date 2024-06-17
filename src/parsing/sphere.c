@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:35 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/17 16:06:05 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:12:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ static t_shape	*new_sphere(t_minirt *data)
 static void	set_sphere_transform(t_minirt *data, t_shape *sh)
 {
 	t_mtx	scale;
-	t_mtx	transform;
+	t_mtx	translate;
 	double	radius;
 
 	radius = sh->sphere.diameter / 2;
 	scale = scaling(data, radius, radius, radius);
-	transform = translation_mtx(data, sh->sphere.center.x,
+	translate = translation_mtx(data, sh->sphere.center.x,
 		sh->sphere.center.y,
 		sh->sphere.center.z);
-	set_transform(data, sh, mult_mtx_mtx(data, transform, scale));
+	set_transform(data, sh, mult_mtx_mtx(data, translate, scale));
 }
 
 void parse_sphere(t_minirt *data, t_list **input_lst)
