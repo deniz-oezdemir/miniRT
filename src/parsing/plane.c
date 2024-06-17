@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 16:19:57 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/17 12:06:43 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	validate_plane(t_plane *plane)
 static t_shape	*new_plane(t_minirt *data)
 {
 	t_shape	*sh;
-
+	//
 	sh = gc_get(data, 1, sizeof(t_shape));
 	if (!sh)
 		printf("Error: allocation failed\n");
