@@ -139,6 +139,7 @@ void	parse_pnt_light(t_minirt *data, t_list **list);
 void	parse_sphere(t_minirt *data, t_list **list);
 void	parse_plane(t_minirt *data, t_list **list);
 void	parse_cylinder(t_minirt *data, t_list **list);
+void	parse_cone(t_minirt *data, t_list **input_list);
 
 /* Input validation */
 bool	is_digits(char *s);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/11 09:48:12 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:07:28 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static void scene_list_to_structs_list(t_minirt *data, t_list **list)
 		parse_plane(data, list);
 	else if (!ft_strncmp((*list)->content, "cy", 2))
 		parse_cylinder(data, list);
+	else if (!ft_strncmp((*list)->content, "cn", 2))
+		parse_cone(data, list);
 }
 
 void parse(t_minirt *data, char *file_name)

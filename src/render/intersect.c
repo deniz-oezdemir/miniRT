@@ -39,6 +39,20 @@ t_discr	cylinder_discriminant(t_ray ray)
 	return (d);
 }
 
+t_discr cone_discriminant(t_ray ray)
+{
+	t_discr	d;
+
+	d.a = pow(ray.dir.x, 2) - pow(ray.dir.y, 2) + pow(ray.dir.z, 2);
+	d.b = (2.0 * ray.origin.x * ray.dir.x) - (2.0 * ray.origin.y * ray.dir.y) + (2.0 * ray.origin.z * ray.dir.z);
+	d.c = pow(ray.origin.x, 2) - pow(ray.origin.y, 2) + pow(ray.origin.z, 2);
+	d.discr = pow(d.b, 2) - 4.0 * d.a * d.c;
+	d.t1 = (-d.b - sqrt(d.discr)) / (2 * d.a);
+	d.t2 = (-d.b + sqrt(d.discr)) / (2 * d.a);
+	return (d);
+}
+
+
 static void	add_inter(t_minirt *data, t_shape *shape, double t)
 {
 	if(t < data->min.inter && t > 0)
@@ -78,6 +92,33 @@ bool	inter_cylinder(t_minirt *data, t_shape *shape, t_ray ray)
 	if (shape->cylinder.minimum < y1 && y1 < shape->cylinder.maximum)
 		add_inter(data, shape, d.t2);
 		//ft_lstadd_back(&data->xs, ft_lstnew(init_inter(data, shape, d.t2)));
+	return (true);
+}
+
+bool	inter_cone(t_minirt *data, t_shape *shape, t_ray ray)
+{
+	t_discr	d;
+	double	y0;
+	double	y1;
+
+	d = cone_discriminant(ray);
+	if (fabs(d.a) < EPSILON)
+	{
+		if (fabs(d.b) < EPSILON)
+			return (false);
+		add_inter(data, shape, -d.c / (2 * d.b));
+		return (true);
+	}
+	if (d.discr < 0.0)
+		return (false);
+	if (d.t1 > d.t2)
+		swap(&d.t1, &d.t2);
+	y0 = ray.origin.y + d.t1 * ray.dir.y;
+	y1 = ray.origin.y + d.t2 * ray.dir.y;
+	if (shape->cone.minimum < y0 && y0 < shape->cone.maximum)
+		add_inter(data, shape, d.t1);
+	if (shape->cone.minimum < y1 && y1 < shape->cone.maximum)
+		add_inter(data, shape, d.t2);
 	return (true);
 }
 
@@ -130,6 +171,8 @@ void	intersections(t_minirt *data, t_ray ray)
 			inter_plane(data, shape, local_ray);
 		else if (shape->name == CYLINDER)
 			inter_cylinder(data, shape, local_ray);
+		else if (shape->name == CONE)
+			inter_cone(data, shape, local_ray);
 		shapes = shapes->next;
 	}
 }
