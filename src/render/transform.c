@@ -4,10 +4,10 @@ static t_mtx	orientation_mtx(t_minirt *data, t_vec3 left, t_vec3 true_up,
 	t_vec3 forward)
 {
 	double	m[] = {
-	left.x, left.y, left.z, 0,
-	true_up.x, true_up.y, true_up.z, 0,
-	-forward.x, -forward.y, -forward.z, 0,
-	0, 0, 0, 1};
+		left.x, left.y, left.z, 0,
+		true_up.x, true_up.y, true_up.z, 0,
+		-forward.x, -forward.y, -forward.z, 0,
+		0, 0, 0, 1};
 	return (create_mtx(data, (const double *)m, 4));
 }
 

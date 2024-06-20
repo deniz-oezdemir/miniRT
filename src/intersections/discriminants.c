@@ -14,6 +14,7 @@ t_discr	sphere_discriminant(t_sphere *sphere, t_ray ray)
 	d.t2 = (-d.b + sqrt(d.discr)) / (2 * d.a);
 	return (d);
 }
+
 t_discr	cylinder_discriminant(t_ray ray)
 {
 	t_discr	d;

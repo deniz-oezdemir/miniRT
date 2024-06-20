@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   point_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:08 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/13 17:40:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:25:38 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 static bool validate_light(t_pntlight *light)
 {
-	if ((light->intensity < 0) || light->center.x < INT_MIN || light->center.y < INT_MIN || light->center.z < INT_MIN || (light->color.r < 0) || (light->color.g < 0) || (light->color.b < 0))
+	if ((light->intensity < 0)
+		|| light->center.x < INT_MIN
+		|| light->center.y < INT_MIN
+		|| light->center.z < INT_MIN
+		|| (light->color.r < 0)
+		|| (light->color.g < 0)
+		|| (light->color.b < 0))
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/20 18:02:42 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:37:55 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_mtx	mult_mtx_mtx(t_minirt *data, t_mtx a, t_mtx b)
 {
 	double	r[MTX_DIM][MTX_DIM];
-	int	row;
-	int	col;
+	int		row;
+	int		col;
 
 	ft_bzero(r, sizeof(double) * MTX_SIZE);
 	row = 0;
@@ -38,8 +38,8 @@ t_mtx	mult_mtx_mtx(t_minirt *data, t_mtx a, t_mtx b)
 
 t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m)
 {
-	double r[MTX_DIM];
-	int	row;
+	double	r[MTX_DIM];
+	int		row;
 
 	row = 0;
 	while (row < MTX_DIM)
@@ -56,15 +56,15 @@ t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m)
 t_mtx	transp_mtx(t_minirt *data, t_mtx m)
 {
 	double	r[MTX_DIM][MTX_DIM];
-	int	row;
-	int	col;
+	int		row;
+	int		col;
 
 	ft_bzero(r, sizeof(double) * MTX_SIZE);
 	row = 0;
-	while(row < m.dim)
+	while (row < m.dim)
 	{
 		col = 0;
-		while(col < m.dim)
+		while (col < m.dim)
 		{
 			r[col][row] = m.mtx[row][col];
 			col++;

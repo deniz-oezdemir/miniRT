@@ -4,10 +4,6 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 {
 	t_comps	comps;
 
-	int test;
-	if (inter.shape->name == PLANE)
-		test = 10;
-
 	comps.t = inter.inter;
 	comps.shape = inter.shape;
 	comps.point = position(ray, inter.inter);
