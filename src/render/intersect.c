@@ -55,7 +55,7 @@ t_discr cone_discriminant(t_ray ray)
 
 static void	add_inter(t_minirt *data, t_shape *shape, double t)
 {
-	if(t < data->min.inter && t > 0)
+	if(t < data->min.inter && t > EPSILON)
 		data->min = (t_inter){shape, t};
 }
 

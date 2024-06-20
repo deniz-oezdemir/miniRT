@@ -35,8 +35,12 @@ int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
 	intersections(data, ray);
 	//hit_inter = hit(data->xs);
 	//ft_lstclear(&data->xs, free_inter);
-	if (data->min.inter < magnitude(v) && data->min.inter > -EPSILON) // check why this EPSILON fix works (was just intuition) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
+	if (data->min.inter < (magnitude(v) - EPSILON) && data->min.inter > -EPSILON) // check why this EPSILON fix works (was just intuition) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
+	{
+		//printf("min.inter = %f\n", data->min.inter);
+		//printf("magnitude(v) = %f\n", magnitude(v));
 		return (1);
+	}
 	return (0);
 }
 
