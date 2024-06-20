@@ -1,6 +1,7 @@
 #include "../../include/minirt.h"
 
-static t_mtx	orientation_mtx(t_minirt *data, t_vec3 left, t_vec3 true_up, t_vec3 forward)
+static t_mtx	orientation_mtx(t_minirt *data, t_vec3 left, t_vec3 true_up,
+	t_vec3 forward)
 {
 	double	m[] = {
 	left.x, left.y, left.z, 0,

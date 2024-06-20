@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:50:07 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 16:39:14 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:44:56 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ static double	**allocate_matrix(t_minirt *data, size_t dim)
 	double	**matrix;
 	int		i;
 
-	//matrix = malloc(dim * sizeof(double *));
 	matrix = gc_get(data, 1, dim * sizeof(double *));
 	if (!matrix)
 		return NULL;
 	i = -1;
 	while (++i < dim)
 	{
-		//matrix[i] = malloc(dim * sizeof(double));
 		matrix[i] = gc_get(data, 1, dim * sizeof(double));
 		if (!matrix[i])
 		{

@@ -5,7 +5,7 @@ t_vec3	normal_at_sphere(t_shape *shape, t_vec3 world_point)
 	t_vec3	sphere_norm;
 
 	(void) shape;
-	sphere_norm = vec_sub(world_point, shape->sphere.center); //different to make it work (not 0, 0, 0, for us)
+	sphere_norm = vec_sub(world_point, shape->sphere.center);
 	sphere_norm.w = 0.0;
 	return (vec_norm(sphere_norm));
 }
@@ -13,7 +13,7 @@ t_vec3	normal_at_sphere(t_shape *shape, t_vec3 world_point)
 t_vec3	normal_at_plane(t_shape *shape, t_vec3 world_point)
 {
 	(void) world_point;
-	return (vector(0,1,0)); // Check if we need to normalize
+	return (vector(0,1,0));
 }
 
 t_vec3	normal_at_cylinder(t_shape *shape, t_vec3 world_point)
@@ -25,10 +25,10 @@ t_vec3	normal_at_cylinder(t_shape *shape, t_vec3 world_point)
 		return (vector(0, 1, 0));
 	if (dist < 1.0 && world_point.y <= shape->cylinder.minimum + EPSILON)
 		return (vector(0, -1, 0));
-	return (vector(world_point.x, 0.0, world_point.z)); // Check if we need to normalize
+	return (vector(world_point.x, 0.0, world_point.z));
 }
 
-t_vec3 normal_at_cone(t_shape *shape, t_vec3 world_point)
+t_vec3	normal_at_cone(t_shape *shape, t_vec3 world_point)
 {
 	double	dist;
 	double	max_radius;
@@ -53,7 +53,6 @@ t_vec3	normal_at(t_shape *shape, t_vec3 world_point)
 	t_vec3	object_point;
 	t_vec3	object_normal;
 
-	//Something to be added here
 	object_point = mult_pnt_mtx(world_point, shape->inverse);
 	if (shape->name == SPHERE)
 		object_normal = normal_at_sphere(shape, object_point);

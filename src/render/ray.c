@@ -10,7 +10,7 @@ t_ray	cast_ray(t_camera *camera, int px, int py)
 
 	world_x = camera->half_width - (px + 0.5) * camera->pixel_size;
 	world_y = camera->half_height - (py + 0.5) * camera->pixel_size;
-	pixel = mult_pnt_mtx(point(world_x, world_y, -1), camera->inverse); // change with camera inverse
+	pixel = mult_pnt_mtx(point(world_x, world_y, -1), camera->inverse);
 	origin = mult_pnt_mtx(point(0,0,0),  camera->inverse);
 	direction = vec_norm(vec_sub(pixel, origin));
 	return ((t_ray){origin, direction});

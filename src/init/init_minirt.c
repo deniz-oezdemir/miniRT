@@ -66,7 +66,6 @@ void	init_camera_view(t_camera *camera)
 	camera->vsize = IMG_HEIGHT;
 	aspect = camera->hsize / camera->vsize;
 	half_view = tan((deg_to_rad(camera->fov / 2)));
-	//printf("\nhalf_view: %f\n", half_view);
 	if (aspect >= 1)
 	{
 		camera->half_width = half_view;
