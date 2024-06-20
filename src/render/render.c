@@ -19,23 +19,31 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 		comps.inside = true;
 		comps.normalv = vec_neg(comps.normalv);
 	}
-	comps.over_point = vec_add(comps.point, vec_mul(EPSILON, comps.normalv));
+	comps.over_point_norm = vec_add(comps.point, vec_mul(EPSILON, comps.normalv));
 	return (comps);
 }
 
-int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
+int		is_shadow(t_minirt *data, t_pntlight *light, t_comps comps)
 {
 	t_vec3	v;
 	t_ray	ray;
 	t_inter	inter;
 	t_inter	hit_inter;
+	t_vec3	over_point_depth;
 
-	v = vec_sub(light_position, over_point);
-	ray = (t_ray){over_point, vec_norm(v)};
+	//over_point_depth = vec_add(comps.over_point_norm, vec_mul(EPSILON, vec_norm(vec_sub(light->center, comps.over_point_norm))));
+	v = vec_sub(light->center, comps.point);
+	t_vec3 light_dir = vec_norm(v);
+	double slope = vec_dot(comps.normalv, light_dir);
+	t_vec3 scaled_norm = vec_mul(slope, vec_norm(comps.normalv));
+
+	//over_point_depth = vec_add(comps.point, scaled_norm);
+	over_point_depth = vec_add(over_point_depth, vec_mul(EPSILON, vec_norm(vec_sub(light->center, over_point_depth))));
+	ray = (t_ray){over_point_depth, vec_norm(v)};
 	intersections(data, ray);
 	//hit_inter = hit(data->xs);
 	//ft_lstclear(&data->xs, free_inter);
-	if (data->min.inter < magnitude(v) && data->min.inter > -EPSILON) // check why this EPSILON fix works (was just intuition) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
+	if (data->min.inter < magnitude(v) && data->min.inter > EPSILON) // check why this EPSILON fix works (was just intuition) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
 		return (1);
 	return (0);
 }
@@ -58,7 +66,7 @@ t_color	shade_hit(t_minirt *data, t_world *world, t_comps comps)
 	while (lights != NULL)
 	{
 		light = &((t_light *)lights->content)->pnt_light;
-		light->shadow = is_shadow(data, light->center, comps.over_point);
+		light->shadow = is_shadow(data, light, comps);
 		color = color_add(color, lighting(comps, ambient, light));
 		lights = lights->next;
 	}

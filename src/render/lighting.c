@@ -28,7 +28,7 @@ static t_color	light_exposure(t_color ambient, t_pntlight *plight,
 	diffuse = mult_color_scalar(e.effective_color, comps.shape->material.diffuse * e.light_dot_normal);
 	e.reflectv = reflect(vec_neg(e.lightv), comps.normalv);
 	e.reflect_dot_eye = vec_dot(e.reflectv, comps.eyev);
-	if (e.reflect_dot_eye <= 0)
+	if (e.reflect_dot_eye < -EPSILON)
 		specular = (t_color){0, 0, 0};
 	else
 	{
@@ -49,7 +49,7 @@ t_color	lighting(t_comps comps, t_color ambient, t_pntlight *plight)
 	e.lightv = vec_norm(vec_sub(plight->center, comps.point));
 	// ambient = mult_colors(effective_color, ambient_light->light);
 	e.light_dot_normal = vec_dot(e.lightv, comps.normalv);
-	if (e.light_dot_normal <= 0 || plight->shadow == 1)
+	if (e.light_dot_normal < -EPSILON || plight->shadow == 1)
 		return (dark_exposure(ambient, e));
 	else
 		return (light_exposure(ambient, plight, e, comps));

@@ -31,7 +31,7 @@
 # define MTX_SIZE	16 //matrix number of elements, must be set to MTX_DIM^2
 # define PI 3.14159265358979323846
 # define PI_2 1.57079632679489661923
-# define EPSILON		0.00001
+# define EPSILON		0.0001
 
 typedef struct s_material t_material;
 
@@ -100,7 +100,7 @@ typedef struct s_comps
 	t_vec3	eyev;
 	t_vec3	normalv;
 	bool	inside;
-	t_vec3	over_point;
+	t_vec3	over_point_norm;
 }	t_comps;
 
 typedef struct s_exposure
