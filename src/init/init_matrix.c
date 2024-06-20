@@ -6,26 +6,13 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:50:07 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/20 17:44:56 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:59:46 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-// TODO:: To be replaced with garbage collector
-void free_mtx(t_mtx *matrix)
-{
-	if (matrix->mtx != NULL) {
-		for (size_t i = 0; i < matrix->dim; i++) {
-			free(matrix->mtx[i]);
-		}
-		free(matrix->mtx);
-		matrix->mtx = NULL;
-		matrix->dim = 0;
-	}
-}
-
-static double	**allocate_matrix(t_minirt *data, size_t dim)
+static double	**allocate_matrix(t_minirt *data, int dim)
 {
 	double	**matrix;
 	int		i;
@@ -39,16 +26,14 @@ static double	**allocate_matrix(t_minirt *data, size_t dim)
 		matrix[i] = gc_get(data, 1, dim * sizeof(double));
 		if (!matrix[i])
 		{
-			// Free previously allocated rows on failure - not needed with gc?
-			t_mtx temp_mtx = { .mtx = matrix, .dim = i};
-			free_mtx(&temp_mtx);
+			// TODO:: exit via exit_program(function)
 			return (NULL);
 		}
 	}
 	return (matrix);
 }
 
-t_mtx	create_mtx(t_minirt *data, const double *m, size_t dim)
+t_mtx	create_mtx(t_minirt *data, const double *m, int dim)
 {
 	t_mtx	r;
 	int		i;

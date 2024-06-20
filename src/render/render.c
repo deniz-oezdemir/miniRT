@@ -27,8 +27,6 @@ int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
 {
 	t_vec3	v;
 	t_ray	ray;
-	t_inter	inter;
-	t_inter	hit_inter;
 
 	v = vec_sub(light_position, over_point);
 	ray = (t_ray){over_point, vec_norm(v)};

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
+#    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/06/17 11:38:19 by denizozd         ###   ########.fr        #
+#    Updated: 2024/06/20 17:56:03 by tiacovel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OS := $(shell uname)
 
 # Compilation options
 CC = cc #change back to cc
-CFLAGS = -g -O0 ##-Wall -Wextra -Werror
+CFLAGS = -g -O0 -Wall -Wextra -Werror
 
 # Libft library
 LIBFT_PATH = lib/libft

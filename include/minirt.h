@@ -116,7 +116,7 @@ typedef struct s_exposure
 
 /* Init and exit functions */
 t_minirt	*init_mlx(void);
-t_mtx	create_mtx(t_minirt *data, const double *m, size_t dim);
+t_mtx	create_mtx(t_minirt *data, const double *m, int dim);
 void	init_window(t_minirt *data);
 void	init_camera_view(t_camera *camera);
 void	exit_program(t_minirt *data);
@@ -197,7 +197,7 @@ t_mtx	sub_mtx(t_minirt *data, t_mtx m, int x_row, int x_col);
 double	mtx_minor(t_minirt *data, t_mtx m, int x_row, int x_col);
 double	mtx_cofactor(t_minirt *data, t_mtx m, int row, int col);
 double	mtx_determinant(t_minirt *data, t_mtx m);
-t_mtx	identity_mtx(t_minirt *data, size_t dim);
+t_mtx	identity_mtx(t_minirt *data, int dim);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mtx_determinant.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:31:11 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 15:48:53 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:00:36 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_mtx	sub_mtx(t_minirt *data, t_mtx m, int x_row, int x_col)
 	double	r[m.dim - 1][m.dim - 1];
 	int		row;
 	int		col;
-	size_t	new_row;
-	size_t	new_col;
+	int		new_row;
+	int		new_col;
 
 	ft_bzero(r, sizeof(double) * ((m.dim - 1)*(m.dim - 1)));
 	new_row = 0;

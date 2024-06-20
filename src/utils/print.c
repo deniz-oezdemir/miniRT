@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/10 13:46:23 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:18:20 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,13 @@ void print_scene_objects(t_world *world)
 
 void print_vec3(t_vec3 v, char* label)
 {
-	int precision = 8;
 	printf("%s:	(%f,	%f,	%f,	%f)\n", label, v.x, v.y,  v.z, v.w);
 }
 
 void	print_mtx(t_mtx mtx)
 {
-	size_t	row;
-	size_t	col;
+	int	row;
+	int	col;
 
 	row = 0;
 	while (row < mtx.dim)

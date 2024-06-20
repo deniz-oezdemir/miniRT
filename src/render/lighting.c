@@ -5,7 +5,7 @@ t_vec3 reflect(t_vec3 in, t_vec3 normal)
 	return (vec_sub(in, vec_mul(vec_dot(in, normal), vec_mul(2.0, normal))));
 }
 
-static t_color	dark_exposure(t_color ambient, t_exposure e)
+static t_color	dark_exposure(t_color ambient)
 {
 	t_color	diffuse;
 	t_color	specular;
@@ -37,15 +37,13 @@ static t_color	light_exposure(t_color ambient, t_pntlight *plight,
 
 t_color	lighting(t_comps comps, t_color ambient, t_pntlight *plight)
 {
-	t_color	diffuse;
-	t_color	specular;
 	t_exposure	e;
 
 	e.effective_color = mult_colors(comps.shape->color, plight->light);
 	e.lightv = vec_norm(vec_sub(plight->center, comps.point));
 	e.light_dot_normal = vec_dot(e.lightv, comps.normalv);
 	if (e.light_dot_normal <= 0 || plight->shadow == 1)
-		return (dark_exposure(ambient, e));
+		return (dark_exposure(ambient));
 	else
 		return (light_exposure(ambient, plight, e, comps));
 }

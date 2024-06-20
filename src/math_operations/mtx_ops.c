@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mtx_ops.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/14 16:00:26 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:02:42 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_mtx	mult_mtx_mtx(t_minirt *data, t_mtx a, t_mtx b)
 {
 	double	r[MTX_DIM][MTX_DIM];
-	size_t	row;
-	size_t	col;
+	int	row;
+	int	col;
 
 	ft_bzero(r, sizeof(double) * MTX_SIZE);
 	row = 0;
@@ -39,7 +39,7 @@ t_mtx	mult_mtx_mtx(t_minirt *data, t_mtx a, t_mtx b)
 t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m)
 {
 	double r[MTX_DIM];
-	size_t	row;
+	int	row;
 
 	row = 0;
 	while (row < MTX_DIM)
@@ -56,8 +56,8 @@ t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m)
 t_mtx	transp_mtx(t_minirt *data, t_mtx m)
 {
 	double	r[MTX_DIM][MTX_DIM];
-	size_t	row;
-	size_t	col;
+	int	row;
+	int	col;
 
 	ft_bzero(r, sizeof(double) * MTX_SIZE);
 	row = 0;
@@ -74,7 +74,7 @@ t_mtx	transp_mtx(t_minirt *data, t_mtx m)
 	return (create_mtx(data, (const double *)r, MTX_DIM));
 }
 
-t_mtx	identity_mtx(t_minirt *data, size_t dim)
+t_mtx	identity_mtx(t_minirt *data, int dim)
 {
 	double	r[MTX_DIM][MTX_DIM];
 	int		i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:13:40 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/17 18:38:54 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:20:57 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* Validate only positive values. */
 bool	is_digits(char *s)
 {
-	int	i;
+	size_t	i;
 
 	if (s == NULL)
 		return (false);

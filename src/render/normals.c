@@ -13,6 +13,7 @@ t_vec3	normal_at_sphere(t_shape *shape, t_vec3 world_point)
 t_vec3	normal_at_plane(t_shape *shape, t_vec3 world_point)
 {
 	(void) world_point;
+	(void) shape;
 	return (vector(0,1,0));
 }
 
@@ -53,6 +54,7 @@ t_vec3	normal_at(t_shape *shape, t_vec3 world_point)
 	t_vec3	object_point;
 	t_vec3	object_normal;
 
+	object_normal = (t_vec3){0, 0, 0, 0};
 	object_point = mult_pnt_mtx(world_point, shape->inverse);
 	if (shape->name == SPHERE)
 		object_normal = normal_at_sphere(shape, object_point);
