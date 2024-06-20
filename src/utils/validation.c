@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:13:40 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/13 14:38:19 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:38:54 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	is_identifier(char *s)
 	}
 	else if (ft_strlen(s) == 2)
 	{
-		if (!ft_strncmp(s, "pl", 2) || !ft_strncmp(s, "sp", 2) || !ft_strncmp(s, "cy", 2))
+		if (!ft_strncmp(s, "pl", 2) || !ft_strncmp(s, "sp", 2) || !ft_strncmp(s, "cy", 2) || !ft_strncmp(s, "cn", 2))
 			return (true);
 	}
 	return (false);

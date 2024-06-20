@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/14 10:44:31 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:17:07 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef enum e_obj_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
+	CONE,
 	CAMERA,
 	PNT_LIGHT,
 	AMB_LIGHT
@@ -77,6 +78,17 @@ typedef struct s_cylinder
 	t_color color;
 } t_cylinder;
 
+typedef struct s_cone
+{
+	t_vec3 center;
+	t_vec3 dir;
+	double diameter;
+	double height;
+	double minimum;
+	double maximum;
+	t_color color;
+} t_cone;
+
 typedef struct s_material
 {
 	double diffuse;
@@ -92,6 +104,7 @@ typedef struct s_shape
 		t_sphere	sphere;
 		t_plane		plane;
 		t_cylinder	cylinder;
+		t_cone		cone;
 	};
 	t_material	material;
 	t_color		color;

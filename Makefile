@@ -3,22 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
+#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/05/29 08:39:19 by tiacovel         ###   ########.fr        #
+#    Updated: 2024/06/17 11:38:19 by denizozd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Main executable
-NAME = minirt
+NAME = miniRT
 # Test executable
 TEST_EXECUTABLE = test_minirt
 # Get the operative system name
 OS := $(shell uname)
 
 # Compilation options
-CC = cc
+CC = cc #change back to cc
 CFLAGS = -g -O0 ##-Wall -Wextra -Werror
 
 # Libft library

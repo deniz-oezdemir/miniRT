@@ -1,4 +1,4 @@
-# include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 t_color color_add(t_color a, t_color b)
 {

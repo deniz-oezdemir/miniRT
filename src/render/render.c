@@ -1,4 +1,4 @@
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 t_comps	prepare_computations(t_inter inter, t_ray ray)
 {
@@ -33,10 +33,14 @@ int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
 	v = vec_sub(light_position, over_point);
 	ray = (t_ray){over_point, vec_norm(v)};
 	intersections(data, ray);
-	hit_inter = hit(data->xs);
-	ft_lstclear(&data->xs, free_inter);
-	if (hit_inter.inter < magnitude(v)) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
+	//hit_inter = hit(data->xs);
+	//ft_lstclear(&data->xs, free_inter);
+	if (data->min.inter < (magnitude(v) - EPSILON) && data->min.inter > -EPSILON) // check why this EPSILON fix works (was just intuition) //ommitted is_hit flag as we initialize hit_inter.inter to MAX INT and only update it if we hit something
+	{
+		//printf("min.inter = %f\n", data->min.inter);
+		//printf("magnitude(v) = %f\n", magnitude(v));
 		return (1);
+	}
 	return (0);
 }
 
@@ -73,8 +77,8 @@ t_color	color_at(t_minirt *data, t_ray ray)
 
 	color = (t_color){0.125, 0.125, 0.125}; // Background color
 	intersections(data, ray);
-	hit_inter = hit(data->xs);
-	ft_lstclear(&data->xs, free_inter); //free before needed for shadow to work
+	hit_inter = data->min; //hit(data->xs);
+	//ft_lstclear(&data->xs, free_inter); //free before needed for shadow to work
 	if (hit_inter.shape != NULL)
 	{
 		comps = prepare_computations(hit_inter, ray);
@@ -98,13 +102,13 @@ void render_scene(t_minirt *data)
 
 	while (++y < data->world->camera->vsize)
 	{
-		++y; //dirty optimization
+		//++y; //dirty optimization
 		ft_printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
 		x = -1.0;
 		while (++x < data->world->camera->hsize)
 		{
-			++x; //dirty optimization
-			// printf("x = %f | y = %f \n", x, y);
+			//++x; //dirty optimization
+			//printf("x = %f | y = %f \n", x, y);
 			ray = cast_ray(data->world->camera, x, y);
 			color = color_at(data, ray);
 			color_pixel(data, x, y, rgb(color));

@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/src/main",
 			"args": [
-				"../scene_2_sphere_first_render.rt"
+				"../scene/img03.rt"
 			],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",

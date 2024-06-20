@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:49:09 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/05/14 15:55:06 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:57:45 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,4 @@
 # define LIGHT_ERR      13
 # define PLANE_ERR      14
 # define SPHERE_ERR     15
+# define CONE_ERR       16

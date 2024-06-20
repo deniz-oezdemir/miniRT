@@ -54,6 +54,12 @@ typedef struct s_world
 	int		light_nbr;
 }	t_world;
 
+typedef struct s_inter
+{
+	t_shape	*shape;
+	double	inter;
+}	t_inter;
+
 typedef struct s_minirt
 {
 	int			fd;
@@ -65,14 +71,9 @@ typedef struct s_minirt
 	void		*mlx_win;
 	t_img		*mlx_img;
 	t_list		*xs;
+	t_inter		min;
 	// t_scene	*scene;
 }	t_minirt;
-
-typedef struct s_inter
-{
-	t_shape	*shape;
-	double	inter;
-}	t_inter;
 
 typedef struct s_ray
 {
@@ -115,7 +116,7 @@ typedef struct s_exposure
 
 /* Init and exit functions */
 t_minirt	*init_mlx(void);
-t_mtx	create_mtx(const double *m, size_t dim);
+t_mtx	create_mtx(t_minirt *data, const double *m, size_t dim);
 void	init_window(t_minirt *data);
 void	init_camera_view(t_camera *camera);
 void	exit_program(t_minirt *data);
@@ -138,6 +139,7 @@ void	parse_pnt_light(t_minirt *data, t_list **list);
 void	parse_sphere(t_minirt *data, t_list **list);
 void	parse_plane(t_minirt *data, t_list **list);
 void	parse_cylinder(t_minirt *data, t_list **list);
+void	parse_cone(t_minirt *data, t_list **input_list);
 
 /* Input validation */
 bool	is_digits(char *s);
@@ -162,10 +164,10 @@ void	move_to_nth_node(t_list **list, int n);
 double	deg_to_rad(double degrees);
 void	free_inter(void *content);
 int		rgb(t_color color);
-void	set_transform(t_shape *shape, t_mtx transform);
+void	set_transform(t_minirt *data, t_shape *shape, t_mtx transform);
 t_vec3	point(double x, double y, double z);
 t_vec3	vector(double x, double y, double z);
-void	calculate_rotation_angles(t_vec3 vec, double *x, double *y, double *z);
+void	calculate_rotation_angles(t_vec3 vec, double *x, double *z);
 
 /* Garbage collector */
 void	*gc_get(t_minirt *data, size_t nmemb, size_t size);
@@ -178,32 +180,24 @@ char	*gc_substr(t_minirt *data, char const *s, unsigned int start,
 		size_t len);
 
 /* Matrix operations*/
-t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b);
-t_mtx	transp_mtx(t_mtx m);
-t_mtx	invert_mtx(t_mtx m);
+t_mtx	mult_mtx_mtx(t_minirt *data, t_mtx a, t_mtx b);
+t_mtx	transp_mtx(t_minirt *data, t_mtx m);
+t_mtx	invert_mtx(t_minirt *data, t_mtx m);
 
 /* Matrix transformations */
-t_mtx	scaling(double x, double y, double z);
-t_mtx	rot_x(double radians);
-t_mtx	rot_y(double radians);
-t_mtx	rot_z(double radians);
-t_mtx	translation_mtx(double x, double y, double z);
-t_mtx	rotation_mtx(t_vec3 vector);
+t_mtx	scaling(t_minirt *data, double x, double y, double z);
+t_mtx	rot_x(t_minirt *data, double radians);
+t_mtx	rot_y(t_minirt *data, double radians);
+t_mtx	rot_z(t_minirt *data, double radians);
+t_mtx	translation_mtx(t_minirt *data, double x, double y, double z);
+t_mtx	rotation_mtx(t_minirt *data, t_vec3 vector);
 
 double	determinant_2x2(t_mtx m);
-t_mtx	sub_mtx(t_mtx m, int x_row, int x_col);
-double	mtx_minor(t_mtx m, int x_row, int x_col);
-double	mtx_cofactor(t_mtx m, int row, int col);
-double	mtx_determinant(t_mtx m);
-t_mtx	identity_mtx(size_t dim);
-
-/* Matrix transformations */
-t_mtx	translation_mtx(double x, double y, double z);
-
-t_mtx	rot_x(double radians);
-t_mtx	rot_y(double radians);
-t_mtx	rot_z(double radians);
-t_mtx	rotation_mtx(t_vec3 vec);
+t_mtx	sub_mtx(t_minirt *data, t_mtx m, int x_row, int x_col);
+double	mtx_minor(t_minirt *data, t_mtx m, int x_row, int x_col);
+double	mtx_cofactor(t_minirt *data, t_mtx m, int row, int col);
+double	mtx_determinant(t_minirt *data, t_mtx m);
+t_mtx	identity_mtx(t_minirt *data, size_t dim);
 
 /* Vector operations */
 t_vec3	vec_add(t_vec3 a, t_vec3 b);
@@ -245,7 +239,7 @@ t_color	mult_colors(t_color a, t_color b);
 t_color	mult_color_scalar(t_color color, double scalar);
 
 /* Camera */
-t_mtx	transform_view(t_vec3 from,t_vec3 to,t_vec3 up);
+t_mtx	transform_view(t_minirt *data, t_vec3 from, t_vec3 to, t_vec3 up);
 
 /* Print stuffs */
 // To be deleted befor submission

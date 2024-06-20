@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/28 17:12:24 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:05:49 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,15 @@ void	gc_collect(t_minirt *data, void *new)
 void	gc_free(t_list *grbg)
 {
 	t_list	*curr;
-	t_list	*prev;
+	t_list	*next;
 
 	curr = grbg;
 	while (curr)
 	{
+		next = curr->next;
 		if (curr->content)
 			free(curr->content);
-		prev = curr;
-		if (curr->next)
-			curr = curr->next;
-		else
-		{
-			free(curr);
-			return ;
-		}
-		//free(prev); //TODO: check if needed!!
+		free(curr);
+		curr = next;
 	}
 }

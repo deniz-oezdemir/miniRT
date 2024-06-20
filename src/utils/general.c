@@ -6,7 +6,7 @@
 /*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 12:58:44 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 10:51:07 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:17:35 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_vec3 vector(double x, double y, double z)
 }
 
 /* Calculates the rotation angles for a given direction vector. */
-void	calculate_rotation_angles(t_vec3 vec, double *x, double *y, double *z)
+void	calculate_rotation_angles(t_vec3 vec, double *x, double *z)
 {
 	double	ratio;
 
@@ -47,7 +47,7 @@ void	calculate_rotation_angles(t_vec3 vec, double *x, double *y, double *z)
 	else
 		*z = acos(vec.y / ratio);
 	*x = acos(ratio);
-	*y = atan2(vec.x, vec.z);
+	// *y = atan2(vec.x, vec.z);
 }
 
 void	swap(double *nbr1, double *nbr2)

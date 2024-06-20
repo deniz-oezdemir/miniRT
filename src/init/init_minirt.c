@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minirt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/11 11:11:56 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:34:38by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_minirt	*init_mlx(void)
 		exit (MLX_ERROR);
 	}
 	data->mlx_win = NULL;
-	data->mlx_img = (t_img *)ft_calloc(1, sizeof(t_img)); //check and free
+	data->mlx_img = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (data->mlx_img == NULL)
 		exit (MLX_ERROR);
 	data->mlx_img->img_pixels_ptr = NULL;
@@ -35,7 +35,7 @@ t_minirt	*init_mlx(void)
 	data->scene = NULL;
 	data->objects = NULL;
 	data->grbg = NULL;
-	data->world = (t_world *)ft_calloc(1, sizeof(t_world));
+	data->world = (t_world *)gc_get(data, 1, sizeof(t_world));
 	return (data);
 }
 

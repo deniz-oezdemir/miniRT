@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mtx_ops.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/23 15:36:14 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:00:26 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b)
+t_mtx	mult_mtx_mtx(t_minirt *data, t_mtx a, t_mtx b)
 {
 	double	r[MTX_DIM][MTX_DIM];
 	size_t	row;
@@ -33,7 +33,7 @@ t_mtx	mult_mtx_mtx(t_mtx a, t_mtx b)
 		}
 		row++;
 	}
-	return (create_mtx((const double *)r, MTX_DIM));
+	return (create_mtx(data, (const double *)r, MTX_DIM));
 }
 
 t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m)
@@ -53,7 +53,7 @@ t_vec3	mult_pnt_mtx(t_vec3 p, t_mtx m)
 	return ((t_vec3){r[0], r[1], r[2], r[3]});
 }
 
-t_mtx	transp_mtx(t_mtx m)
+t_mtx	transp_mtx(t_minirt *data, t_mtx m)
 {
 	double	r[MTX_DIM][MTX_DIM];
 	size_t	row;
@@ -71,10 +71,10 @@ t_mtx	transp_mtx(t_mtx m)
 		}
 		row++;
 	}
-	return (create_mtx((const double *)r, MTX_DIM));
+	return (create_mtx(data, (const double *)r, MTX_DIM));
 }
 
-t_mtx	identity_mtx(size_t dim)
+t_mtx	identity_mtx(t_minirt *data, size_t dim)
 {
 	double	r[MTX_DIM][MTX_DIM];
 	int		i;
@@ -83,10 +83,10 @@ t_mtx	identity_mtx(size_t dim)
 	i = -1;
 	while (++i < dim)
 		r[i][i] = 1.0;
-	return (create_mtx((const double *)r, MTX_DIM));
+	return (create_mtx(data, (const double *)r, MTX_DIM));
 }
 
-t_mtx	invert_mtx(t_mtx m)
+t_mtx	invert_mtx(t_minirt *data, t_mtx m)
 {
 	double	r[m.dim][m.dim];
 	double	det;
@@ -94,7 +94,7 @@ t_mtx	invert_mtx(t_mtx m)
 	int		row;
 	int		col;
 
-	det = mtx_determinant(m);
+	det = mtx_determinant(data, m);
 	if (det == 0) // Replace wit a is_equal function for doubles
 	{
 		inv.dim = 0;
@@ -105,7 +105,7 @@ t_mtx	invert_mtx(t_mtx m)
 	{
 		col = -1;
 		while (++col < m.dim)
-			r[col][row] = mtx_cofactor(m, row, col) / det;
+			r[col][row] = mtx_cofactor(data, m, row, col) / det;
 	}
-	return (create_mtx((const double *)r, m.dim));
+	return (create_mtx(data, (const double *)r, m.dim));
 }
