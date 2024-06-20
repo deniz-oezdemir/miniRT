@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 16:14:04 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:23:10 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_camera	*new_camera(t_minirt *data)
 	return (camera);
 }
 
-static void	set_camera_transform(t_minirt *data, t_camera *camera)
+void	set_camera_transform(t_minirt *data, t_camera *camera)
 {
 	camera->transform = transform_view(data, camera->center,
 		point(0, 1, 0), camera->dir);

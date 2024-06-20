@@ -250,4 +250,8 @@ void	print_material(t_material material);
 void	print_color(t_color color, char *description);
 void print_light(t_pntlight *obj);
 
+/* Window control commands */
+void	rotate(t_minirt *data, int keysym);
+void	set_camera_transform(t_minirt *data, t_camera *camera);
+
 #endif
