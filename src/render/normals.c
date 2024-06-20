@@ -58,8 +58,7 @@ t_vec3	normal_at(t_shape *shape, t_vec3 world_point)
 	if (shape->name == SPHERE)
 		object_normal = normal_at_sphere(shape, object_point);
 	else if (shape->name == PLANE)
-		object_normal = shape->plane.dir;
-		//object_normal = normal_at_plane(shape, object_point);
+		object_normal = normal_at_plane(shape, object_point);
 	else if (shape->name == CYLINDER)
 		object_normal = normal_at_cylinder(shape, object_point);
 	else if (shape->name == CONE)
