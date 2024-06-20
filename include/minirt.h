@@ -220,11 +220,17 @@ t_ray	cast_ray(t_camera *camera, int px, int py);
 t_ray	transform_ray(t_ray ray, t_shape *shape);
 t_vec3	position(t_ray ray, double dist);
 
-/* Ray intersects sphere */
+/* Shape intersect */
 void	intersections(t_minirt *minirt, t_ray ray);
 bool	inter_sphere(t_minirt *data, t_shape *shape, t_ray ray);
-t_discr	discriminant(t_sphere *sphere, t_ray ray);
-t_inter	hit(t_list *xs);
+bool	inter_cylinder(t_minirt *data, t_shape *shape, t_ray ray);
+bool	inter_cone(t_minirt *data, t_shape *shape, t_ray ray);
+bool	inter_plane(t_minirt *data, t_shape *shape, t_ray ray);
+
+/* Sape discriminants */
+t_discr	sphere_discriminant(t_sphere *sphere, t_ray ray);
+t_discr	cylinder_discriminant(t_ray ray);
+t_discr	cone_discriminant(t_ray ray);
 
 /* Render scene */
 void	render_scene(t_minirt *data);

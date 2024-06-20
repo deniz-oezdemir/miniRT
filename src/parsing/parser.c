@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/17 18:07:28 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:30:01 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ static void separate_by_comma(t_minirt *data, char *space_separated)
 	int i;
 
 	i = 0;
-	comma_separated = gc_split(data, space_separated, ','); // free list scene at exit
-	// gc_collect(data, comma_separated);
+	comma_separated = gc_split(data, space_separated, ',');
 	while (comma_separated[i])
 		ft_lstadd_back(&(data->scene), gc_lstnew(data, comma_separated[i++]));
 }
@@ -38,7 +37,6 @@ static void file_to_scene_list(t_minirt *data)
 	while (line && ft_isprint(line[0]))
 	{
 		space_separated = gc_split(data, line, ' ');
-		// gc_collect(data, space_separated);
 		i = -1;
 		while (space_separated[++i])
 		{

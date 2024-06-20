@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ambient_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:10:53 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/03 14:13:29 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:30:11 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	parse_ambient_light(t_minirt *data, t_list **input_lst)
 		return (pars_error(data, AMB_LIGHT_ERR));
 	alight->light = mult_color_scalar(alight->color, alight->intensity);
 	data->world->ambient_light = alight;
-	//ft_lstadd_back(&(data->world->lights), gc_lstnew(data, alight));
 	data->world->light_nbr++;
 	move_to_nth_node(input_lst, 4);
 	printf("Ambient alight OK\n");
