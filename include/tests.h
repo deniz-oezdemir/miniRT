@@ -6,11 +6,11 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:42 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/17 11:16:02 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:52:34 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//tests not to be submitted
+//DO NOT SUMBIT!
 
 #ifndef MINIRT_TESTS_H
 # define MINIRT_TESTS_H

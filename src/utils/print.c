@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:53:30 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/20 18:18:20 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:53:00 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// DO NOT SUBMIT!
+
 # include "../../include/minirt.h"
-// DO NOT SUBMIT !!!
-// Print function for each type of object
+
 void print_amblight(t_amblight *obj)
 {
 	printf("Name: Ambient light\n");
