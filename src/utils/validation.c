@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:13:40 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/20 18:20:57 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:42:07 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
-/* Cheack weather a string represents a digit. */
+/* Cheack wether a string represents a digit. */
 /* Validate only positive values. */
 bool	is_digits(char *s)
 {
@@ -41,12 +41,14 @@ bool	is_identifier(char *s)
 {
 	if (ft_strlen(s) == 1)
 	{
-		if (!ft_strncmp(s, "A", 1) || !ft_strncmp(s, "C", 1) || !ft_strncmp(s, "L", 1))
+		if (!ft_strncmp(s, "A", 1) || !ft_strncmp(s, "C", 1) || !ft_strncmp(s,
+				"L", 1))
 			return (true);
 	}
 	else if (ft_strlen(s) == 2)
 	{
-		if (!ft_strncmp(s, "pl", 2) || !ft_strncmp(s, "sp", 2) || !ft_strncmp(s, "cy", 2) || !ft_strncmp(s, "cn", 2))
+		if (!ft_strncmp(s, "pl", 2) || !ft_strncmp(s, "sp", 2) || !ft_strncmp(s,
+				"cy", 2) || !ft_strncmp(s, "cn", 2))
 			return (true);
 	}
 	return (false);
@@ -59,7 +61,7 @@ bool	is_in_range(double min, double max, char *s)
 	double	n;
 
 	if (!is_digits(s))
-		return(false);
+		return (false);
 	n = atof(s);
 	if (min <= n && max >= n)
 		return (true);

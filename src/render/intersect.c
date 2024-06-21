@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersect.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/21 09:38:50 by denizozd          #+#    #+#             */
+/*   Updated: 2024/06/21 09:39:05 by denizozd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
-/* wrapper function for different shapes intersection: takes minirt struct as input*/
+/* wrapper function for different shapes intersection:
+takes minirt struct as input */
 void	intersections(t_minirt *data, t_ray ray)
 {
 	t_list	*shapes;

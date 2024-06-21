@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ambient_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:10:53 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/20 17:30:11 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:31:41 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
 static bool	validate_amblight(t_amblight *amblight)
 {
-	if ((amblight->intensity < 0)
-		|| (amblight->color.r < 0)
-		|| (amblight->color.g < 0)
-		|| (amblight->color.b < 0))
+	if ((amblight->intensity < 0) || (amblight->color.r < 0)
+		|| (amblight->color.g < 0) || (amblight->color.b < 0))
 		return (false);
 	return (true);
 }

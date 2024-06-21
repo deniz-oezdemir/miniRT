@@ -1,25 +1,31 @@
-# include "../../include/minirt.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_cone.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/21 09:25:18 by denizozd          #+#    #+#             */
+/*   Updated: 2024/06/21 09:25:35 by denizozd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/minirt.h"
 
 static bool	validate_cone(t_cone *cone)
 {
-	if (cone->center.x < INT_MIN
-		|| cone->center.y < INT_MIN
-		|| cone->center.z < INT_MIN
-		|| cone->dir.x < -1
-		|| cone->dir.y < -1
-		|| cone->dir.z < -1
-		|| cone->diameter < INT_MIN
-		|| cone->height < INT_MIN
-		|| (cone->color.r < 0)
-		|| (cone->color.g < 0)
+	if (cone->center.x < INT_MIN || cone->center.y < INT_MIN
+		|| cone->center.z < INT_MIN || cone->dir.x < -1 || cone->dir.y < -1
+		|| cone->dir.z < -1 || cone->diameter < INT_MIN
+		|| cone->height < INT_MIN || (cone->color.r < 0) || (cone->color.g < 0)
 		|| (cone->color.b < 0))
 		return (false);
 	return (true);
 }
 
-static t_shape *new_cone(t_minirt *data)
+static t_shape	*new_cone(t_minirt *data)
 {
-	t_shape *shape;
+	t_shape	*shape;
 
 	shape = gc_get(data, 1, sizeof(t_shape));
 	if (!shape)
@@ -36,7 +42,7 @@ static t_shape *new_cone(t_minirt *data)
 	return (shape);
 }
 
-static void set_cone_transform(t_minirt *data, t_shape *shape)
+static void	set_cone_transform(t_minirt *data, t_shape *shape)
 {
 	t_mtx	scale;
 	t_mtx	rotate;
@@ -45,12 +51,13 @@ static void set_cone_transform(t_minirt *data, t_shape *shape)
 
 	radius = shape->cone.diameter / 2;
 	translate = translation_mtx(data, shape->cone.center.x,
-		shape->cone.center.y,
-		shape->cone.center.z);
+			shape->cone.center.y, shape->cone.center.z);
 	scale = scaling(data, radius, 1, radius);
-	rotate = rotation_mtx(data, shape->cone.dir); //Tiziano fixing currently
-	set_transform(data, shape, mult_mtx_mtx(data, translate, mult_mtx_mtx(data, rotate, scale)));
+	rotate = rotation_mtx(data, shape->cone.dir);
+	set_transform(data, shape, mult_mtx_mtx(data, translate, mult_mtx_mtx(data,
+				rotate, scale)));
 }
+
 void	parse_cone(t_minirt *data, t_list **input_list)
 {
 	t_shape	*shape;

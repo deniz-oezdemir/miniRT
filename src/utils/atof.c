@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   atof.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:27:25 by denizozd          #+#    #+#             */
-/*   Updated: 2024/05/07 17:12:34 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:46:40 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-// adding to libft allowed?
 double	atof(const char *str)
 {
 	int		i;
-	int		b; //base
-	int		s; //sign
-	double	v; //value
+	int		b;
+	int		s;
+	double	v;
 
 	i = 0;
 	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
@@ -40,5 +39,3 @@ double	atof(const char *str)
 	}
 	return ((double)v * s);
 }
-
-

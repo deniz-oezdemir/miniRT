@@ -6,24 +6,19 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:46:53 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/17 16:14:08 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:30:18 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
 static bool	validate_cylinder(t_cylinder *cylinder)
 {
-	if (cylinder->center.x < INT_MIN
-		|| cylinder->center.y < INT_MIN
-		|| cylinder->center.z < INT_MIN
-		|| cylinder->dir.x < -1
-		|| cylinder->dir.y < -1
-		|| cylinder->dir.z < -1
-		|| cylinder->diameter < INT_MIN
-		|| cylinder->height < INT_MIN
-		|| (cylinder->color.r < 0)
-		|| (cylinder->color.g < 0)
+	if (cylinder->center.x < INT_MIN || cylinder->center.y < INT_MIN
+		|| cylinder->center.z < INT_MIN || cylinder->dir.x < -1
+		|| cylinder->dir.y < -1 || cylinder->dir.z < -1
+		|| cylinder->diameter < INT_MIN || cylinder->height < INT_MIN
+		|| (cylinder->color.r < 0) || (cylinder->color.g < 0)
 		|| (cylinder->color.b < 0))
 		return (false);
 	return (true);
@@ -57,11 +52,11 @@ static void	set_cylinder_transform(t_minirt *data, t_shape *sh)
 
 	radius = sh->cylinder.diameter / 2;
 	translate = translation_mtx(data, sh->cylinder.center.x,
-		sh->cylinder.center.y,
-		sh->cylinder.center.z);
+			sh->cylinder.center.y, sh->cylinder.center.z);
 	scale = scaling(data, radius, 1, radius);
 	rotate = rotation_mtx(data, sh->cylinder.dir);
-	set_transform(data, sh, mult_mtx_mtx(data, translate, mult_mtx_mtx(data, rotate, scale)));
+	set_transform(data, sh, mult_mtx_mtx(data, translate, mult_mtx_mtx(data,
+				rotate, scale)));
 }
 
 void	parse_cylinder(t_minirt *data, t_list **input_lst)

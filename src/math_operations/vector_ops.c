@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vector_ops.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 10:46:45 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/14 15:37:34 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:20:10 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
 t_vec3	vec_add(t_vec3 a, t_vec3 b)
 {

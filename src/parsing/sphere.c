@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:35 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/17 18:12:45 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:31:11 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 static bool	validate_sphere(t_sphere *sphere)
 {
-	if ((sphere->diameter < INT_MIN)
-		|| sphere->center.x < INT_MIN
-		|| sphere->center.y < INT_MIN
-		|| sphere->center.z < INT_MIN
-		|| (sphere->color.r < 0)
-		|| (sphere->color.g < 0)
+	if ((sphere->diameter < INT_MIN) || sphere->center.x < INT_MIN
+		|| sphere->center.y < INT_MIN || sphere->center.z < INT_MIN
+		|| (sphere->color.r < 0) || (sphere->color.g < 0)
 		|| (sphere->color.b < 0))
 		return (false);
 	return (true);
@@ -50,13 +47,12 @@ static void	set_sphere_transform(t_minirt *data, t_shape *sh)
 
 	radius = sh->sphere.diameter / 2;
 	scale = scaling(data, radius, radius, radius);
-	translate = translation_mtx(data, sh->sphere.center.x,
-		sh->sphere.center.y,
-		sh->sphere.center.z);
+	translate = translation_mtx(data, sh->sphere.center.x, sh->sphere.center.y,
+			sh->sphere.center.z);
 	set_transform(data, sh, mult_mtx_mtx(data, translate, scale));
 }
 
-void parse_sphere(t_minirt *data, t_list **input_lst)
+void	parse_sphere(t_minirt *data, t_list **input_lst)
 {
 	t_shape	*sh;
 

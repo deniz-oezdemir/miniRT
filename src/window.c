@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:33:54 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/20 17:55:28 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:48:27 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	color_pixel(t_minirt *data, int x, int y, int color)
 
 	if ((x < IMG_WIDTH && y < IMG_HEIGHT) && (x > 0 && y > 0))
 	{
-		offs = (data->mlx_img->line_len * y) + (x * (data->mlx_img->bits_per_pixel / 8));
+		offs = (data->mlx_img->line_len * y) + (x
+				* (data->mlx_img->bits_per_pixel / 8));
 		*((unsigned int *)(offs + data->mlx_img->img_pixels_ptr)) = color;
 	}
 }
@@ -43,9 +44,9 @@ void	color_background(t_minirt *data, int color)
 
 void	print_instruction(t_minirt *data)
 {
-	int		y;
-	void	*mlx;
-	void	*win;
+	int y;
+	void *mlx;
+	void *win;
 
 	y = 0;
 	mlx = data->mlx_ptr;

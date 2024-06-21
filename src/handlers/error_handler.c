@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 15:46:43 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/17 18:43:49by denizozd         ###   ########.fr       */
+/*   Created: 2024/06/21 09:11:20 by denizozd          #+#    #+#             */
+/*   Updated: 2024/06/21 09:11:39 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
 void	pars_error(t_minirt *data, int err_code)
 {
@@ -24,11 +24,11 @@ void	pars_error(t_minirt *data, int err_code)
 		perror("Error parsing Light. Please check input parameters!\n");
 	else if (err_code == PLANE_ERR)
 		perror("Error parsing Plane. Please check input parameters!\n");
-    else if (err_code == SPHERE_ERR)
+	else if (err_code == SPHERE_ERR)
 		perror("Error parsing Sphere. Please check input parameters!\n");
 	else if (err_code == CONE_ERR)
 		perror("Error parsing Cone. Please check input parameters!\n");
-    // Add memory clean functions
+	// Add memory clean functions
 	exit_program(data);
-    exit(err_code);
+	exit(err_code);
 }

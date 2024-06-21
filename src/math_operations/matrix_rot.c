@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_rot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 16:35:29 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/17 18:16:59 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:22:20 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
 /* Calculates the rotation angles for a given vector. */
-static t_mtx	calculate_rotation_matrix(t_minirt *data, double x_angle, 
+static t_mtx	calculate_rotation_matrix(t_minirt *data, double x_angle,
 	double z_angle)
 {
 	t_mtx	rotate_x;
@@ -21,7 +21,7 @@ static t_mtx	calculate_rotation_matrix(t_minirt *data, double x_angle,
 
 	rotate_x = rot_x(data, x_angle);
 	rotate_z = rot_z(data, z_angle);
-	return ( mult_mtx_mtx(data, rotate_z, rotate_x));
+	return (mult_mtx_mtx(data, rotate_z, rotate_x));
 }
 
 t_mtx	rotation_mtx(t_minirt *data, t_vec3 vector)

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/14 16:34:38by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:16:00 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ t_minirt	*init_mlx(void)
 
 	data = (t_minirt *)ft_calloc(1, sizeof(t_minirt));
 	if (data == NULL)
-		exit (MLX_ERROR);
+		exit(MLX_ERROR);
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 	{
 		free(data);
-		exit (MLX_ERROR);
+		exit(MLX_ERROR);
 	}
 	data->mlx_win = NULL;
 	data->mlx_img = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (data->mlx_img == NULL)
-		exit (MLX_ERROR);
+		exit(MLX_ERROR);
 	data->mlx_img->img_pixels_ptr = NULL;
 	data->fd = 0;
 	data->scene = NULL;
@@ -41,14 +41,16 @@ t_minirt	*init_mlx(void)
 
 void	init_window(t_minirt *data)
 {
-	data->mlx_win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, WIN_NAME);
+	data->mlx_win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
+			WIN_NAME);
 	if (data->mlx_win == NULL)
 		exit_program(data);
-	data->mlx_img->img_ptr = mlx_new_image(data->mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
+	data->mlx_img->img_ptr = mlx_new_image(data->mlx_ptr, IMG_WIDTH,
+			IMG_HEIGHT);
 	if (data->mlx_img->img_ptr == NULL)
 		exit_program(data);
 	data->mlx_img->img_pixels_ptr = mlx_get_data_addr(data->mlx_img->img_ptr,
-			&data->mlx_img->bits_per_pixel, &data->mlx_img->line_len, \
+			&data->mlx_img->bits_per_pixel, &data->mlx_img->line_len,
 			&data->mlx_img->endian);
 	if (data->mlx_img->img_pixels_ptr == NULL)
 		exit_program(data);

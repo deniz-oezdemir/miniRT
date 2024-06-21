@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 15:05:31 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:48:08 by denizozd         ###   ########.fr       */
+/*   Created: 2024/05/13 12:58:44 by tiacovel          #+#    #+#             */
+/*   Updated: 2024/06/21 09:44:56 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
-int	main(int argc, char **argv)
+void	swap(double *nbr1, double *nbr2)
 {
-	t_minirt	*data;
+	double	tmp;
 
-	if (argc != 2)
-	{
-		printf("ERROR: please check input arguments!\n");
-		return (EXIT_FAILURE);
-	}
-	data = init_mlx();
-	parse(data, argv[1]);
-	init_window(data);
-	render_scene(data);
-	mlx_loop(data->mlx_ptr);
-	exit_program(data);
-	return (EXIT_SUCCESS);
+	tmp = *nbr1;
+	*nbr1 = *nbr2;
+	*nbr2 = tmp;
 }

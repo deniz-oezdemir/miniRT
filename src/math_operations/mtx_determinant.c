@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mtx_determinant.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:31:11 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/20 18:00:36 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:19:38 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_mtx	sub_mtx(t_minirt *data, t_mtx m, int x_row, int x_col)
 	int		new_row;
 	int		new_col;
 
-	ft_bzero(r, sizeof(double) * ((m.dim - 1)*(m.dim - 1)));
+	ft_bzero(r, sizeof(double) * ((m.dim - 1) * (m.dim - 1)));
 	new_row = 0;
 	row = -1;
 	while (++row < m.dim && new_row < m.dim - 1)
@@ -51,13 +51,13 @@ t_mtx	sub_mtx(t_minirt *data, t_mtx m, int x_row, int x_col)
 		}
 		new_row++;
 	}
-	return(create_mtx(data, (const double *)r, (m.dim - 1)));
+	return (create_mtx(data, (const double *)r, (m.dim - 1)));
 }
 
 /* Calculate the determinant of the given submatrix. */
 double	mtx_minor(t_minirt *data, t_mtx m, int x_row, int x_col)
 {
-	t_mtx	sub ;
+	t_mtx	sub;
 	double	det;
 
 	sub = sub_mtx(data, m, x_row, x_col);
@@ -90,6 +90,6 @@ double	mtx_determinant(t_minirt *data, t_mtx m)
 	det = 0;
 	col = -1;
 	while (++col < m.dim)
-		det+= mtx_cofactor(data, m, 0, col) * m.mtx[0][col];
+		det += mtx_cofactor(data, m, 0, col) * m.mtx[0][col];
 	return (det);
 }

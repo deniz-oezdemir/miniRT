@@ -3,26 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/17 17:00:49 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:32:05 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
 static bool	validate_plane(t_plane *plane)
 {
-	if (plane->center.x < INT_MIN
-		|| plane->center.y < INT_MIN
-		|| plane->center.z < INT_MIN
-		|| (plane->color.r < 0)
-		|| (plane->color.g < 0)
-		|| (plane->color.b < 0)
-		|| plane->dir.x < -1
-		|| plane->dir.y < -1
-		|| plane->dir.z < -1)
+	if (plane->center.x < INT_MIN || plane->center.y < INT_MIN
+		|| plane->center.z < INT_MIN || (plane->color.r < 0)
+		|| (plane->color.g < 0) || (plane->color.b < 0) || plane->dir.x < -1
+		|| plane->dir.y < -1 || plane->dir.z < -1)
 		return (false);
 	return (true);
 }
@@ -30,7 +25,7 @@ static bool	validate_plane(t_plane *plane)
 static t_shape	*new_plane(t_minirt *data)
 {
 	t_shape	*sh;
-	//
+
 	sh = gc_get(data, 1, sizeof(t_shape));
 	if (!sh)
 		printf("Error: allocation failed\n");
@@ -50,9 +45,8 @@ static void	set_plane_transform(t_minirt *data, t_shape *sh)
 	t_mtx	rotate;
 	t_mtx	translate;
 
-	translate = translation_mtx(data, sh->plane.center.x,
-		sh->plane.center.y,
-		sh->plane.center.z);
+	translate = translation_mtx(data, sh->plane.center.x, sh->plane.center.y,
+			sh->plane.center.z);
 	rotate = rotation_mtx(data, sh->plane.dir);
 	set_transform(data, sh, mult_mtx_mtx(data, translate, rotate));
 }

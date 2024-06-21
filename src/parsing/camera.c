@@ -6,21 +6,17 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/14 16:14:04 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:34:07 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
 static bool	validate_camera(t_camera *camera)
 {
-	if (camera->center.x < INT_MIN
-		|| camera->center.y < INT_MIN
-		|| camera->center.z < INT_MIN
-		|| camera->dir.x < -1
-		|| camera->dir.y < -1
-		|| camera->dir.z < -1
-		|| camera->fov < 0)
+	if (camera->center.x < INT_MIN || camera->center.y < INT_MIN
+		|| camera->center.z < INT_MIN || camera->dir.x < -1
+		|| camera->dir.y < -1 || camera->dir.z < -1 || camera->fov < 0)
 		return (false);
 	return (true);
 }
@@ -42,8 +38,8 @@ static t_camera	*new_camera(t_minirt *data)
 
 static void	set_camera_transform(t_minirt *data, t_camera *camera)
 {
-	camera->transform = transform_view(data, camera->center,
-		point(0, 1, 0), camera->dir);
+	camera->transform = transform_view(data, camera->center, point(0, 1, 0),
+			camera->dir);
 	camera->inverse = invert_mtx(data, camera->transform);
 }
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/20 18:21:35 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 08:43:58 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
 /*	nmemb and size of new memory space (same as for ft_calloc) */
 void	*gc_get(t_minirt *data, size_t nmemb, size_t size)
@@ -21,7 +21,7 @@ void	*gc_get(t_minirt *data, size_t nmemb, size_t size)
 	if (!new)
 	{
 		ft_putstr_fd("memory allocation error\n", 2);
-		//g_exitstatus = 1; //from minishell, replace with exit/error
+		// add exit/error
 		return (NULL);
 	}
 	gc_collect(data, new);
@@ -40,7 +40,7 @@ void	gc_collect(t_minirt *data, void *new)
 	if (!node)
 	{
 		ft_putstr_fd("memory allocation error\n", 2);
-		//g_exitstatus = 1; //from minishell, replace with exit/error
+		// add exit/error
 		return ;
 	}
 	node->content = new;

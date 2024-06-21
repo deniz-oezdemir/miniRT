@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   normals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/21 09:39:23 by denizozd          #+#    #+#             */
+/*   Updated: 2024/06/21 09:39:25 by denizozd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 t_vec3	normal_at_sphere(t_shape *shape, t_vec3 world_point)
 {
 	t_vec3	sphere_norm;
 
-	(void) shape;
+	(void)shape;
 	sphere_norm = vec_sub(world_point, shape->sphere.center);
 	sphere_norm.w = 0.0;
 	return (vec_norm(sphere_norm));
@@ -12,9 +24,9 @@ t_vec3	normal_at_sphere(t_shape *shape, t_vec3 world_point)
 
 t_vec3	normal_at_plane(t_shape *shape, t_vec3 world_point)
 {
-	(void) world_point;
-	(void) shape;
-	return (vector(0,1,0));
+	(void)world_point;
+	(void)shape;
+	return (vector(0, 1, 0));
 }
 
 t_vec3	normal_at_cylinder(t_shape *shape, t_vec3 world_point)

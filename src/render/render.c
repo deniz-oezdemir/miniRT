@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/21 09:34:55 by denizozd          #+#    #+#             */
+/*   Updated: 2024/06/21 09:38:03 by denizozd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 t_comps	prepare_computations(t_inter inter, t_ray ray)
@@ -19,7 +31,7 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 	return (comps);
 }
 
-int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
+int	is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
 {
 	t_vec3	v;
 	t_ray	ray;
@@ -27,7 +39,8 @@ int		is_shadow(t_minirt *data, t_vec3 light_position, t_vec3 over_point)
 	v = vec_sub(light_position, over_point);
 	ray = (t_ray){over_point, vec_norm(v)};
 	intersections(data, ray);
-	if (data->min.inter < (magnitude(v) - EPSILON) && data->min.inter > -EPSILON)
+	if (data->min.inter < (magnitude(v) - EPSILON)
+		&& data->min.inter > -EPSILON)
 		return (1);
 	return (0);
 }
@@ -40,7 +53,7 @@ t_color	shade_hit(t_minirt *data, t_world *world, t_comps comps)
 	t_pntlight	*light;
 
 	lights = world->lights;
-	ambient =  mult_colors(comps.shape->color, world->ambient_light->light);
+	ambient = mult_colors(comps.shape->color, world->ambient_light->light);
 	if (lights == NULL)
 		return (ambient);
 	color = (t_color){0, 0, 0};
@@ -54,13 +67,14 @@ t_color	shade_hit(t_minirt *data, t_world *world, t_comps comps)
 	return (color);
 }
 
+/* initialize color to background color */
 t_color	color_at(t_minirt *data, t_ray ray)
 {
 	t_inter	hit_inter;
 	t_comps	comps;
 	t_color	color;
 
-	color = (t_color){0.125, 0.125, 0.125}; // Background color
+	color = (t_color){0.125, 0.125, 0.125};
 	intersections(data, ray);
 	hit_inter = data->min;
 	if (hit_inter.shape != NULL)
@@ -71,7 +85,7 @@ t_color	color_at(t_minirt *data, t_ray ray)
 	return (color);
 }
 
-void render_scene(t_minirt *data)
+void	render_scene(t_minirt *data)
 {
 	double	x;
 	double	y;
@@ -83,13 +97,13 @@ void render_scene(t_minirt *data)
 	ft_printf("Start rendering...\n");
 	while (++y < data->world->camera->vsize)
 	{
-		//++y; //dirty optimization
+		//++y; //grid rendering
 		ft_printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
 		x = -1.0;
 		while (++x < data->world->camera->hsize)
 		{
-			//++x; //dirty optimization
-			//printf("x = %f | y = %f \n", x, y);
+			//++x; //grid rendering
+			// printf("x = %f | y = %f \n", x, y);
 			ray = cast_ray(data->world->camera, x, y);
 			color = color_at(data, ray);
 			color_pixel(data, x, y, rgb(color));
@@ -97,5 +111,5 @@ void render_scene(t_minirt *data)
 	}
 	ft_printf("\rRendering: 100%%\n");
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
-							data->mlx_img->img_ptr, 200, 0);
+		data->mlx_img->img_ptr, 200, 0);
 }

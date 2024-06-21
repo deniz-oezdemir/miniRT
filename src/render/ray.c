@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/21 09:38:19 by denizozd          #+#    #+#             */
+/*   Updated: 2024/06/21 09:38:40 by denizozd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 t_ray	cast_ray(t_camera *camera, int px, int py)
@@ -11,7 +23,7 @@ t_ray	cast_ray(t_camera *camera, int px, int py)
 	world_x = camera->half_width - (px + 0.5) * camera->pixel_size;
 	world_y = camera->half_height - (py + 0.5) * camera->pixel_size;
 	pixel = mult_pnt_mtx(point(world_x, world_y, -1), camera->inverse);
-	origin = mult_pnt_mtx(point(0,0,0),  camera->inverse);
+	origin = mult_pnt_mtx(point(0, 0, 0), camera->inverse);
 	direction = vec_norm(vec_sub(pixel, origin));
 	return ((t_ray){origin, direction});
 }

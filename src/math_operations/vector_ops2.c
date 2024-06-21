@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vector_ops2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 10:57:19 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/20 16:56:34 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:23:55 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/minirt.h"
+#include "../../include/minirt.h"
 
 t_vec3	vec_sub(t_vec3 a, t_vec3 b)
 {

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersect_shape.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/21 09:17:16 by denizozd          #+#    #+#             */
+/*   Updated: 2024/06/21 09:17:32 by denizozd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 static void	add_inter(t_minirt *data, t_shape *shape, double t)
 {
-	if(t < data->min.inter && t > EPSILON)
+	if (t < data->min.inter && t > EPSILON)
 		data->min = (t_inter){shape, t};
 }
 

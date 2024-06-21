@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/20 17:30:01 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:30:38 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-static void separate_by_comma(t_minirt *data, char *space_separated)
+static void	separate_by_comma(t_minirt *data, char *space_separated)
 {
-	char **comma_separated;
-	int i;
+	char	**comma_separated;
+	int		i;
 
 	i = 0;
 	comma_separated = gc_split(data, space_separated, ',');
@@ -23,11 +23,11 @@ static void separate_by_comma(t_minirt *data, char *space_separated)
 		ft_lstadd_back(&(data->scene), gc_lstnew(data, comma_separated[i++]));
 }
 
-static void file_to_scene_list(t_minirt *data)
+static void	file_to_scene_list(t_minirt *data)
 {
-	char *line;
-	char **space_separated;
-	int i;
+	char	*line;
+	char	**space_separated;
+	int		i;
 
 	line = get_next_line(data->fd);
 	gc_collect(data, line);
@@ -43,7 +43,8 @@ static void file_to_scene_list(t_minirt *data)
 			if (ft_strchr(space_separated[i], ','))
 				separate_by_comma(data, space_separated[i]);
 			else
-				ft_lstadd_back(&(data->scene), gc_lstnew(data, space_separated[i]));
+				ft_lstadd_back(&(data->scene), gc_lstnew(data,
+						space_separated[i]));
 		}
 		line = get_next_line(data->fd);
 		gc_collect(data, line);
@@ -51,7 +52,7 @@ static void file_to_scene_list(t_minirt *data)
 	}
 }
 
-static void scene_list_to_structs_list(t_minirt *data, t_list **list)
+static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 {
 	if (!ft_strncmp((*list)->content, "A", 1))
 		parse_ambient_light(data, list);
@@ -69,7 +70,7 @@ static void scene_list_to_structs_list(t_minirt *data, t_list **list)
 		parse_cone(data, list);
 }
 
-void parse(t_minirt *data, char *file_name)
+void	parse(t_minirt *data, char *file_name)
 {
 	data->fd = open(file_name, O_RDONLY, 0);
 	if (data->fd < 0)
@@ -83,7 +84,7 @@ void parse(t_minirt *data, char *file_name)
 		else
 		{
 			printf("TODO: implement exit in case of parsing error\n");
-			break;
+			break ;
 		}
 		data->scene = data->scene->next;
 	}
