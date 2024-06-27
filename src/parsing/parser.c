@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/27 16:01:09 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:48:06 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,29 @@ static void	separate_by_comma(t_minirt *data, char *space_separated)
 		ft_lstadd_back(&(data->scene), gc_lstnew(data, comma_separated[i++]));
 }
 
+static char	*gnl_gc_collect(t_minirt *data)
+{
+	char	*line;
+
+	line = get_next_line(data->fd);
+	gc_collect(data, line);
+	return (line);
+}
+
 static void	file_to_scene_list(t_minirt *data)
 {
 	char	*line;
 	char	**space_separated;
 	int		i;
 
-	line = get_next_line(data->fd);
-	gc_collect(data, line);
-	if (!line || !ft_isprint(line[0]))
-		printf("Error: file\n");
-	remove_newline(&line);
-	while (line && ft_isprint(line[0]))
+	line = gnl_gc_collect(data);
+	if (!line)
+		printf("Error: file\n"); //exit
+	while (line)
 	{
+		while (!ft_isprint(line[0]))
+			line = gnl_gc_collect(data);
+		remove_newline(&line);
 		space_separated = gc_split(data, line, ' ');
 		i = -1;
 		while (space_separated[++i])
@@ -46,9 +56,7 @@ static void	file_to_scene_list(t_minirt *data)
 				ft_lstadd_back(&(data->scene), gc_lstnew(data,
 						space_separated[i]));
 		}
-		line = get_next_line(data->fd);
-		gc_collect(data, line);
-		remove_newline(&line);
+		line = gnl_gc_collect(data);
 	}
 }
 
@@ -72,7 +80,7 @@ static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 
 void	parse(t_minirt *data, char *file_name)
 {
-	char *extension;
+	char	*extension;
 
 	extension = ft_strchr(file_name, '.');
 	if (!extension || ft_strncmp(extension, ".rt", 3))
