@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minirt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/27 17:23:54 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:34:42 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ void	init_window(t_minirt *data)
 	data->mlx_win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
 			WIN_NAME);
 	if (data->mlx_win == NULL)
-		exit_program(data);
+		exit_program(data, MLX_MEM_ERR);
 	data->mlx_img->img_ptr = mlx_new_image(data->mlx_ptr, IMG_WIDTH,
 			IMG_HEIGHT);
 	if (data->mlx_img->img_ptr == NULL)
-		exit_program(data);
+		exit_program(data, MLX_MEM_ERR);
 	data->mlx_img->img_pixels_ptr = mlx_get_data_addr(data->mlx_img->img_ptr,
 			&data->mlx_img->bits_per_pixel, &data->mlx_img->line_len,
 			&data->mlx_img->endian);
 	if (data->mlx_img->img_pixels_ptr == NULL)
-		exit_program(data);
+		exit_program(data, MLX_MEM_ERR);
 	mlx_key_hook(data->mlx_win, handle_keyboard_input, data);
 	mlx_hook(data->mlx_win, 17, 0, handle_close_button, data);
 	mlx_mouse_hook(data->mlx_win, handle_mouse_input, data);

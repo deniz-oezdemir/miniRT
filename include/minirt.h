@@ -73,7 +73,6 @@ typedef struct s_minirt
 	t_img					*mlx_img;
 	t_list					*xs;
 	t_inter					min;
-	// t_scene	*scene;
 }							t_minirt;
 
 typedef struct s_ray

@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/src/main",
 			"args": [
-				"../scene/img03.rt"
+				"../scene/img15.rt"
 			],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",

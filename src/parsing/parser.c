@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/27 17:25:37 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:42:10 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 	else if (!ft_strncmp((*list)->content, "cn", 2))
 		parse_cone(data, list);
 	if (data->ambient_light_count > 1 || data->camera_count > 1)
-		printf("Error: multiple cameras or ambient lights detected\n"); //exit
+		exit_program(data, MULTIPLE_OBJS);
 }
 
 void	parse(t_minirt *data, char *file_name)
