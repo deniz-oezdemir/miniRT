@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/27 16:48:06 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:25:37 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,15 @@ static void	file_to_scene_list(t_minirt *data)
 static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 {
 	if (!ft_strncmp((*list)->content, "A", 1))
+	{
+		data->ambient_light_count++;
 		parse_ambient_light(data, list);
+	}
 	else if (!ft_strncmp((*list)->content, "C", 1))
+	{
+		data->camera_count++;
 		parse_camera(data, list);
+	}
 	else if (!ft_strncmp((*list)->content, "L", 1))
 		parse_pnt_light(data, list);
 	else if (!ft_strncmp((*list)->content, "sp", 2))
@@ -76,6 +82,8 @@ static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 		parse_cylinder(data, list);
 	else if (!ft_strncmp((*list)->content, "cn", 2))
 		parse_cone(data, list);
+	if (data->ambient_light_count > 1 || data->camera_count > 1)
+		printf("Error: multiple cameras or ambient lights detected\n"); //exit
 }
 
 void	parse(t_minirt *data, char *file_name)

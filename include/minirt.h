@@ -64,6 +64,8 @@ typedef struct s_minirt
 	int						fd;
 	t_list					*scene;
 	t_list					*objects;
+	int						camera_count;
+	int						ambient_light_count;
 	t_list					*grbg;
 	t_world					*world;
 	void					*mlx_ptr;
