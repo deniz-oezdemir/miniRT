@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mtx_determinant.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:31:11 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/21 09:19:38 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:28:23 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	determinant_2x2(t_mtx m)
 /* deleting the x_row and x_col from the given matrix. */
 t_mtx	sub_mtx(t_minirt *data, t_mtx m, int x_row, int x_col)
 {
-	double	r[m.dim - 1][m.dim - 1];
+	double	r[MTX_DIM][MTX_DIM];
 	int		row;
 	int		col;
 	int		new_row;

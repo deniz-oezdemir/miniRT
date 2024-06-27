@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/21 09:34:07 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:12:40 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	parse_camera(t_minirt *data, t_list **input_lst)
 	camera->dir.z = check_vec3(get_nth_content(*input_lst, 6));
 	camera->fov = check_fov(get_nth_content(*input_lst, 7));
 	if (!validate_camera(camera))
-		return (pars_error(data, CAMERA_ERR));
+		return (exit_program(data, CAMERA_ERR));
 	set_camera_transform(data, camera);
 	init_camera_view(camera);
 	data->world->camera = camera;

@@ -118,7 +118,7 @@ t_mtx						create_mtx(t_minirt *data, const double *m,
 								int dim);
 void						init_window(t_minirt *data);
 void						init_camera_view(t_camera *camera);
-void						exit_program(t_minirt *data);
+void						exit_program(t_minirt *data, int exit_code);
 
 /* MLX keyboard and mouse hooks */
 int							handle_keyboard_input(int keysym, t_minirt *data);
@@ -153,7 +153,8 @@ int							check_vec3(char *arg);
 int							check_fov(char *arg);
 
 /* Handlers */
-void						pars_error(t_minirt *data, int err_code);
+void						print_exit_msg(int exit_code);
+void						parser_error(int err_code);
 
 /* Utils */
 double						atof(const char *str);

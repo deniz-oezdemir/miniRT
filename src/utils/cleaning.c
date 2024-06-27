@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:23:50 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/17 11:37:29 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:15:58 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ void	free_inter(void *content)
 	inter_content->shape = NULL;
 }
 
-void	exit_program(t_minirt *data)
+void	exit_program(t_minirt *data, int exit_code)
 {
-	printf("Quitting the program... \n");
 	if (data->mlx_img->img_ptr != NULL)
 		mlx_destroy_image(data->mlx_ptr, data->mlx_img->img_ptr);
 	if (data->mlx_win != NULL)
@@ -36,5 +35,6 @@ void	exit_program(t_minirt *data)
 		free(data->mlx_img);
 	gc_free(data->grbg);
 	free(data);
-	exit(EXIT_SUCCESS);
+	print_exit_msg(exit_code);
+	exit(exit_code);
 }

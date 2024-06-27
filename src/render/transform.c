@@ -3,20 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   transform.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:39:53 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:39:55 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:42:47 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
 static t_mtx	orientation_mtx(t_minirt *data, t_vec3 left, t_vec3 true_up,
-		t_vec3 forward)
+	t_vec3 forward)
 {
-	double	m[] = {left.x, left.y, left.z, 0, true_up.x, true_up.y, true_up.z,
-			0, -forward.x, -forward.y, -forward.z, 0, 0, 0, 0, 1};
+	const double	m[MTX_DIM][MTX_DIM] = {
+	{left.x, left.y, left.z, 0},
+	{true_up.x, true_up.y, true_up.z, 0},
+	{-forward.x, -forward.y, -forward.z, 0},
+	{0, 0, 0, 1},
+	};
 
 	return (create_mtx(data, (const double *)m, 4));
 }

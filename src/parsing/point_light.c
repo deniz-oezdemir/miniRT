@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   point_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:08 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/21 09:31:21 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:13:16 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	parse_pnt_light(t_minirt *data, t_list **input_lst)
 	l->pnt_light.color.b = check_rgb(get_nth_content(*input_lst, 7)) / 255.0;
 	l->pnt_light.shadow = 0;
 	if (!validate_light(&(l->pnt_light)))
-		return (pars_error(data, LIGHT_ERR));
+		return (exit_program(data, LIGHT_ERR));
 	l->pnt_light.light = mult_color_scalar(l->pnt_light.color,
 			l->pnt_light.intensity);
 	ft_lstadd_back(&(data->world->lights), gc_lstnew(data, l));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:34:55 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:38:03 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:30:31 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,10 @@ void	render_scene(t_minirt *data)
 	ft_printf("Start rendering...\n");
 	while (++y < data->world->camera->vsize)
 	{
-		//++y; //grid rendering
 		ft_printf("\rRendering: %d%%", (int)(y * 100.0 / IMG_HEIGHT));
 		x = -1.0;
 		while (++x < data->world->camera->hsize)
 		{
-			//++x; //grid rendering
-			// printf("x = %f | y = %f \n", x, y);
 			ray = cast_ray(data->world->camera, x, y);
 			color = color_at(data, ray);
 			color_pixel(data, x, y, rgb(color));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:33:54 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/21 09:48:27 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:50:43 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	color_background(t_minirt *data, int color)
 
 void	print_instruction(t_minirt *data)
 {
-	int y;
-	void *mlx;
-	void *win;
+	int		y;
+	void	*mlx;
+	void	*win;
 
 	y = 0;
 	mlx = data->mlx_ptr;

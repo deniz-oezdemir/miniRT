@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:11:20 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:11:39 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:16:27 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
-void	pars_error(t_minirt *data, int err_code)
+void	parser_error(int err_code)
 {
 	if (err_code == AMB_LIGHT_ERR)
 		perror("Error parsing Ambient light. Please check input parameters!\n");
@@ -28,7 +28,12 @@ void	pars_error(t_minirt *data, int err_code)
 		perror("Error parsing Sphere. Please check input parameters!\n");
 	else if (err_code == CONE_ERR)
 		perror("Error parsing Cone. Please check input parameters!\n");
-	// Add memory clean functions
-	exit_program(data);
-	exit(err_code);
+}
+
+void	print_exit_msg(int exit_code)
+{
+	if (exit_code >= 10 && exit_code <= 20)
+		parser_error(exit_code);
+	else
+		printf("miniRT terminated");
 }

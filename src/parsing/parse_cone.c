@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:25:18 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:25:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:13:39 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	parse_cone(t_minirt *data, t_list **input_list)
 	shape->color.g = check_rgb(get_nth_content(*input_list, 10)) / 255.0;
 	shape->color.b = check_rgb(get_nth_content(*input_list, 11)) / 255.0;
 	if (!validate_cone(&(shape->cone)))
-		return (pars_error(data, CONE_ERR));
+		return (exit_program(data, CONE_ERR));
 	set_cone_transform(data, shape);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, shape));
 	move_to_nth_node(input_list, 11);

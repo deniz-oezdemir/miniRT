@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:46:53 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/21 09:30:18 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:12:48 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	parse_cylinder(t_minirt *data, t_list **input_lst)
 	sh->color.g = check_rgb(get_nth_content(*input_lst, 10)) / 255.0;
 	sh->color.b = check_rgb(get_nth_content(*input_lst, 11)) / 255.0;
 	if (!validate_cylinder(&(sh->cylinder)))
-		return (pars_error(data, CYLINDER_ERR));
+		return (exit_program(data, CYLINDER_ERR));
 	set_cylinder_transform(data, sh);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	move_to_nth_node(input_lst, 11);

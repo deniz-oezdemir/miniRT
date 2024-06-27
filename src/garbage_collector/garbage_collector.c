@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:50:33 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 08:43:58 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:21:55 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ void	*gc_get(t_minirt *data, size_t nmemb, size_t size)
 
 	new = ft_calloc(nmemb, size);
 	if (!new)
-	{
-		ft_putstr_fd("memory allocation error\n", 2);
-		// add exit/error
 		return (NULL);
-	}
 	gc_collect(data, new);
 	return (new);
 }
@@ -38,11 +34,7 @@ void	gc_collect(t_minirt *data, void *new)
 	head = &(data->grbg);
 	node = ft_calloc(1, sizeof(t_list));
 	if (!node)
-	{
-		ft_putstr_fd("memory allocation error\n", 2);
-		// add exit/error
-		return ;
-	}
+		exit_program(data, GC_MEM_ERR);
 	node->content = new;
 	node->next = NULL;
 	if (!(*head))

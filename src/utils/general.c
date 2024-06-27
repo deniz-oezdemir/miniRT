@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 12:58:44 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/21 09:45:52 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:51:28 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	calculate_rotation_angles(t_vec3 vec, double *x, double *z)
 	double	ratio;
 
 	ratio = sqrt((vec.x * vec.x) + (vec.y * vec.y));
-	if (0.0 == ratio) // Use EPSILON?
+	if (0.0 == ratio)
 		*z = M_PI_2;
 	else
 		*z = acos(vec.y / ratio);

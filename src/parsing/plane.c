@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:25 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/21 09:32:05 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:13:07 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	parse_plane(t_minirt *data, t_list **input_lst)
 	sh->color.g = check_rgb(get_nth_content(*input_lst, 8)) / 255.0;
 	sh->color.b = check_rgb(get_nth_content(*input_lst, 9)) / 255.0;
 	if (!validate_plane(&(sh->plane)))
-		return (pars_error(data, PLANE_ERR));
+		return (exit_program(data, PLANE_ERR));
 	set_plane_transform(data, sh);
 	ft_lstadd_back(&(data->world->objects), gc_lstnew(data, sh));
 	move_to_nth_node(input_lst, 9);

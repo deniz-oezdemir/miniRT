@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mtx_ops.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:23:22 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:29:12 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ t_mtx	identity_mtx(t_minirt *data, int dim)
 
 t_mtx	invert_mtx(t_minirt *data, t_mtx m)
 {
-	double	r[m.dim][m.dim];
+	double	r[MTX_DIM][MTX_DIM];
 	double	det;
 	t_mtx	inv;
 	int		row;
 	int		col;
 
 	det = mtx_determinant(data, m);
-	if (det == 0) // Replace with a is_equal function for doubles
+	if (det == 0)
 	{
 		inv.dim = 0;
 		return (inv);
