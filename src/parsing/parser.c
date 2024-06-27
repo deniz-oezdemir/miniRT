@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:30:38 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:25:37 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,29 @@ static void	separate_by_comma(t_minirt *data, char *space_separated)
 		ft_lstadd_back(&(data->scene), gc_lstnew(data, comma_separated[i++]));
 }
 
+static char	*gnl_gc_collect(t_minirt *data)
+{
+	char	*line;
+
+	line = get_next_line(data->fd);
+	gc_collect(data, line);
+	return (line);
+}
+
 static void	file_to_scene_list(t_minirt *data)
 {
 	char	*line;
 	char	**space_separated;
 	int		i;
 
-	line = get_next_line(data->fd);
-	gc_collect(data, line);
-	if (!line || !ft_isprint(line[0]))
-		printf("Error: file\n");
-	remove_newline(&line);
-	while (line && ft_isprint(line[0]))
+	line = gnl_gc_collect(data);
+	if (!line)
+		printf("Error: file\n"); //exit
+	while (line)
 	{
+		while (!ft_isprint(line[0]))
+			line = gnl_gc_collect(data);
+		remove_newline(&line);
 		space_separated = gc_split(data, line, ' ');
 		i = -1;
 		while (space_separated[++i])
@@ -46,18 +56,22 @@ static void	file_to_scene_list(t_minirt *data)
 				ft_lstadd_back(&(data->scene), gc_lstnew(data,
 						space_separated[i]));
 		}
-		line = get_next_line(data->fd);
-		gc_collect(data, line);
-		remove_newline(&line);
+		line = gnl_gc_collect(data);
 	}
 }
 
 static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 {
 	if (!ft_strncmp((*list)->content, "A", 1))
+	{
+		data->ambient_light_count++;
 		parse_ambient_light(data, list);
+	}
 	else if (!ft_strncmp((*list)->content, "C", 1))
+	{
+		data->camera_count++;
 		parse_camera(data, list);
+	}
 	else if (!ft_strncmp((*list)->content, "L", 1))
 		parse_pnt_light(data, list);
 	else if (!ft_strncmp((*list)->content, "sp", 2))
@@ -68,13 +82,20 @@ static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 		parse_cylinder(data, list);
 	else if (!ft_strncmp((*list)->content, "cn", 2))
 		parse_cone(data, list);
+	if (data->ambient_light_count > 1 || data->camera_count > 1)
+		printf("Error: multiple cameras or ambient lights detected\n"); //exit
 }
 
 void	parse(t_minirt *data, char *file_name)
 {
+	char	*extension;
+
+	extension = ft_strchr(file_name, '.');
+	if (!extension || ft_strncmp(extension, ".rt", 3))
+		printf("Error: wrong file extension\n"); //exit
 	data->fd = open(file_name, O_RDONLY, 0);
 	if (data->fd < 0)
-		printf("Error: opening file\n");
+		printf("Error: opening file\n"); //exit?
 	file_to_scene_list(data);
 	close(data->fd);
 	while (data->scene)

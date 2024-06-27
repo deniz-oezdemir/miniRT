@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:16:00 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:23:54 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_minirt	*init_mlx(void)
 	data->scene = NULL;
 	data->objects = NULL;
 	data->grbg = NULL;
+	data->camera_count = 0;
+	data->ambient_light_count = 0;
 	data->world = (t_world *)gc_get(data, 1, sizeof(t_world));
 	return (data);
 }
