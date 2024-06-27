@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:30:38 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:01:09 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,14 @@ static void	scene_list_to_structs_list(t_minirt *data, t_list **list)
 
 void	parse(t_minirt *data, char *file_name)
 {
+	char *extension;
+
+	extension = ft_strchr(file_name, '.');
+	if (!extension || ft_strncmp(extension, ".rt", 3))
+		printf("Error: wrong file extension\n"); //exit
 	data->fd = open(file_name, O_RDONLY, 0);
 	if (data->fd < 0)
-		printf("Error: opening file\n");
+		printf("Error: opening file\n"); //exit?
 	file_to_scene_list(data);
 	close(data->fd);
 	while (data->scene)
