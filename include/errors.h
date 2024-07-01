@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:49:09 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/27 17:41:01 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:47:49 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #define SPHERE_ERR 15
 #define CONE_ERR 16
 #define MULTIPLE_OBJS 17
+#define FILE_EXT_ERR 18
+#define FILE_OPEN_ERR 19
 
 /* Memory allocation exit code */
 #define GC_MEM_ERR 20

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/27 17:42:10 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:50:24 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ void	parse(t_minirt *data, char *file_name)
 {
 	char	*extension;
 
-	extension = ft_strchr(file_name, '.');
-	if (!extension || ft_strncmp(extension, ".rt", 3))
-		printf("Error: wrong file extension\n"); //exit
 	data->fd = open(file_name, O_RDONLY, 0);
 	if (data->fd < 0)
-		printf("Error: opening file\n"); //exit?
+		exit_program(data, FILE_OPEN_ERR);
+	extension = ft_strchr(file_name, '.');
+	if (!extension || ft_strncmp(extension, ".rt", 3))
+		exit_program(data, FILE_EXT_ERR);
 	file_to_scene_list(data);
 	close(data->fd);
 	while (data->scene)
