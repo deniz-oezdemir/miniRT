@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:46:53 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/27 17:12:48 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:24:34 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_shape	*new_cylinder(t_minirt *data)
 
 	sh = gc_get(data, 1, sizeof(t_shape));
 	if (!sh)
-		printf("Error: allocation failed\n");
+		exit_program(data, MEM_ALC_ERR);
 	sh->name = CYLINDER;
 	sh->cylinder.center.w = 1;
 	sh->cylinder.dir.w = 0;

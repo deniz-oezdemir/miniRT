@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   point_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:08 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/27 17:13:16 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:24:34 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parse_pnt_light(t_minirt *data, t_list **input_lst)
 
 	l = gc_get(data, 1, sizeof(t_light));
 	if (!l)
-		printf("Error: allocation failed\n");
+		exit_program(data, MEM_ALC_ERR);
 	l->name = PNT_LIGHT;
 	l->pnt_light.center.x = check_coordinate(get_nth_content(*input_lst, 1));
 	l->pnt_light.center.y = check_coordinate(get_nth_content(*input_lst, 2));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:35 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/27 17:13:25 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:24:34 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_shape	*new_sphere(t_minirt *data)
 
 	sh = gc_get(data, 1, sizeof(t_shape));
 	if (!sh)
-		printf("Error: allocation failed\n");
+		exit_program(data, MEM_ALC_ERR);
 	sh->name = SPHERE;
 	sh->sphere.center.w = 1;
 	sh->transform = identity_mtx(data, 4);

@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:49:09 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/07/01 16:47:49 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:22:44 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 #define MULTIPLE_OBJS 17
 #define FILE_EXT_ERR 18
 #define FILE_OPEN_ERR 19
+#define FILE_COR_ERR 20
+#define MEM_ALC_ERR 21
 
 /* Memory allocation exit code */
-#define GC_MEM_ERR 20
-#define MTX_MEM_ERR 21
-#define SPLIT_MEM_ERR 22
-#define MLX_MEM_ERR 23
+#define GC_MEM_ERR 30
+#define MTX_MEM_ERR 31
+#define SPLIT_MEM_ERR 32
+#define MLX_MEM_ERR 33

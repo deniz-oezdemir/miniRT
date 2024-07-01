@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/27 17:12:40 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:23:43 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_camera	*new_camera(t_minirt *data)
 
 	camera = gc_get(data, 1, sizeof(t_camera));
 	if (!camera)
-		printf("Error: allocation failed\n");
+		exit_program(data, MEM_ALC_ERR);
 	camera->name = CAMERA;
 	camera->center.w = 1;
 	camera->dir.w = 0;

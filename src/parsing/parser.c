@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:08:26 by denizozd          #+#    #+#             */
-/*   Updated: 2024/07/01 16:50:24 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:08:59 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	file_to_scene_list(t_minirt *data)
 
 	line = gnl_gc_collect(data);
 	if (!line)
-		printf("Error: file\n"); //exit
+		exit_program(data, FILE_COR_ERR);
 	while (line)
 	{
 		while (!ft_isprint(line[0]))
@@ -103,10 +103,7 @@ void	parse(t_minirt *data, char *file_name)
 		if (is_identifier(data->scene->content))
 			scene_list_to_structs_list(data, &(data->scene));
 		else
-		{
-			printf("TODO: implement exit in case of parsing error\n");
-			break ;
-		}
+			exit_program(data, FILE_COR_ERR);
 		data->scene = data->scene->next;
 	}
 }
