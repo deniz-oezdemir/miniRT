@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mtx_determinant.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:31:11 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/27 19:14:37 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:13:25 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,21 @@ double	determinant_2x2(t_mtx m)
 /* deleting the x_row and x_col from the given matrix. */
 t_mtx	sub_mtx(t_minirt *data, t_mtx m, int x_row, int x_col)
 {
-	double	r[MTX_DIM][MTX_DIM]; //creates error: m.dim-1 -> maybe malloc matrix with create matrix instead
+	double	sub_m[MTX_DIM][MTX_DIM];
 	int		row;
 	int		col;
-	int		new_row;
-	int		new_col;
 
-	ft_bzero(r, sizeof(double) * ((m.dim - 1) * (m.dim - 1)));
-	new_row = 0;
 	row = -1;
-	while (++row < m.dim && new_row < m.dim - 1)
+	if (m.dim == 0)
+		return (identity_mtx(data, m.dim - 1));
+	while (++row < m.dim - 1)
 	{
-		if (row == x_row)
-			continue ;
 		col = -1;
-		new_col = 0;
-		while (++col < m.dim && new_col < m.dim - 1)
-		{
-			if (col == x_col)
-				continue ;
-			r[new_row][new_col] = m.mtx[row][col];
-			new_col++;
-		}
-		new_row++;
+		while (++col < m.dim - 1)
+			sub_m[row][col] = m.mtx \
+				[row + (row >= x_row)][col + (col >= x_col)];
 	}
-	return (create_mtx(data, (const double *)r, (m.dim - 1)));
+	return (create_mtx(data, (const double *)sub_m, m.dim - 1));
 }
 
 /* Calculate the determinant of the given submatrix. */
