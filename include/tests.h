@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:42 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/21 09:52:34 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:35:51 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	test_is_in_range(void);
 void	test_vec_ops(void);
 void	test_mtx_ops(void);
 void	test_mtx_trans(void);
-void	test_determinant_2x2(void);
-void	test_sub_mtx(void);
-void	test_mtx_minor(void);
-void	test_mtx_cofactor(void);
-void	test_mtx_determinant(void);
-void	test_mtx_determinant_4x4(void);
+void	test_determinant_2x2(t_minirt *data);
+void	test_sub_mtx(t_minirt *data);
+void	test_mtx_minor(t_minirt *data);
+void	test_mtx_cofactor(t_minirt *data);
+void	test_mtx_determinant(t_minirt *data);
+void	test_mtx_determinant_4x4(t_minirt *data);
 void	test_rays();
 void	test_inter(t_minirt *data);
 void	test_inter_2(t_minirt *data);
