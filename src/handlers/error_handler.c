@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:11:20 by denizozd          #+#    #+#             */
-/*   Updated: 2024/07/01 17:22:30 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:29:22 by tiacovel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	parser_error(int err_code)
 {
+	ft_putstr_fd("Error\n", 2);
 	if (err_code == AMB_LIGHT_ERR)
 		ft_putstr_fd("Ambient light: please check input parameters!\n", 2);
 	else if (err_code == CAMERA_ERR)
@@ -42,7 +43,6 @@ void	parser_error(int err_code)
 
 void	print_exit_msg(int exit_code)
 {
-	ft_putstr_fd("Error\n", 2);
 	if (exit_code >= 10 && exit_code <= 30)
 		parser_error(exit_code);
 	else

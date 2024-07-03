@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+         #
+#    By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 22:25:40 by denizozd          #+#    #+#              #
-#    Updated: 2024/06/27 19:12:14 by denizozd         ###   ########.fr        #
+#    Updated: 2024/07/03 17:42:47 by tiacovel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,19 +115,6 @@ $(OBJDIR)/%.o: $(TESTDIR)/%.c
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
-
-macos: $(OBJS)
-	@if [ ! -f $(LIBFTPATH)/libft.a ]; then \
- 		echo "Building libft..."; \
-		make -C $(LIBFTPATH); \
-	else \
-		echo "libft.a already exists"; \
-	fi
-	if [ ! -d "./lib/mlx" ]; then \
-		git submodule add https://github.com/42Paris/minilibx-linux.git lib/mlx; \
-	fi
-	make -C $(MLX_LIB)
-	$(CC) $(OBJS) -g -L /usr/X11/lib -lX11 -lmlx -lXext -Llib/libft -lft -o $(NAME)
 
 clean:
 	@rm -rf $(OBJDIR) $(EXECUTABLE) $(TEST_EXECUTABLE)
