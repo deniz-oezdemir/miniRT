@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:34:55 by denizozd          #+#    #+#             */
-/*   Updated: 2024/07/04 11:17:07 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:44:40 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ t_comps	prepare_computations(t_inter inter, t_ray ray)
 	comps.eyev = vec_neg(ray.dir);
 	comps.normalv = normal_at(inter.shape, comps.point);
 	comps.inside = false;
-	printf("test: %f\n", vec_dot(comps.normalv, comps.eyev));
 	if (vec_dot(comps.normalv, comps.eyev) < 0)
 	{
-		printf("inside\n");
 		comps.inside = true;
 		comps.normalv = vec_neg(comps.normalv);
 	}
@@ -79,7 +77,6 @@ t_color	color_at(t_minirt *data, t_ray ray)
 	color = (t_color){0.125, 0.125, 0.125};
 	intersections(data, ray);
 	hit_inter = data->min;
-	printf("hit: %p\n", hit_inter.shape);
 	if (hit_inter.shape != NULL)
 	{
 		comps = prepare_computations(hit_inter, ray);
