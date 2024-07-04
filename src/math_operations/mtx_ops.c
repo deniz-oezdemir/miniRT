@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mtx_ops.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 10:39:35 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/27 17:58:45 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:15:38 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,12 @@ t_mtx	invert_mtx(t_minirt *data, t_mtx m)
 {
 	double	r[MTX_DIM][MTX_DIM];
 	double	det;
-	t_mtx	inv;
 	int		row;
 	int		col;
 
 	det = mtx_determinant(data, m);
 	if (det == 0)
-	{
-		inv.dim = 0;
-		return (inv);
-	}
+		return (identity_mtx(data, m.dim));
 	row = -1;
 	while (++row < m.dim)
 	{
