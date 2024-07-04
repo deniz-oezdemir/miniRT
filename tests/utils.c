@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:43:45 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/10 13:46:12 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:16:20 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,12 @@ void free_world(t_world *world)
 	// Clear the objects list without freeing shapes
 	if (world->objects != NULL)
 	{
-		world->object_nbr = 0;
 		ft_lstclear(&world->objects, del_object);
 	}
 
 	// Clear the lights list and free the light structs
 	if (world->lights != NULL)
 	{
-		world->light_nbr = 0;
 		ft_lstclear(&world->lights, del_light);
 	}
 

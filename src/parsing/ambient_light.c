@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:10:53 by denizozd          #+#    #+#             */
-/*   Updated: 2024/07/01 17:23:35 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:18:06 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	parse_ambient_light(t_minirt *data, t_list **input_lst)
 		return (exit_program(data, AMB_LIGHT_ERR));
 	alight->light = mult_color_scalar(alight->color, alight->intensity);
 	data->world->ambient_light = alight;
-	data->world->light_nbr++;
 	move_to_nth_node(input_lst, 4);
 	printf("Ambient light OK\n");
 }

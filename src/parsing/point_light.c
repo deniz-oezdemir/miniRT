@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:47:08 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/07/01 17:24:34 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:18:21 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	parse_pnt_light(t_minirt *data, t_list **input_lst)
 	l->pnt_light.light = mult_color_scalar(l->pnt_light.color,
 			l->pnt_light.intensity);
 	ft_lstadd_back(&(data->world->lights), gc_lstnew(data, l));
-	data->world->light_nbr++;
 	move_to_nth_node(input_lst, 7);
 	printf("Light OK\n");
 }
