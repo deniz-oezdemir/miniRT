@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/07/04 14:38:12 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:55:17 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_camera	*new_camera(t_minirt *data)
 static void	set_camera_transform(t_minirt *data, t_camera *camera)
 {
 	camera->transform = transform_view(data, camera->center,
-			point(0, camera->center.y + 1, 0),
+			point(0, 0.9999999, 0),
 			camera->dir);
 	camera->inverse = invert_mtx(data, camera->transform);
 }
