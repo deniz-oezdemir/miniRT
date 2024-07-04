@@ -37,7 +37,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/src/main",
 			"args": [
-				"../scene_1_sphere.rt"
+				"camera_in_sphere.rt"
 			],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
