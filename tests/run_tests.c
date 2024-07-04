@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_tests.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:26:23 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/07/03 15:42:26 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:44:17 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int main(void)
 {
 	t_minirt	*data;
 
-	data = init_mlx();
+	data = init_minirt();
 	// print_scene_objects(data->world);
-	
+
 	// test_is_digit();
 	// test_is_identifier();
 	// test_is_in_range();

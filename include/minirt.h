@@ -114,7 +114,7 @@ typedef struct s_exposure
 }							t_exposure;
 
 /* Init and exit functions */
-t_minirt					*init_mlx(void);
+t_minirt					*init_minirt(void);
 t_mtx						create_mtx(t_minirt *data, const double *m,
 								int dim);
 void						init_window(t_minirt *data);

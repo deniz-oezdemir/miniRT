@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_minirt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:50:17 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/27 17:34:42 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:44:17 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minirt.h"
 
 /* rename init minirt and img */
-t_minirt	*init_mlx(void)
+t_minirt	*init_minirt(void)
 {
 	t_minirt	*data;
 
