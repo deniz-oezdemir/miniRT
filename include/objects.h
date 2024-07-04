@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:57:56 by denizozd          #+#    #+#             */
-/*   Updated: 2024/06/21 09:52:05 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:13:22 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_amblight
 {
 	double			intensity;
 	t_color			color;
-	t_color			light; // color * intensity - maybe get rid of intensity and color if not needed
+	t_color			light;
 }					t_amblight;
 
 typedef struct s_camera
@@ -47,10 +47,10 @@ typedef struct s_camera
 
 typedef struct s_pntlight
 {
-	t_vec3			center; // position
+	t_vec3			center;
 	double			intensity;
 	t_color			color;
-	t_color			light; // color * intensity	- maybe get rid of intensity and color if not needed
+	t_color			light;
 	int				shadow;
 }					t_pntlight;
 

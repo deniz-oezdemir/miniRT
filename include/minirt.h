@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/04 16:12:43 by denizozd          #+#    #+#             */
+/*   Updated: 2024/07/04 16:13:03 by denizozd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIRT_H
 # define MINIRT_H
 
@@ -8,7 +20,6 @@
 # include "tuples.h"
 # include <X11/keysym.h>
 # include <fcntl.h>
-# include <float.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -26,11 +37,12 @@
 
 # define MLX_ERROR 1
 
-# define MTX_DIM 4 // matrix dimension, maybe just substitute MTX_DIM with 4 everywhere at the end
-# define MTX_SIZE 16 // matrix number of elements, must be set to MTX_DIM^2
+# define MTX_DIM 4
+# define MTX_SIZE 16
 # define PI 3.14159265358979323846
 # define PI_2 1.57079632679489661923
 # define EPSILON 0.00001
+# define DBL_MAX 1.7976931348623158e+308
 
 typedef struct s_material	t_material;
 

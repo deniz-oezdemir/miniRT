@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tuples.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiacovel <tiacovel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:32:23 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/06/06 12:05:10 by tiacovel         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:05:10 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_color
 typedef struct s_mtx
 {
 	double	**mtx;
-	int		dim; // Before size_t
+	int		dim;
 }	t_mtx;
 
 #endif
