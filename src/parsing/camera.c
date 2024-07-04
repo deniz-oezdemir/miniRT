@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:44:34 by tiacovel          #+#    #+#             */
-/*   Updated: 2024/07/01 17:23:43 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:49:50 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static bool	validate_camera(t_camera *camera)
 	if (camera->center.x < INT_MIN || camera->center.y < INT_MIN
 		|| camera->center.z < INT_MIN || camera->dir.x < -1
 		|| camera->dir.y < -1 || camera->dir.z < -1 || camera->fov < 0)
+		return (false);
+	if (camera->dir.x == 0 && camera->dir.y == 0 && camera->dir.z == 0)
 		return (false);
 	return (true);
 }
