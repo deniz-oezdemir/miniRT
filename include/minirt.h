@@ -6,7 +6,7 @@
 /*   By: denizozd <denizozd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 16:12:43 by denizozd          #+#    #+#             */
-/*   Updated: 2024/07/04 16:13:03 by denizozd         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:20:29 by denizozd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ typedef struct s_world
 	t_list					*lights;
 	t_amblight				*ambient_light;
 	t_camera				*camera;
-	int						object_nbr;
-	int						light_nbr;
 }							t_world;
 
 typedef struct s_inter
@@ -83,7 +81,6 @@ typedef struct s_minirt
 	void					*mlx_ptr;
 	void					*mlx_win;
 	t_img					*mlx_img;
-	t_list					*xs;
 	t_inter					min;
 }							t_minirt;
 
@@ -236,7 +233,6 @@ double						vec_dot(t_vec3 a, t_vec3 b);
 double						magnitude(t_vec3 v);
 
 /* Ray casting */
-// input = ray, distance (double) || output Position = Point(vec3)
 t_ray						cast_ray(t_camera *camera, int px, int py);
 t_ray						transform_ray(t_ray ray, t_shape *shape);
 t_vec3						position(t_ray ray, double dist);
@@ -274,8 +270,7 @@ t_color						mult_color_scalar(t_color color, double scalar);
 t_mtx						transform_view(t_minirt *data, t_vec3 from,
 								t_vec3 to, t_vec3 up);
 
-/* Print stuff */
-// To be deleted befor submission
+/* Printers */
 void						print_scene_objects(t_world *world);
 void						print_vec3(t_vec3 v, char *label);
 void						print_mtx(t_mtx mtx);
