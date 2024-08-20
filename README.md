@@ -36,7 +36,7 @@ This will generate the miniRT executable in the project directory.
 ## Usage on linux
 To render a scene, execute the program with a valid .rt scene file as an argument:
 ```
-./miniRT <scene-file.rt>
+./miniRT scene/<scene-file.rt>
 ```
 
 ## Usage on macOS
