@@ -26,11 +26,11 @@
 # include <stdlib.h>
 
 # define WIN_NAME "MiniRT"
-# define WIN_WIDTH 500
-# define WIN_HEIGHT 500
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
 
-# define IMG_WIDTH 500
-# define IMG_HEIGHT 500
+# define IMG_WIDTH 1000
+# define IMG_HEIGHT 1000
 
 # define BACKGROUND_COLOR 0x202020
 # define TEXT_COLOR 0xffffff
