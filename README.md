@@ -5,8 +5,7 @@ An introduction to raytracing.
 ## Table of Contents
 - [About](#about)
 - [Installation](#installation)
-- [Usage on linux](#usage-on-linux)
-- [Usage on macOS](#usage-on-macos)
+- [Usage](#usage)
 - [Sample images](#sample-images)
 - [Sources](#sources)
 
@@ -33,14 +32,11 @@ make
 
 This will generate the miniRT executable in the project directory.
 
-## Usage on linux
+## Usage
 To render a scene, execute the program with a valid .rt scene file as an argument:
 ```
 ./miniRT scene/<scene-file.rt>
 ```
-
-## Usage on macOS
-Instructions for macOS will be added by [Tiziano](https://github.com/tiziaco).
 
 ## Sample images
 An image close to my current GitHub profile picture:
