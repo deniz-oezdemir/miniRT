@@ -13,6 +13,8 @@ An introduction to raytracing.
 
 This program was developed together with [Tiziano](https://github.com/tiziaco). It allows you to render simple computer-generated images using a ray tracing algorithm. It is developed in C and utilizes the miniLibX, a simple X-Window (X11R6) programming API.
 
+Regarding the development process, we initially followed the Test-Driven Development (TDD) approach from *The Ray Tracer Challenge* (Buck, 2019). This helped us understand ray tracing and allowed us to quickly verify our implementations. However, as we neared the end of the project and aimed to meet the specific [subject requirements](./en.subject.pdf), we found that TDD was slowing us down. Consequently, we decided to stop using TDD, and the tests are now deprecated.
+
 ## Installation
 Install miniLibX dependencies:
 ```
